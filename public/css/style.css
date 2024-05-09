@@ -1,0 +1,126 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.background-1 {
+    margin-top: -30px;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://s3-alpha-sig.figma.com/img/0647/d54b/a73ab84a1855004de31c050a3f21a5a6?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=E~q6g6r7DOLxUui1iLX7AV2uCNBSn9W8nRqBMsy8VeI1HdjVeaZPhS9YRP00THha4rNtO5Vkz-jlW2kCSHy0z6XB37Cz0tU2gsVV9vNEuGoNPSgOAEmoF-5UN1nr4cAlwXA5k~g79rikS3gsVgqlQW9JdF4uLXQYSmJ2zrV0sjhDA90e-hDvaVQRqlFapMCB-kUAnyE-8-RuWK8m40wXUndxpsX1aCCmrf-fUnDjrsEeUW7cNIdxxY0Yc9doU2GTzEfOPPDagkhI8utaN0ITG5ZrZ1AYiwLLar9q5bOsqWtUGq6adIFiUSOrudkIV2oi5zVJaTn4bLyeDPYOStdlng__);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background-1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.38) 0%,
+            rgba(0, 0, 0, 0) 100%
+        ),
+        linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, #0d0d0d 100%);
+}
+header {
+    height: 80px;
+    background: rgba(13, 13, 13, 0.24);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+}
+.header-left {
+    margin-left: 120px;
+}
+header a {
+    margin-left: 36px;
+    text-decoration: none;
+    color: var(--White, #fff);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.header-right {
+    margin-left: 400px;
+}
+
+.btnReport {
+    border: none;
+    color: white;
+    border-radius: 100px;
+    background: var(--Light-primary, #009571);
+    margin-left: 24px;
+    padding: 12px 24px;
+}
+
+.icon {
+    margin-left: 330px;
+    padding: 12px 12px;
+    border-radius: 100px;
+    background: #2c313e;
+    backdrop-filter: blur(10px);
+}
+
+.banner{
+    margin-top: 130px;
+    backdrop-filter: blur(2px);
+}
+
+.banner span{
+    color: #009571;
+}
+
+.banner h1{
+    color: white;
+}
+
+.banner p{
+    margin: auto;
+    margin-top: 24px;
+    width: 941px;
+    color: var(--Light-Stroke, #E4E4E4);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.banner form{
+    margin-top: 36px;
+}
+.banner input{
+    width: 400px;
+    outline: none; 
+    caret-color: white;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px 24px ;
+    border: none;
+    border-radius: 100px 0 0 100px;
+}
+
+.banner>form>button{
+    position: relative;
+    margin-left: -4.5px;
+    color: white;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 0 100px 100px 0;
+
+}
+
+.banner form button div{
+    left: 0;
+    position: absolute;
+    background-color: #fff;
+    height: 20px;
+    width: 1px;
+}
+
+
+
