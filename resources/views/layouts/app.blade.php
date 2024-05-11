@@ -20,10 +20,36 @@
     </head>
 
     <body style="position: relative">
+        <script>
+            const myModal = document.getElementById('myModal')
+            const myInput = document.getElementById('myInput')
+            myModal.addEventListener('shown.bs.modal', () => {
+                myInput.focus()
+            })
+        </script>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo!!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Bạn chưa đăng nhập</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="http://localhost:8000/login" class="btn btn-primary"><i
+                                class="fa-brands fa-facebook"></i> &nbsp;Login with facebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="background-1">
             <header>
                 <div class="header-left">
-                    <img style="margin-left:40px;width:150px; height:auto;" src="{{ asset('images/logo.png') }}"
+                    <img style="margin-left:40px;width:150px; height:auto" src="{{ asset('images/logo.png') }}"
                         alt="">
                 </div>
 
@@ -32,10 +58,13 @@
                     <a href="">Giới thiệu</a>
                     <a href="">Cảnh báo hình thức lừa đảo</a>
                     <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
-                    <button class="btnReport">Report lừa đảo</button>
+                    <button class="btnReport" data-bs-toggle="modal" data-bs-target="#exampleModal">Report lừa
+                        đảo</button>
+
                 </div>
             </header>
             <div class="banner">
+
                 <h1 class="text-center">Check <span>SCA</span></h1>
                 <p class="text-center">Tra cứu "SĐT, STK Ngân Hàng..." trước khi giao dịch online. Đây là dữ liệu để
                     cảnh báo không nhắm mục đích bôi nhọ hay hạ thấp uy tín danh dự của bất kì ai, vui lòng liên hệ
@@ -51,27 +80,28 @@
 
                 <div class="text-center" style="margin-top: 50px">
                     <button class="btnReport">Report lừa đảo</button>
-                    <button class="btnReport"
-                        style="background: rgba(255, 255, 255, 0.12);backdrop-filter: blur(10px);">
+                    <button class="btnReport" style="background: rgba(255, 255, 255, 0.12);backdrop-filter: blur(10px)">
                         Quỹ bảo hiểm</button>
                 </div>
             </div>
             <div id="main" class="slide text-light moved">
                 @foreach ($cates as $cate)
-                    <div id="check{{$loop->iteration}}"  class="main">
+                    <div id="check{{ $loop->iteration }}" class="main">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="180" height="180" viewBox="0 0 180 180" fill="none">
-                            <path d="M0 0H160L180 35V180H20L0 145L0 0Z" fill="url(#pattern0_623_54{{$loop->iteration}})" />
+                            <path d="M0 0H160L180 35V180H20L0 145L0 0Z"
+                                fill="url(#pattern0_623_54{{ $loop->iteration }})" />
                             <defs>
-                                <pattern id="pattern0_623_54{{$loop->iteration}}" patternContentUnits="objectBoundingBox" width="1"
-                                    height="1">
-                                    <use xlink:href="#image0_623_54{{$loop->iteration}}"
+                                <pattern id="pattern0_623_54{{ $loop->iteration }}"
+                                    patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_623_54{{ $loop->iteration }}"
                                         transform="translate(-0.166667) scale(0.00277778)" />
                                 </pattern>
-                                <image id="image0_623_54{{$loop->iteration}}" xlink:href='{{ $cate['image'] }}'>
+                                <image id="image0_623_54{{ $loop->iteration }}"  
+                                    xlink:href='{{ $cate['image'] }}'>
                             </defs>
                         </svg>
-                        <div id="overlay2_{{$loop->iteration}}" class="over overlay2">
+                        <div id="overlay2_{{ $loop->iteration }}" class="over overlay2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164"
                                 fill="none">
                                 <path
@@ -88,9 +118,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <div id="overlay1_{{$loop->iteration}}" class="over overlay1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"
-                                fill="none">
+                        <div id="overlay1_{{ $loop->iteration }}" class="over overlay1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"
+                                viewBox="0 0 180 180" fill="none">
                                 <path d="M0 0H160.165L180 35V180H19.8347L0 146.142L0 0Z" fill="black"
                                     fill-opacity="0.8" />
                             </svg>
@@ -101,11 +131,9 @@
 
             </div>
             <div class="arrow">
-                <img id="prev" class="button prev" src="{{asset('images/arrowleft.png')}}" alt="">
-                <img id='next' class="button next" src="{{asset('images/arrowright.png')}}" alt="">
+                <img id="prev" class="button prev" src="{{ asset('images/arrowleft.png') }}" alt="">
+                <img id='next' class="button next" src="{{ asset('images/arrowright.png') }}" alt="">
             </div>
 
-              <script src="{{asset('js/main.js')}}"></script>
-              @yield('content')
-
-            
+            <script src="{{ asset('js/main.js') }}"></script>
+            @yield('content')

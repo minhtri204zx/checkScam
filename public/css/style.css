@@ -124,7 +124,7 @@ header a {
 }
 
 .slide {
-    margin-left:-120px ;
+    margin-left: -120px;
     width: 130%;
     backdrop-filter: blur(2px);
     margin-top: 100px;
@@ -163,10 +163,10 @@ header a {
 
 .arrow {
     position: absolute;
-    top:  686px;
+    top: 686px;
 }
 
-.button:hover{
+.button:hover {
     cursor: pointer;
 }
 
@@ -179,54 +179,62 @@ header a {
     gap: 10px;
 }
 
-.arrow img+img{
+.arrow img + img {
     margin-left: 1000px;
 }
 
-.body{
+.body {
     backdrop-filter: blur(2px);
-    background: #0C0D0E;
+    background: #0c0d0e;
     margin-top: 120px;
     height: 1000px;
 }
 
-.body .content{
+.body .content {
+    margin-left: 24px;
     position: relative;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.07);
     width: 400px;
     height: 170px;
     padding: 24px;
+    margin-top: 30px;
 }
 
-.body .content p{
+.body .content p {
     color: white;
 }
 
-.body .content span{
-    color: #B5AB9A;
+.body .content span {
+    color: #b5ab9a;
+    margin-right: 5px;
 }
-p img{
+p img {
     margin-top: -5px;
 }
 
-.content button{
+.content button {
     margin-top: 15px;
     width: 100%;
     border: none;
     color: white;
     border-radius: 100px;
-background: rgba(255, 255, 255, 0.12);
-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+
 }
-.content>img{
+.content > img {
     position: absolute;
     top: 15px;
     right: 15px;
 }
-
-.body{
+.contenter {
     display: flex;
-    margin-left: 120px;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    margin-left: 96px;
 }
 
+.modal-dialog{
+    
+}

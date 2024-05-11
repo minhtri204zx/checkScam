@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +22,7 @@ Route::middleware('share.cate')->group(function(){
 
 });
 
-Route::get('image', function(){
-    $imagePath =public_path().'/images/games/Lol.png';
-    // Đọc nội dung của tệp hình ảnh
-    $imageData = file_get_contents($imagePath);
-    // Chuyển đổi nội dung thành mã base64
-    $base64Image = 'data:image/png;base64,' . base64_encode($imageData);
-    
-    // In ra mã base64 đã chuyển đổi
-    echo $base64Image;
-});
+
+Route::get('login', [LoginController::class, 'loginWithFacebook']);
+
+Route::get('login-success',[LoginController::class, 'loginCallBack']);
