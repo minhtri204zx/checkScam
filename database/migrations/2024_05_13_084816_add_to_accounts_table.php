@@ -14,13 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->dropColumn('password');
-            $table->dropColumn('bank');
-            $table->dropColumn('describe');
-            $table->dropColumn('cmnd');
-            $table->dropColumn('games');
-            $table->dropColumn('money');
-            $table->dropColumn('active');
+            $table->string('avatar');
         });
     }
 

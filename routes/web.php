@@ -26,3 +26,5 @@ Route::middleware('share.cate')->group(function(){
 Route::get('login', [LoginController::class, 'loginWithFacebook']);
 
 Route::get('login-success',[LoginController::class, 'loginCallBack']);
+
+Route::get('logout', [LoginController::class, 'logout']);

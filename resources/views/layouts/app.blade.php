@@ -58,8 +58,15 @@
                     <a href="">Giới thiệu</a>
                     <a href="">Cảnh báo hình thức lừa đảo</a>
                     <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
-                    <button class="btnReport" data-bs-toggle="modal" data-bs-target="#exampleModal">Report lừa
-                        đảo</button>
+                    <a class="btnReport"
+                    @if (!Auth::check())
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    @endif
+                    >Report lừa
+                        đảo</a>
+                    @auth
+                    <a href="logout" class="btnReport">Đăng xuất</a>
+                    @endauth
 
                 </div>
             </header>
