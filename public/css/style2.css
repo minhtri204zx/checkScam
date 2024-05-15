@@ -1,0 +1,130 @@
+* {
+    color: white;
+}
+
+.row {
+    margin-top: 60px;
+    margin-left: 120px;
+}
+
+form {
+    margin-top: 50px;
+}
+
+.form-control {
+    padding: 10px 0;
+    background-color: #0d0d0d;
+    border: 1px solid var(--Stroke, #232323);
+    border-radius: 12px;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Ẩn input radio mặc định */
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+/* Custom radio button */
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007BFF; /* Màu viền ban đầu */
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động mượt mà */
+}
+
+/* Bên trong custom radio button (dấu chấm) */
+.radio-custom::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #007BFF; /* Màu bên trong ban đầu */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Bắt đầu với kích thước 0 */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Hiệu ứng chuyển động */
+}
+
+/* Hiển thị dấu chấm khi được chọn */
+.radio-container input[type="radio"]:checked + .radio-custom::before {
+    transform: translate(-50%, -50%) scale(1); /* Tăng kích thước lên đầy đủ */
+    background-color: #28a745; /* Thay đổi màu bên trong thành xanh lá cây */
+}
+
+/* Thay đổi màu viền khi được chọn */
+.radio-container input[type="radio"]:checked + .radio-custom {
+    border-color: #28a745; /* Thay đổi màu viền thành xanh lá cây */
+}
+
+/* Nhãn của radio button */
+.radio-label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+/* Input styles */
+.form-input {
+    border-radius: 12px;
+    height: 56px;
+    padding: 30px 335px 10px 10px;
+    border: 1px solid var(--Stroke, #232323);
+    font-size: 16px;
+    box-sizing: border-box;
+    color: var(--Light-White, #B5AB9A);
+    background-color: #0d0d0d;
+}
+
+/* Floating label styles */
+.form-label {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background-color: #0d0d0d;
+    color: var(--Light-White, #B5AB9A);
+
+    transition: 0.2s ease all;
+    pointer-events: none;
+    padding: 0 5px;
+}
+
+/* Khi input có focus hoặc có giá trị */
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+    top: 6px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.form-select {
+    border-radius: 12px;
+    height: 56px;
+    padding: 10px 444px 10px 10px;
+    border: 1px solid var(--Stroke, #232323);
+    font-size: 16px;
+    box-sizing: border-box;
+    color: var(--Light-White, #B5AB9A);
+    background-color: #0d0d0d;
+    outline: none;
+}
+
+.form-select option{
+    background-color: #1c2132;
+}
+
+
+

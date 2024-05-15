@@ -6,6 +6,10 @@ length= arrMain.length
 let click = 0;
 let ao = 4;
 
+let home = document.getElementById('home')
+home.addEventListener('click',()=>{
+   window.location.href = '/';
+})
 pre.addEventListener('click', () => {
     if (ao==1) {
         click -= 232*(length-1);

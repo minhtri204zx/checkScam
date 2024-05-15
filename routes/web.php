@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,14 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('share.cate')->group(function(){
 
-    Route::get('/',[HomeController::class, 'home']);
+Route::middleware('share.cate')->group(function () {
 
+    Route::get('/', [HomeController::class, 'home']);
+    Route::get('report', [PostController::class, 'create']);
 });
 
 
 Route::get('login', [LoginController::class, 'loginWithFacebook']);
-
-Route::get('login-success',[LoginController::class, 'loginCallBack']);
-
+Route::get('login-success', [LoginController::class, 'loginCallBack']);
 Route::get('logout', [LoginController::class, 'logout']);

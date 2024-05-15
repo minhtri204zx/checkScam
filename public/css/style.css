@@ -1,6 +1,7 @@
 * {
     font-family: "Mulish", sans-serif;
 }
+
 .background-1 {
     overflow-x: hidden;
     margin-top: -30px;
@@ -346,6 +347,203 @@ p img {
     margin-right: 12px;
 }
 
-#nomargin{
+#nomargin {
     margin: 0;
+    height: 1200px;
+}
+
+#nomargin img {
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+}
+
+#nomargin p span {
+    color: var(--Light-Stroke, #e4e4e4);
+    /* 20 Med */
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#nomargin p + p {
+    color: var(--Light-White, #b5ab9a);
+    /* 16 Med */
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#nomargin .content {
+    height: 270px;
+}
+
+.content:hover {
+    background: rgba(255, 255, 255, 0.24);
+    cursor: pointer;
+}
+
+.link {
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.none {
+    text-decoration: none;
+}
+
+.noibat {
+    backdrop-filter: blur(2px);
+    margin-top: -300px;
+    overflow-x: hidden;
+    margin-top: -30px;
+    position: absolute;
+    top: 4000px;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://s3-alpha-sig.figma.com/img/fa65/2264/d5147a0852ef682f325c68ac7890c9ec?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bcSLT2mrI10TdESNyfWIWSZjjeaM3NxZAmfFMRs5k3DcUPLpf6B7mkj9byvga9OwuwkS0qlaF2SgmVCrKD9m3IWhIHvgBHYUj0Npu36ifXIpO~PxT6EnFDwyq~a4oueAwrgFGXC25c5cQkT09XzBRj1x5FyyQIKp5gChwpo9WDkpRXJ44LR0Ja~DuPHPKHsJInhS1ApxPRqiJA7sytJ~4mxt82TCL5M1UEy7clSgmQkwH8v7NWJWTsKnEaxN1Ji0hX1~UAuwoIAlzg7h7h1goOrDPPHwtv8TFnbS6dJSuPdDiu-WXoI4otPrEBbKWq2q3ZoicRH0QMKtBUChtiw-Ew__);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.noibat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #0d0d0d 0%, rgba(13, 13, 13, 0) 100%);
+}
+
+.check {
+    color: white;
+}
+
+.noibat h1 {
+    backdrop-filter: blur(2px);
+    margin-top: 100px;
+    color: #b5ab9a;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.noibat > p {
+    backdrop-filter: blur(2px);
+    color: var(--Light-White, #b5ab9a);
+    text-align: center;
+    /* 16 Reg */
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.check {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.check-left {
+    padding: 36px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.check-left p {
+    width: 500px;
+    color: var(--Light-Stroke, #e4e4e4);
+    /* 16 Reg */
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: stretch;
+}
+
+.check-left {
+    width: 552px;
+    max-width: 552px;
+}
+
+.check img {
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid var(--Light-primary, #009571);
+}
+
+.check-left h3 {
+    margin-top: 24px;
+}
+
+.check-left p {
+    margin-top: 24px;
+}
+
+.check-left a {
+    margin-top: 24px;
+    border-radius: 100px;
+    background: var(--Light-primary, #009571);
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer{
+    margin-top: 750px;
+    backdrop-filter: blur(1px);
+    background-color: #0d0d0d;
+    width: 100%;
+    height: 300px;
+}
+
+.div{
+    display: flex;
+    padding-top: 50px;
+    margin-left: 120px;
+}
+
+
+.footer1 p{
+    margin-top: 20px;
+    width: 250px;
+    color: var(--Light-White, #B5AB9A);
+    text-align: justify;
+    /* 16 Reg */
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.footer2{
+    margin-left: 56px;
+    color: var(--Light-White, #B5AB9A);
+}
+
+.footer3{
+    margin-left: 142px;
+    color: var(--Light-White, #B5AB9A);
+}
+
+.footer4{
+    margin-left: 313px;
+}
+
+#home{
+    cursor: pointer;
 }
