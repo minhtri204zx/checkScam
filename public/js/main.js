@@ -6,6 +6,8 @@ length= arrMain.length
 let click = 0;
 let ao = 4;
 
+
+
 let home = document.getElementById('home')
 home.addEventListener('click',()=>{
    window.location.href = '/';
@@ -92,6 +94,7 @@ function active(ao = 4, reset = null) {
     </svg>`
     }
 }
+
 
 
 

@@ -58,7 +58,7 @@
                     <a href="">Cảnh báo hình thức lừa đảo</a>
                     <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
                     <a class="btnReport"
-                        @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="report" @endif>Report
+                        @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/report" @endif>Report
                         lừa
                         đảo</a>
                     @auth

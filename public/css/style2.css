@@ -33,7 +33,7 @@ form {
 .radio-custom {
     width: 20px;
     height: 20px;
-    border: 2px solid #007BFF; /* Màu viền ban đầu */
+    border: 2px solid #007bff; /* Màu viền ban đầu */
     border-radius: 50%;
     position: relative;
     cursor: pointer;
@@ -46,7 +46,7 @@ form {
     content: "";
     width: 12px;
     height: 12px;
-    background-color: #007BFF; /* Màu bên trong ban đầu */
+    background-color: #007bff; /* Màu bên trong ban đầu */
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -85,7 +85,7 @@ form {
     border: 1px solid var(--Stroke, #232323);
     font-size: 16px;
     box-sizing: border-box;
-    color: var(--Light-White, #B5AB9A);
+    color: var(--Light-White, #b5ab9a);
     background-color: #0d0d0d;
 }
 
@@ -95,7 +95,7 @@ form {
     top: 15px;
     left: 10px;
     background-color: #0d0d0d;
-    color: var(--Light-White, #B5AB9A);
+    color: var(--Light-White, #b5ab9a);
 
     transition: 0.2s ease all;
     pointer-events: none;
@@ -113,18 +113,128 @@ form {
 .form-select {
     border-radius: 12px;
     height: 56px;
-    padding: 10px 444px 10px 10px;
+    padding: 10px 370px 10px 10px;
     border: 1px solid var(--Stroke, #232323);
     font-size: 16px;
     box-sizing: border-box;
-    color: var(--Light-White, #B5AB9A);
+    color: var(--Light-White, #b5ab9a);
     background-color: #0d0d0d;
     outline: none;
 }
 
-.form-select option{
-    background-color: #1c2132;
+#select {
+    padding: 10px 440px 10px 10px;
 }
 
+#text {
+    background-color: #0d0d0d;
 
+    border-radius: 12px;
+    border: 1px solid var(--Stroke, #232323);
+    height: 100px;
+    align-self: stretch;
+}
 
+#text::placeholder {
+    color: var(--Light-White, #b5ab9a);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* Nút tùy chỉnh */
+.custom-file-upload {
+    margin-top: 20px;
+    width: 100px; /* Chiều rộng của hình vuông */
+    height: 100px; /* Chiều cao của hình vuông */
+    border: 1px dashed var(--Stroke, #232323);
+    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px; /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d; /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-uploaded {
+    margin-top: 20px;
+    width: 100px; /* Chiều rộng của hình vuông */
+    height: 100px; /* Chiều cao của hình vuông */
+    border: 1px solid var(--w-60, rgba(255, 255, 255, 0.6));
+    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px; /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d; /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-uploaded img {
+    border-radius: 20px;
+    height: 90px;
+    width: 90px;
+}
+
+.custom-file-uploaded::before {
+    font-size: 20px; /* Kích thước chữ của dấu cộng */
+    color: var(--w-60, rgba(255, 255, 255, 0.6));
+}
+
+/* Hiệu ứng hover */
+.custom-file-upload:hover {
+}
+
+/* Dấu cộng (+) */
+.custom-file-upload::before {
+    content: "+"; /* Nội dung dấu cộng */
+    font-size: 20px; /* Kích thước chữ của dấu cộng */
+    color: var(--w-60, rgba(255, 255, 255, 0.6));
+}
+
+.title {
+    min-width: 200px;
+    width: 200px;
+    color: var(--Light-White, #b5ab9a);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.row p {
+    color: var(--Light-Stroke, #e4e4e4);
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+#comment{
+    color: var(--60, rgba(255, 255, 255, 0.60));
+    font-size: 16px;
+    height: 98px;
+    border-radius: 12px;
+    border: 1px solid var(--Stroke, #232323);
+    background-color: #0d0d0d;
+}
+
+#form{
+    position: relative;
+}
+
+#form button {
+    position: absolute;
+    top: 68px;
+    right: 15px;
+    padding: 10px 24px;
+    background: var(--Stroke, #232323);
+    border-radius: 100px;
+    border: none;
+
+}

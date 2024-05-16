@@ -20,7 +20,7 @@
         {{-- start  content --}}
         <div class="contenter">
             @foreach ($posts as $post)
-          <a href="" class="none">
+          <a href="posts/{{$post->id}}" class="none">
 
             <div class="content">
                 <p><img src="{{ asset('images/content/Profile.svg') }}" alt=""><span>Họ và tên :</span>

@@ -22,6 +22,9 @@ Route::middleware('share.cate')->group(function () {
 
     Route::get('/', [HomeController::class, 'home']);
     Route::get('report', [PostController::class, 'create']);
+    Route::post('report', [PostController::class, 'store']);
+    Route::get('posts/{id}',[PostController::class, 'show']);
+
 });
 
 

@@ -27,6 +27,7 @@ class ShareCate
         foreach ($cates as $cate) {
             $content = file_get_contents(public_path() . "/images/games/$cate->image");
             $arr[] = [
+                'id'=>$cate['id'],
                 'name' => $cate['name'],
                 'image' => 'data:image/png;base64,' . base64_encode($content),
             ];
