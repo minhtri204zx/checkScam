@@ -3,6 +3,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const mar = document.getElementById('mar');
     const fileInput = document.getElementById('file');
 
+    function viewImage() {
+        alert("View image functionality");
+    }
+    
+    function deleteImage() {
+        const imageContainer = document.querySelector('.image-container');
+        imageContainer.style.display = 'none';
+    }
+
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -10,9 +19,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             reader.onload = function(e) {
                 // imageDisplay.src = e.target.result;
                 img.innerHTML = `
-                <label for="file" class="custom-file-uploaded">
-                <img id="imageDisplay" src="" alt="Ảnh" style="display: none;">
-                </label>
+                <div class="image-container">
+        <img src="your-image.jpg" id="imageDisplay" alt="Image" class="image">
+       
+    </div>
                 `
     const imageDisplay = document.getElementById('imageDisplay');
                 imageDisplay.src = e.target.result;

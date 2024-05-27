@@ -2,45 +2,130 @@ const pre = document.getElementById('prev');
 const next = document.getElementById('next');
 const main = document.getElementById('main');
 const arrMain = document.getElementsByClassName('main');
-length= arrMain.length
+length = arrMain.length
 let click = 0;
 let ao = 4;
+function fetcgSuggest(value) {
+    let html = ''
+    $.ajax({
+        url: '/test',
+        method: 'GET',
+        data: {
+            search: value
+        },
+        success: function (data) {
+            $.each(data, function (index, hint) {
+                html += `
+                <div id="param${index}" onclick="clicked('${hint.hint}')">${hint.hint}</div>
+                `;
+            })
+            document.getElementById('search2').innerHTML = html;
+            localStorage.setItem('hints', JSON.stringify(data));
+            }
+    });
+}
+let a = -1;
 
+function aoMa(e, value) {
+    if (e.keyCode == 13 || e.keyCode==38 || e.keyCode ==40) {
+
+        return
+    }
+    a=-1
+    let search = document.getElementById('search')
+    let list = document.getElementById('search2')
+    if (search.value != '') {
+        list.style.display = 'block';
+    } else {
+        list.style.display = 'none';
+    }
+    fetcgSuggest(value);
+
+}
+
+document.getElementById('search').addEventListener('keydown', (e) => {
+    let arrHint = JSON.parse(localStorage.getItem('hints'));
+    if (e.keyCode == 40) {
+        b = arrHint.length-1
+        document.getElementById('param' + b).style.background = ""
+        a++;
+        if (a == arrHint.length) {
+            a = 0;
+        }
+        document.getElementById('search').value = document.getElementById('param' + a).innerText
+        document.getElementById('param' + a).style.background = "rgba(255, 255, 255, 0.12)"
+        if (a >= 1) {
+            document.getElementById('param' + (a - 1)).style.background = ""
+        }
+
+    } else if (e.keyCode == 38) {
+        a--;
+        if(a==-2){
+            a = b;
+        document.getElementById('param' + b).style.background = "rgba(255, 255, 255, 0.12)"
+        }
+        if (a == -1) {
+            a = b;
+            document.getElementById('param' + 0).style.background = ""
+        }
+        document.getElementById('param' + a).style.background = "rgba(255, 255, 255, 0.12)"
+        document.getElementById('search').value = document.getElementById('param' + a).innerText
+        if (a < b) {
+            document.getElementById('param' + (a + 1)).style.background = ""
+        }
+        
+    } else if (e.keyCode == 13) {
+        a=-1;
+        fetcgSuggest();
+        let list = document.getElementById('search2')
+        list.style.display = 'none';
+        search.focus();
+
+    }
+})
+
+function clicked(value) {
+    let search = document.getElementById('search')
+    let list = document.getElementById('search2')
+    list.style.display = 'none';
+    search.value = value;
+    search.focus();
+}
 
 
 let home = document.getElementById('home')
-home.addEventListener('click',()=>{
-   window.location.href = '/';
+home.addEventListener('click', () => {
+    window.location.href = '/';
 })
 pre.addEventListener('click', () => {
-    if (ao==1) {
-        click -= 232*(length-1);
+    if (ao == 1) {
+        click -= 232 * (length - 1);
         main.style.transform = 'translateX(' + click + 'px)'
-        ao=ao-1+length;
-        active(ao,1);
-    }else{
+        ao = ao - 1 + length;
+        active(ao, 1);
+    } else {
         click += 232;
         main.style.transform = 'translateX(' + click + 'px)';
-        ao=ao-1;
-        active(ao,ao+1);
+        ao = ao - 1;
+        active(ao, ao + 1);
     }
-   
+
 })
 active();
 
 next.addEventListener('click', () => {
-    if (ao==length) {
-        click += 232*(length-1);
+    if (ao == length) {
+        click += 232 * (length - 1);
         main.style.transform = 'translateX(' + click + 'px)'
-        ao=1;
-        active(ao,length);
-    }else{
+        ao = 1;
+        active(ao, length);
+    } else {
         click -= 232;
         main.style.transform = 'translateX(' + click + 'px)'
-        ao=ao+1;
-        active(ao,ao-1);
+        ao = ao + 1;
+        active(ao, ao - 1);
     }
- 
+
 })
 function active(ao = 4, reset = null) {
     const overlay2 = document.getElementById('overlay2_' + ao);

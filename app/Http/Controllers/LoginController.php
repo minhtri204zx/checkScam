@@ -12,6 +12,7 @@ class LoginController extends Controller
 {
     public function loginWithFacebook()
     {
+        
         return Socialite::driver('facebook')->redirect();
     }
 
@@ -27,9 +28,10 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function logout()
+    public function logOut()
     {
         Auth::logout();
+
         return redirect('/');
     }
 

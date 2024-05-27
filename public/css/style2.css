@@ -159,35 +159,6 @@ input[type="file"] {
     transition: background-color 0.3s ease;
 }
 
-.custom-file-uploaded {
-    margin-top: 20px;
-    width: 100px; /* Chiều rộng của hình vuông */
-    height: 100px; /* Chiều cao của hình vuông */
-    border: 1px solid var(--w-60, rgba(255, 255, 255, 0.6));
-    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    justify-content: center; /* Canh giữa theo chiều ngang */
-    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
-    border-radius: 10px; /* Bo góc */
-    position: relative;
-    background-color: #0d0d0d; /* Màu nền */
-    transition: background-color 0.3s ease;
-}
-
-.custom-file-uploaded img {
-    border-radius: 20px;
-    height: 90px;
-    width: 90px;
-}
-
-.custom-file-uploaded::before {
-    font-size: 20px; /* Kích thước chữ của dấu cộng */
-    color: var(--w-60, rgba(255, 255, 255, 0.6));
-}
-
-/* Hiệu ứng hover */
-.custom-file-upload:hover {
-}
 
 /* Dấu cộng (+) */
 .custom-file-upload::before {
@@ -238,3 +209,20 @@ input[type="file"] {
     border: none;
 
 }
+
+#imageDisplay{
+    padding: 10px;
+    margin-top: 20px;
+    width: 100px; /* Chiều rộng của hình vuông */
+    height: 100px; /* Chiều cao của hình vuông */
+    border: 1px dashed var(--Stroke, #232323);
+    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px; /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d; /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+

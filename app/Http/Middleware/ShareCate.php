@@ -33,15 +33,8 @@ class ShareCate
             ];
         }
         View::share('cates', $arr);
-        View::share('posts', Post::take(12)
-            ->orderBy('created_at', 'desc')
-            ->get());
+   
 
-        View::share('comments', Comment::take(10)
-            ->leftJoin('accounts','comments.account_id','=','accounts.id')
-            ->leftJoin('posts','comments.post_id','=','posts.id')
-            ->orderBy('posts.created_at', 'desc')
-            ->get());
         return $next($request);
     }
 }

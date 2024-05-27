@@ -8,10 +8,8 @@
         <img class="hanhtinh hanhtinh2" src="{{ asset('images/hanhtinh2.png') }}" alt="">
         <img class="hanhtinh hanhtinh3" src="{{ asset('images/hanhtinh3.png') }}" alt="">
         <div class="hanhtinh arrow-up text-center">
-          <a href="#header">
             <img src="{{ asset('images/arrow.png') }}" alt=""> <br>
             <span class="text-light">Đầu trang</span>
-          </a>
         </div>
         <div class="hanhtinh logomess text-center">
             <img src="{{ asset('images/messageicon.png') }}" alt=""> <br>
@@ -29,7 +27,7 @@
                     {{ $post->username }}</p>
                 <button class="text-center">
                     Xem chi tiết &nbsp; &nbsp;
-                    <span><img src="{{ asset('images/content/view.svg') }}" alt=""> {{ $post->views }}</span>
+                    <span><img src="{{ asset('images/content/view.svg') }}" alt=""> {{ $post->views($post->id) }}</span>
                 </button>
                 @if ($post->status == 'Phốt')
                     <img src="{{ asset('images/content/phot.png') }}" alt="">
@@ -42,8 +40,8 @@
             @endforeach
         </div>
 
-        <div style="backdrop-filter: blur(10px);" class="text-center mt-5">
-            <a class="btn btn-success" href="">Xem tất cả</a>
+        <div class="text-center mt-5">
+            <a  style="backdrop-filter: blur(10px);" class="btn btn-success" href="/posts">Xem tất cả</a>
         </div>
 
     </div>
@@ -60,7 +58,7 @@
         </div>
         @foreach ($comments as $comment)
             <div class="new-comment">
-                <p> <img src="{{ $comment->avatar }}" alt="">{{ $comment->name }}</p>
+                <p> <img src="{{ $comment->account->avatar }}" alt="">{{ $comment->account->name }}</p>
                 <span>{{ $comment->comment_content }}</span>
             </div>
             <hr
@@ -70,8 +68,8 @@
     background-color: #ff0000;
         ">
         @endforeach
-        <div style="backdrop-filter: blur(10px);" class="text-center mt-5">
-            <a class="btn btn-success" href="">Xem tất cả</a>
+        <div class="text-center mt-5">
+            <a style="backdrop-filter: blur(10px);" class="btn btn-success" href="">Xem tất cả</a>
         </div>
 
     </div>
@@ -123,6 +121,8 @@
     </div>
 
     {{-- end outstanding --}}
-
+@php
+    $home=true
+@endphp
 
 @endsection
