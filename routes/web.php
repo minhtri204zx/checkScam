@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TraderController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ use App\Http\Controllers\PostController;
 Route::middleware('share.cate')->group(function () {
 
     Route::get('/', [HomeController::class, 'home']);
-    
+
     Route::get('posts', [PostController::class, 'index']);
     Route::get('posts/create', [PostController::class, 'create']);
     Route::post('posts', [PostController::class, 'store']);
@@ -30,14 +32,16 @@ Route::middleware('share.cate')->group(function () {
     Route::get('/load-more', [PostController::class, 'loadMore']);
     Route::get('test', [PostController::class, 'test']);
 
+    Route::get('insurance',[TraderController::class, 'index']);
+    Route::get('insurance/{id}',[TraderController::class, 'show']);
 
+    Route::get('search', [PostController::class, 'search']);
 
     Route::post('comment', [CommentController::class, 'store']);
     Route::get('like/{id}', [CommentController::class, 'like']);
     Route::get('unlike/{id}', [CommentController::class, 'unlike']);
 
 });
-
 
 Route::get('login', [LoginController::class, 'loginWithFacebook']);
 Route::get('login-success', [LoginController::class, 'loginCallBack']);

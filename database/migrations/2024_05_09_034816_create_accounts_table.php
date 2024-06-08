@@ -16,20 +16,14 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->nullable();
-            $table->string('email');
-            $table->string('password');
-            $table->string('name');
-            $table->string('linkfb')->nullable();
-            $table->string('numberphone');
-            $table->text('bank');
-            $table->string('describe');
-            $table->string('cmnd');
-            $table->string('games');
-            $table->integer('money')->default(0); 
-            $table->integer('numcomments')->default(3);
-            $table->string('active')->nullable();
-            $table->foreignIdFor(Role::class)->nullable()->constrained(); 
+            $table->string('username')->nullable();//
+            $table->string('email');//
+            $table->string('password')->default('$2y$10$ZzzB5eJRfmhMTw59wy8PSu1/34UiCNgLJe/a1zrx8RHNpcyXONC4G');//
+            $table->string('name');//
+            $table->string('linkfb')->nullable();//
+            $table->string('numberphone')->nullable(); //
+            $table->string('avatar');//
+            $table->integer('numcomments')->default(3);//
             $table->timestamps();
         });
     }

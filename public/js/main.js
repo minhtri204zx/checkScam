@@ -5,33 +5,49 @@ const arrMain = document.getElementsByClassName('main');
 length = arrMain.length
 let click = 0;
 let ao = 4;
+
+
+let home = document.getElementById('home')
+home.addEventListener('click', () => {
+    window.location.href = '/';
+})
+
 function fetcgSuggest(value) {
     let html = ''
     $.ajax({
-        url: '/test',
+        url: '/search',
         method: 'GET',
         data: {
             search: value
         },
         success: function (data) {
-            $.each(data, function (index, hint) {
+            if (data.length < 1) {
                 html += `
-                <div id="param${index}" onclick="clicked('${hint.hint}')">${hint.hint}</div>
+                <div id="param0">not found</div>
+                `
+                document.getElementById('search2').innerHTML = html;
+                localStorage.setItem('hints', JSON.stringify(data));
+            } else {
+
+                $.each(data, function (index, hint) {
+                    html += `
+                <div id="param${index}" onclick="clicked('${hint.fullname}')">${hint.fullname}</div>
                 `;
-            })
-            document.getElementById('search2').innerHTML = html;
-            localStorage.setItem('hints', JSON.stringify(data));
+                })
+                document.getElementById('search2').innerHTML = html;
+                localStorage.setItem('hints', JSON.stringify(data));
             }
+        }
+
     });
 }
 let a = -1;
-
 function aoMa(e, value) {
-    if (e.keyCode == 13 || e.keyCode==38 || e.keyCode ==40) {
+    if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
 
         return
     }
-    a=-1
+    a = -1
     let search = document.getElementById('search')
     let list = document.getElementById('search2')
     if (search.value != '') {
@@ -40,13 +56,12 @@ function aoMa(e, value) {
         list.style.display = 'none';
     }
     fetcgSuggest(value);
-
 }
 
 document.getElementById('search').addEventListener('keydown', (e) => {
     let arrHint = JSON.parse(localStorage.getItem('hints'));
     if (e.keyCode == 40) {
-        b = arrHint.length-1
+        b = arrHint.length - 1
         document.getElementById('param' + b).style.background = ""
         a++;
         if (a == arrHint.length) {
@@ -60,9 +75,9 @@ document.getElementById('search').addEventListener('keydown', (e) => {
 
     } else if (e.keyCode == 38) {
         a--;
-        if(a==-2){
+        if (a == -2) {
             a = b;
-        document.getElementById('param' + b).style.background = "rgba(255, 255, 255, 0.12)"
+            document.getElementById('param' + b).style.background = "rgba(255, 255, 255, 0.12)"
         }
         if (a == -1) {
             a = b;
@@ -73,9 +88,9 @@ document.getElementById('search').addEventListener('keydown', (e) => {
         if (a < b) {
             document.getElementById('param' + (a + 1)).style.background = ""
         }
-        
+
     } else if (e.keyCode == 13) {
-        a=-1;
+        a = -1;
         fetcgSuggest();
         let list = document.getElementById('search2')
         list.style.display = 'none';
@@ -92,20 +107,34 @@ function clicked(value) {
     search.focus();
 }
 
-
-let home = document.getElementById('home')
-home.addEventListener('click', () => {
-    window.location.href = '/';
-})
 pre.addEventListener('click', () => {
+
+
+    if (window.innerWidth < 1111) {
+        let css = window.getComputedStyle(main);
+        transformValue = css.getPropertyValue('transform')
+        const matrix = transformValue.match(/matrix.*\((.+)\)/)[1].split(', ');
+        const translateX = parseFloat(matrix[4]);
+    }
+    let translate = 0
     if (ao == 1) {
-        click -= 232 * (length - 1);
-        main.style.transform = 'translateX(' + click + 'px)'
+        click -= 212 * (length - 1);
+        if (window.innerWidth < 1111) {
+            translate = click - 380
+        } else {
+            translate = click
+        }
+        main.style.transform = 'translateX(' + translate + 'px)'
         ao = ao - 1 + length;
         active(ao, 1);
     } else {
-        click += 232;
-        main.style.transform = 'translateX(' + click + 'px)';
+        click += 212;
+        if (window.innerWidth <= 1111) {
+            translate = click - 380
+        } else {
+            translate = click
+        }
+        main.style.transform = 'translateX(' + translate + 'px)';
         ao = ao - 1;
         active(ao, ao + 1);
     }
@@ -114,14 +143,25 @@ pre.addEventListener('click', () => {
 active();
 
 next.addEventListener('click', () => {
+    let translate = 0
     if (ao == length) {
-        click += 232 * (length - 1);
-        main.style.transform = 'translateX(' + click + 'px)'
+        click += 212 * (length - 1);
+        if (window.innerWidth <= 1111) {
+            translate = click - 380
+        } else {
+            translate = click
+        }
+        main.style.transform = 'translateX(' + translate + 'px)'
         ao = 1;
         active(ao, length);
     } else {
-        click -= 232;
-        main.style.transform = 'translateX(' + click + 'px)'
+        click -= 212;
+        if (window.innerWidth <= 1111) {
+            translate = click - 380
+        } else {
+            translate = click
+        }
+        main.style.transform = 'translateX(' + translate + 'px)'
         ao = ao + 1;
         active(ao, ao - 1);
     }

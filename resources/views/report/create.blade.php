@@ -3,10 +3,11 @@
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 @endsection
 @section('content')
+   <div class="cangiua">
     <div class="row">
-        <div class="col-9">
+        <div class="col-md-9">
             <h1>Thông tin scam</h1>
-            <form action="" method="POST">
+            <form action="/posts" method="POST">
                 @csrf
                 <div style="display: flex">
 
@@ -27,7 +28,7 @@
                 @error('status')
                     <div style="color: red">Vui lòng chọn trạng thái</div>
                 @enderror
-                <div style="display: flex">
+                <div class="create-mobile">
 
                     <div class="form-group">
                         <input class="form-input" name='username' type="text" id="email" placeholder=" "
@@ -35,7 +36,7 @@
                         <label class="form-label" for="email">Username <span style="color: forestgreen">*</span></label>
                     </div>
 
-                    <div style="margin-left: 24px;" class="form-group">
+                    <div  class="form-group input-mobile">
                         <input class="form-input" name='sotaikhoan' type="text" value="{{ old('sotaikhoan') }}"
                             id="email" placeholder=" " required>
                         <label class="form-label" for="email">Số tài khoản <span
@@ -47,7 +48,7 @@
 
                 </div>
 
-                <div style="display: flex">
+                <div class="create-mobile">
 
                     <div class="form-group">
                         <input class="form-input" name='uid' type="text" id="email" placeholder=" "
@@ -55,7 +56,7 @@
                         <label class="form-label" for="email">UID <span style="color: forestgreen">*</span></label>
                     </div>
 
-                    <div style="margin-left: 24px;" class="form-group">
+                    <div  class="form-group input-mobile">
                         <input class="form-input" name='link' type="text" id="email" placeholder=" "
                             value="{{ old('link') }}" required>
                         <label class="form-label" for="email">Link bài viết report <span
@@ -67,7 +68,7 @@
 
                 </div>
 
-                <div style="display: flex">
+                <div class="create-mobile">
 
                     <div class="form-group">
                         <input class="form-input" name='hovaten' type="text" id="email" placeholder=" "
@@ -75,7 +76,7 @@
                         <label class="form-label" for="email">Họ và tên <span style="color: forestgreen">*</span></label>
                     </div>
 
-                    <div style="margin-left: 24px;" class="form-group">
+                    <div  class="form-group input-mobile">
                         <input class="form-input" name='sodienthoai' type="text" id="email" placeholder=" "
                             value="{{ old('sodienthoai') }}" required>
                         <label class="form-label" for="email">Số điện thoại <span
@@ -87,7 +88,7 @@
 
                 </div>
 
-                <div style="display: flex">
+                <div class="create-mobile">
                     <div class="form-group">
                         <select name="danhmuc" class="form-select">
                             <option value="">Danh mục <span style="color: forestgreen">*</span></option>
@@ -101,7 +102,7 @@
                         @enderror
                     </div>
 
-                    <div style="margin-left: 24px" class="form-group">
+                    <div class="form-group input-mobile">
                         <select id="select" name="nganhang" class="form-select">
                             <option value="">Ngân hàng <span style="color: forestgreen">*</span></option>
                             <option value="MB">MB</option>
@@ -137,7 +138,7 @@
                     <div style="color: red">{{ $message }}</div>
                 @enderror
                 <h1 style="margin-top:  60px;">Người đăng</h1>
-                <div style="display: flex">
+                <div class="create-mobile">
                     @foreach ($account as $row)
                         <div class="form-group">
                             <input class="form-input" type="text" id="email" value="{{ $row->name }}"
@@ -146,7 +147,7 @@
                                     style="color: forestgreen">*</span></label>
                         </div>
 
-                        <div style="margin-left: 24px;" class="form-group">
+                        <div  class="form-group input-mobile">
                             <input class="form-input" type="text" id="email" placeholder=" "
                                 value="{{ $row->numberphone }}" required>
                             <label class="form-label" for="email">Số điện thoại <span
@@ -163,16 +164,17 @@
               font-weight: 400;
               line-height: normal;  ">
                     Đơn report sẽ bị gỡ nếu zalo ảo.</p>
-                <button style="margin-left: 550px" class="btn btn-success" type="submit">Gửi duyệt</button>
+                <button class="btn btn-success btn-send-create" type="submit">Gửi duyệt</button>
             </form>
         </div>
 
-        <div class="col-1">
-            <img style="width: 282px" src="{{ asset('images/content/quangcao.png') }}" alt=""> <br>
-            <img style="width: 282px; margin-top: 24px;" src="{{ asset('images/content/quangcao2.png') }}"
+        <div class="col-md-1">
+            <img class="img-ads" src="{{ asset('images/content/quangcao.png') }}" alt=""> <br>
+            <img style="margin-top: 24px;" class="img-ads" src="{{ asset('images/content/quangcao2.png') }}"
                 alt="">
 
         </div>
     </div>
+   </div>
     <script src="{{ asset('js/img.js') }}"></script>
 @endsection

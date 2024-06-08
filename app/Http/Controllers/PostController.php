@@ -18,6 +18,7 @@ class PostController extends Controller
     public function create()
     {
         $account = Account::where('id', Auth::id())->get();
+
         return view('report.create', compact('account'));
     }
 
@@ -37,25 +38,32 @@ class PostController extends Controller
             'status' => $request->status,
             'account_id' => Auth::id(),
         ]);
+
+        return redirect('/');
     }
 
     public function show(int $id, Request $request)
     {
         $post = Post::findOrFail($id);
+        if (Auth::check()) {
+            $account = Account::where('id', Auth::id())->first();
+        } else {
+            $account = ['numcomments' => 3];
+        }
         $data = [
             'device' => $request->header('Sec-Ch-Ua-Mobile') == '?0' ? "Computer" : "Mobile",
             'platform' => $request->header('Sec-Ch-Ua-Platform'),
         ];
         UpdateViewJob::dispatch($id, $data);
 
-        return view('report.show', compact('post'));
+        return view('report.show', compact('post', 'account'));
     }
 
     public function index(Request $request)
     {
         if (isset($request->search)) {
             $posts = Post::take(12)
-                ->where('numberphone', $request->search)
+                ->where('fullname', $request->search)
                 ->orderBy('id', 'desc')
                 ->get();
         } else {
@@ -67,84 +75,27 @@ class PostController extends Controller
         return view('report.index', compact('posts'));
     }
 
-    public function test(Request $request)
-    {
-        $check = [];
-        $query = $request->search;
-        $posts = Post::get('numberphone');
-        foreach ($posts as $post) {
-            $i = 0;
-            $k = 0;
-            $fail =0; 
-
-            $postLetters = $this->removeVietnameseAccents(strtolower($post->numberphone));
-            $arrHints = [];
-            $arrHints2 = [];
-
-            for ($j = 0; $j < strlen($postLetters) - 1; $j++) {
-                $arrHints[] = substr($postLetters, $j, 2);
-            }
-            for ($j = 1; $j < strlen($postLetters) - 1; $j++) {
-                $arrHints2[] = substr($postLetters, $j, 2);
-            }
-
-            foreach ($arrHints as $arrHint) {
-                for ($j = 0; $j < strlen($query) - 1; $j++) {
-                    if (substr($query, $j, 2)==$arrHint) {
-                        $i++;
-                        break;
-                    }
-                      
-                }
-            }
-           
-
-            foreach ($arrHints2 as $arrHint) {
-                for ($j = 0; $j < strlen($query) - 1; $j++) {
-                    
-                    if (substr($query, $j, 2) == $arrHint) {
-                        $k++;
-                        break;
-                    }
-                }
-               
-            }
-            if (($i >= 2 || $k>=2) && $fail<=4 ) {
-                $check[] = ['number' => $i, 'hint' => $post->numberphone];
-            }
-
-        }
-
-
-        // Sắp xếp từ cao xuống thấp
-        usort($check, function ($a, $b) {
-            return $b['number'] <=> $a['number'];
-        });
-
-        $check = array_slice($check, 0, 7);
-        return response()->json($check);
-    }
-
     public function loadMore(Request $request)
     {
         $offset = $request->offset;
-        
+         if ($request->screen<=1111) {
+            $posts = 7;
+        }else{
+            $posts = 13;
+        }
+
         if (isset($request->search)) {
             $posts = Post::skip($offset)
-                ->take(12)
-                ->where('numberphone', $request->search)
+                ->take($posts)
+                ->where('fullname', $request->search)
                 ->orderBy('id', 'desc')
                 ->get();
         } else {
             $posts = Post::skip($offset)
                 ->orderBy('id', 'desc')
-                ->take(12)
+                ->take($posts)
                 ->get();
         }
-
-
-
-
         foreach ($posts as $post) {
             $post = $posts->map(function ($post) {
                 $post->views = $post->views($post->id);
@@ -155,29 +106,16 @@ class PostController extends Controller
         return response()->json($posts);
     }
 
-    private function removeVietnameseAccents($str)
+
+    public function search(Request $request)
     {
-        $accents = array(
-            'à', 'á', 'ạ', 'ả', 'ã', 'â', 'ầ', 'ấ', 'ậ', 'ẩ', 'ẫ', 'ă', 'ằ', 'ắ', 'ặ', 'ẳ', 'ẵ',
-            'è', 'é', 'ẹ', 'ẻ', 'ẽ', 'ê', 'ề', 'ế', 'ệ', 'ể', 'ễ',
-            'ì', 'í', 'ị', 'ỉ', 'ĩ',
-            'ò', 'ó', 'ọ', 'ỏ', 'õ', 'ô', 'ồ', 'ố', 'ộ', 'ổ', 'ỗ', 'ơ', 'ờ', 'ớ', 'ợ', 'ở', 'ỡ',
-            'ù', 'ú', 'ụ', 'ủ', 'ũ', 'ư', 'ừ', 'ứ', 'ự', 'ử', 'ữ',
-            'ỳ', 'ý', 'ỵ', 'ỷ', 'ỹ',
-            'đ',
+        $query = $request->search;
 
-        );
-        $noAccents = array(
-            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
-            'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e',
-            'i', 'i', 'i', 'i', 'i',
-            'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
-            'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u',
-            'y', 'y', 'y', 'y', 'y',
-            'd',
+        $posts = Post::search($query)
+        ->take(7)
+        ->get()
+        ->toArray();
 
-        );
-
-        return str_replace($accents, $noAccents, $str);
+        return response()->json($posts);
     }
 }

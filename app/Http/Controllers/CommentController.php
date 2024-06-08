@@ -19,33 +19,32 @@ class CommentController extends Controller
             'post_id' => $request->post,
             'comment_content' => $request->comment
         ]);
+        $comment =  Account::where('id', Auth::id())->first();
+        $comment->update([
+            'numcomments' => $request->numcomments - 1,
+        ]);
 
-        Account::where('id', Auth::id())
-            ->update([
-                'numcomments' => $request->numcomments - 1,
-            ]);
         return back();
     }
 
     public function like(int $id)
     {
         $comment = Comment::findOrFail($id);
-
         Like::create([
-            'account_id'=> Auth::id(),
-            'post_id'=> $comment->post_id,
-            'comment_id'=>$id
+            'account_id' => Auth::id(),
+            'post_id' => $comment->post_id,
+            'comment_id' => $id
         ]);
-        return back();
+        
+        return "like";
     }
 
     public function unlike(int $id)
     {
         $comment = Comment::findOrFail($id);
 
-       Like::where('post_id', $comment->post_id)
-       ->where('account_id', Auth::id())
-       ->delete();
-        return back();
+        Like::where('comment_id', $comment->id)
+            ->where('account_id', Auth::id())
+            ->delete();
     }
 }

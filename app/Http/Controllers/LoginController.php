@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function loginWithFacebook()
     {
-        
+
         return Socialite::driver('facebook')->redirect();
     }
 

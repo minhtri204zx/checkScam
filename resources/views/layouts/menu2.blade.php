@@ -17,33 +17,103 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
     @yield('link')
 </head>
 
 <body style="background-color: #0d0d0d">
-    <header>
-        <div class="header-left">
-            <img id="home" style="margin-left:40px;width:150px; height:auto" src="{{ asset('images/logo.png') }}"
-                alt="">
+    <?php 
+            
+    if (!Auth::check()) {?>
+    <script>
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+    </script><?php
+    }
+
+    ?>
+
+    @if (!Auth::check())
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #0d0d0d">Thông báo!!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="color: #0d0d0d">Bạn chưa đăng nhập</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="color: white">Close</button>
+                        <a style="color: white" href="http://localhost:8000/login" class="btn btn-primary"><i
+                                class="fa-brands fa-facebook"></i> &nbsp;Login with facebook</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="header" class="header-right">
-            <a href="/">Trang chủ</a>
-            <a href="">Giới thiệu</a>
-            <a href="">Cảnh báo hình thức lừa đảo</a>
-            <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
-            <a class="btnReport"
-                @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/report" @endif>Report
-                lừa
-                đảo</a>
-            @auth
-                <a href="logout" class="btnReport">Đăng xuất</a>
-            @endauth
-        </div>
+    @endif
 
 
-    </header>
-    <hr
-        style="
+
+    <div class="cangiua">
+        <div class="cangiua">
+            <div id="menuMobile" class="menu-mobile" style="background-color: #111111">
+                <i id="outMenu" class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                <br>
+                <ul>
+                    <li>
+                        <a style="text-decoration: none; color:#ffffff" href="/">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a style="text-decoration: none; color:#ffffff" href="/">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a style="text-decoration: none; color:#ffffff" href="/">Cảnh báo hình thức lừa đảo</a>
+                    </li>
+                    <li style="margin-left: -20px; margin-top: 20px;">
+                        <a style="text-decoration: none; color:#ffffff" class="btnReport"
+                            @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
+                            lừa
+                            đảo</a>
+                        @auth
+                            <a style="text-decoration: none; color:#ffffff" href="/logout" class="btnReport">Đăng xuất</a>
+                        @endauth
+                    </li>
+                </ul>
+            </div>
+            <header>
+
+                <div class="header-left">
+                    <img id="home" style="margin-left:40px;width:150px; height:auto"
+                        src="{{ asset('images/logo.png') }}" alt="">
+                </div>
+                <div id="showmenu" class="header-right-mobile">
+                    <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+                </div>
+                <div id="header" class="header-right<?php if (Auth::check()) {
+                    echo '2';
+                } ?>">
+                    <a href="/">Trang chủ</a>
+                    <a href="">Giới thiệu</a>
+                    <a href="">Cảnh báo hình thức lừa đảo</a>
+                    <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
+                    <a class="btnReport"
+                        @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
+                        lừa
+                        đảo</a>
+                    @auth
+                        <a href="/logout" class="btnReport">Đăng xuất</a>
+                    @endauth
+                </div>
+            </header>
+        </div>
+        <hr
+            style="
     border: 0;
  height: 0.5px; /* Đặt chiều cao của thẻ hr */
  background-color: white; /* Đặt màu nền */
@@ -51,62 +121,65 @@
  margin: 20px 0; /* Khoảng cách trên và dưới thẻ hr */
     ">
 
-    <script src="{{ asset('js/main.js') }}"></script>
+        @yield('content')
 
-    @yield('content')
+        {{-- start footer --}}
 
-    {{-- start footer --}}
-
-    <div style="margin-top: 100px" class="footer">
-        <hr
-            style="
+        <div style="margin-top: 100px" class="footer">
+            <hr
+                style="
             border: 0;
          height: 0.5px; /* Đặt chiều cao của thẻ hr */
          background-color: white; /* Đặt màu nền */
          border-top: 0.5px solid white; /* Đặt màu và độ dày của viền trên */
          margin: 20px 0; /* Khoảng cách trên và dưới thẻ hr */
             ">
-        <div class="div">
-            <div class="footer1">
-                <img src="{{ asset('images/logo.png') }}" alt="">
-                <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội ác, ở
-                    đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
-            </div>
-            <div class="footer2">
-                <h5 style="color: white">Yêu cầu gỡ report</h5>
-                <p>Telegram: @hotro</p>
-                <p>Email: abc@gmail.com</p>
-                <p>Thời gian làm việc: 8h - 23h</p>
-            </div>
-            <div class="footer3">
-                <h5 style="color: white">Trang chủ</h5>
-                <p>Giới thiệu</p>
-                <p>Điều khoản dịch vụ</p>
-                <p>Chính sách bảo mật</p>
-            </div>
-            <div class="footer4">
-                <h5 style="color: white">Cộng đồng</h5>
-                <div style="display: flex">
-                    <img src="{{ asset('images/content/facebook.svg') }}" alt="">
-                    <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}" alt="">
-                    <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}" alt="">
-                    <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}" alt="">
+            <div class="cangiua">
+                <div class="div">
+                    <div class="footer1">
+                        <img src="{{ asset('images/logo.png') }}" alt="">
+                        <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội ác, ở
+                            đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
+                    </div>
+                    <div class="footer2">
+                        <h5 style="color: white">Yêu cầu gỡ report</h5>
+                        <p>Telegram: @hotro</p>
+                        <p>Email: abc@gmail.com</p>
+                        <p>Thời gian làm việc: 8h - 23h</p>
+                    </div>
+                    <div class="footer3">
+                        <h5 style="color: white">Trang chủ</h5>
+                        <p>Giới thiệu</p>
+                        <p>Điều khoản dịch vụ</p>
+                        <p>Chính sách bảo mật</p>
+                    </div>
+                    <div class="footer4">
+                        <h5 style="color: white">Cộng đồng</h5>
+                        <div style="display: flex">
+                            <img src="{{ asset('images/content/facebook.svg') }}" alt="">
+                            <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}"
+                                alt="">
+                            <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}"
+                                alt="">
+                            <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="footer5">
+                        <img style="margin-left: 24px " src="{{ asset('images/content/DMCA.png') }}" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="footer5">
-                <img style="margin-left: 24px " src="{{ asset('images/content/DMCA.png') }}" alt="">
-            </div>
-        </div>
-        <div>
-            <hr
-                style="
+            <div>
+                <hr
+                    style="
                         height: 2px;
                         background-color: 232323;
                         border-top: 2px solid 232323;">
+            </div>
+            <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
+                All rights reserved</p>
         </div>
-        <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
-            All rights reserved</p>
-    </div>
-
-    {{-- end footer --}}
+        <script src="{{ asset('js/posts.js') }}"></script>
+        {{-- end footer --}}
 </body>

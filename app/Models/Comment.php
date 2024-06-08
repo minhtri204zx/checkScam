@@ -41,8 +41,9 @@ class Comment extends Model
 
   public function getLikeAttribute()
   {
-    
-    return $this->hasMany(Like::class)->count();
+    return $this->hasMany(Like::class)
+    ->where('comment_id', $this->id)
+    ->count();
   }
   
   public function likes(){
@@ -58,7 +59,7 @@ class Comment extends Model
   {
     $likes = 0;
     foreach($this->likes() as $like){
-      if ($like->post_id==$this->post->id && $like->account_id == $this->account->id) {
+      if ($like->post_id==$this->post->id && $like->account_id == Auth::id()) {
         $likes =1;
         break;
       }

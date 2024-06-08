@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-9">
+        <div class="col-md-9">
             <h1>Thông tin scam</h1>
             @csrf
             <div style="display: flex; margin-top: 50px;">
@@ -149,22 +149,24 @@
                     <p><span style="color: green">({{ $comment->count(request()->id) }})</span>Bình luận</p>
                 @break
             @endforeach
-            <p style="margin-left: 1000px">Hôm nay bạn còn <span
-                    style="color: green">{{ $post->account->numcomments }}</span>
+            <p class="num-comments">Hôm nay bạn còn <span
+                    style="color: green">{{ $account['numcomments'] }}</span>
                 lượt</p>
         </div>
 
         <div style="display: flex">
             <img style="width: 32px; height: 32px; border-radius: 100px" src="{{ $post->account->avatar }}"
                 alt="">
-            <form id="form" action="/comment" method="POsT">
+            <form id="form" action="/comment" method="POsT"
+                @if (!Auth::check()) onsubmit="return false" @endif>
                 @csrf
-                <input type="hidden" value="{{ $post->account->numcomments }}" name="numcomments">
+                <input type="hidden" value="{{ $account['numcomments'] }}" name="numcomments">
                 <input type="hidden" value="{{ request()->id }}" name="post">
                 <textarea style="margin-top: -50px; margin-left: 20px; padding: 10px 0 0 10px" id="comment" name="comment"
                     style="" name="comment" id="" cols="121" rows="10"
                     placeholder="Để lại bình luận của bạn về nội dung report này..."></textarea>
-                <button style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
             </form>
 
         </div>
@@ -184,23 +186,28 @@
                             </p>
                             <p style="margin-left: 15px; margin-top: -12px;">{{ $comment->comment_content }}</p>
                             <div style="display: flex; margin-left: 15px; margin-top: -12px;">
-                                
+
                                 @if ($comment->check == 1)
-                                    <a style="display: flex; text-decoration: none" href="/unlike/{{ $comment->id }}">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        id="like{{ $comment->id }}" onclick="unlike({{ $comment->id }})"
+                                        style="display: flex; text-decoration: none">
                                         <img style="margin-bottom: 20px" src="{{ asset('images/content/dalike.svg') }}"
                                             alt="">
-                                        <p>&nbsp;{{ $comment->like }} Thích &nbsp;&nbsp;</p>
+                                        <p>&nbsp;<span id="num{{ $comment->id }}">{{ $comment->like }}</span> Thích
+                                            &nbsp;&nbsp;</p>
                                     </a>
                                 @else
-                                    <a style="display: flex; text-decoration: none" href="/like/{{ $comment->id }}">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        id="like{{ $comment->id }}" onclick="like({{ $comment->id }})"
+                                        style="display: flex; text-decoration: none">
                                         <img style="margin-bottom: 20px"
                                             src="{{ asset('images/content/chualike.svg') }}" alt="">
-                                        <p>&nbsp;{{ $comment->check }} Thích &nbsp;&nbsp;</p>
+                                        <p>&nbsp;<span id="num{{ $comment->id }}">{{ $comment->like }}</span> Thích
+                                            &nbsp;&nbsp;</p>
                                     </a>
                                 @endif
 
-
-                                <a style="display: flex; text-decoration: none" href="" data-bs-toggle="collapse"
+                                <a style="display: flex; text-decoration: none" data-bs-toggle="collapse"
                                     data-bs-target="#navbarToggleExternalContent{{ $loop->index }}"
                                     aria-controls="navbarToggleExternalContent{{ $loop->index }}"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -218,26 +225,31 @@
                 <div class=" p-4">
                     @foreach ($comment->replies as $reply)
                         <div style="display: flex;">
-                            <img style="width: 32px; height: 32px; border-radius: 100px" src="{{ $reply->account->avatar }}"
-                                alt="">
+                            <img style="width: 32px; height: 32px; border-radius: 100px"
+                                src="{{ $reply->account->avatar }}" alt="">
                             <div>
-                                <p style="margin-left: 15px; color: var(--Blue, #0989FF);">{{ $reply->account->name }}</p>
+                                <p style="margin-left: 15px; color: var(--Blue, #0989FF);">{{ $reply->account->name }}
+                                </p>
                                 <p style="margin-left: 15px; margin-top: -12px;">{{ $reply->comment_content }}</p>
                                 <div style="display: flex; margin-top: -12px; margin-left: 15px;">
 
                                     @if ($reply->check == 1)
-                                        <a style="display: flex; text-decoration: none"
-                                            href="/unlike/{{ $reply->id }}">
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            id="like{{ $reply->id }}" onclick="unlike({{ $reply->id }})"
+                                            style="display: flex; text-decoration: none">
                                             <img style="margin-bottom: 20px"
                                                 src="{{ asset('images/content/dalike.svg') }}" alt="">
-                                            <p>&nbsp;{{ $reply->like }} Thích &nbsp;&nbsp;</p>
+                                            <p>&nbsp;<span id="num{{ $reply->id }}">{{ $reply->like }}</span>
+                                                Thích &nbsp;&nbsp;</p>
                                         </a>
                                     @else
-                                        <a style="display: flex; text-decoration: none"
-                                            href="/like/{{ $reply->id }}">
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            id="like{{ $reply->id }}" onclick="like({{ $reply->id }})"
+                                            style="display: flex; text-decoration: none">
                                             <img style="margin-bottom: 20px"
                                                 src="{{ asset('images/content/chualike.svg') }}" alt="">
-                                            <p>&nbsp;{{ $reply->like }} Thích &nbsp;&nbsp;</p>
+                                            <p>&nbsp;<span id="num{{ $reply->id }}">{{ $reply->like }}</span>
+                                                Thích &nbsp;&nbsp;</p>
                                         </a>
                                     @endif
 
@@ -247,32 +259,99 @@
                     @endforeach
 
                     <div style="display: flex">
-                        {{-- <img style="width: 32px; height: 32px; border-radius: 100px" src="{{ $account->avatar }}"
-                                alt=""> --}}
-                        <form id="form" action="/comment" method="post">
+                        <form id="form" @if (!Auth::check()) onsubmit="return false" @endif
+                            action="/comment" method="post">
                             @csrf
-                            {{-- <input type="hidden" value="{{ $account->numcomments }}" name="numcomments"> --}}
+                            <input type="hidden" value="{{ $account['numcomments'] }}" name="numcomments">
                             <input type="hidden" value="{{ $comment->id }}" name="reply">
                             <input type="hidden" value="{{ $post->id }}" name="post">
                             <textarea style="margin-top: -50px; margin-left: 20px; padding: 10px 0 0 10px" id="comment" name="comment"
                                 style="padding-left:12px; margin-top:24px ; padding-top: 12px" name="" id="" cols="121"
                                 rows="10" placeholder="Nhập câu trả lời của bạn ..."></textarea>
-                            <button style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
                         </form>
                     </div>
                 </div>
             </div>
         @endforeach
-
         {{-- end list comments --}}
 
     </div>
 
-    <div class="col-1">
-        <img style="width: 282px" src="{{ asset('images/content/quangcao.png') }}" alt=""> <br>
-        <img style="width: 282px; margin-top: 24px;" src="{{ asset('images/content/quangcao2.png') }}"
+    <div class="col-md-1">
+        <img class="img-ads" src="{{ asset('images/content/quangcao.png') }}" alt=""> <br>
+        <img style="margin-top: 24px;" class="img-ads" src="{{ asset('images/content/quangcao2.png') }}"
             alt="">
 
     </div>
     <script src="{{ asset('js/img.js') }}"></script>
 @endsection
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+@auth
+    <script>
+        function like(id) {
+
+            $.ajax({
+                url: '/like/' + id,
+                method: 'GET',
+                success: function(response) {
+                    if (response == 'like') {
+                        let num = document.getElementById('num' + id);
+                        let a = document.getElementById('like' + id);
+                        num = +num.innerText;
+                        a.onclick = function() {
+                            a.onclick = unlike(id);
+                        }
+                        a.innerHTML =
+                            ` <img style="margin-bottom: 20px"src="{{ asset('images/content/dalike.svg') }}" alt=""><p>&nbsp;<span id="num${id}">${num+1}</span>  Thích &nbsp;&nbsp;</p>`
+                    }
+                },
+            });
+
+        }
+
+        function unlike(id) {
+            $.ajax({
+                url: '/unlike/' + id,
+                method: 'GET',
+                success: function(response) {
+                    let num = document.getElementById('num' + id);
+                    let a = document.getElementById('like' + id);
+                    num = +num.innerText;
+                    a.onclick = function() {
+                        a.onclick = like(id);
+                    }
+
+                    a.innerHTML =
+                        `<img style="margin-bottom: 20px"src="{{ asset('images/content/chualike.svg') }}" alt=""><p>&nbsp;<span id="num${id}">${num-1}</span>  Thích &nbsp;&nbsp;</p>`
+                },
+            });
+
+        }
+    </script>
+@else
+    <script>
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+    </script>
+
+@endauth
+
+<script>
+    // Lưu vị trí cuộn trước khi tải lại trang
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem('scrollPosition', window.scrollY);
+    });
+    // Lấy vị trí cuộn sau khi tải lại trang và cuộn trang đến vị trí đó
+    window.addEventListener('load', function() {
+        var scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, parseInt(scrollPosition, 10));
+            localStorage.removeItem('scrollPosition')
+        }
+    });
+</script>

@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-           
-            $table->dropColumn('facebook_id');
-            $table->string('uid');
-            
-
+        Schema::create('traders', function (Blueprint $table) {
+            $table->id();
+            $table->string('img');
+            $table->string(('zalo'));
+            $table->string('web');
+            $table->string('describe');
+            $table->text('bank');
+            $table->text('price');
+            $table->timestamps();
         });
     }
 
@@ -29,8 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('traders');
     }
 };

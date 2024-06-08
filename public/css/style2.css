@@ -77,6 +77,10 @@ form {
     margin: 20px 0;
 }
 
+.create-mobile {
+    display: flex;
+}
+
 /* Input styles */
 .form-input {
     border-radius: 12px;
@@ -159,7 +163,6 @@ input[type="file"] {
     transition: background-color 0.3s ease;
 }
 
-
 /* Dấu cộng (+) */
 .custom-file-upload::before {
     content: "+"; /* Nội dung dấu cộng */
@@ -186,8 +189,8 @@ input[type="file"] {
     line-height: 1.7;
 }
 
-#comment{
-    color: var(--60, rgba(255, 255, 255, 0.60));
+#comment {
+    color: var(--60, rgba(255, 255, 255, 0.6));
     font-size: 16px;
     height: 98px;
     border-radius: 12px;
@@ -195,7 +198,7 @@ input[type="file"] {
     background-color: #0d0d0d;
 }
 
-#form{
+#form {
     position: relative;
 }
 
@@ -207,10 +210,13 @@ input[type="file"] {
     background: var(--Stroke, #232323);
     border-radius: 100px;
     border: none;
-
 }
 
-#imageDisplay{
+.img-ads {
+    width: 282px;
+}
+
+#imageDisplay {
     padding: 10px;
     margin-top: 20px;
     width: 100px; /* Chiều rộng của hình vuông */
@@ -224,5 +230,160 @@ input[type="file"] {
     position: relative;
     background-color: #0d0d0d; /* Màu nền */
     transition: background-color 0.3s ease;
+}
+
+.input-mobile {
+    margin-left: 24px;
+}
+
+.cangiua {
+    width: 1800px;
+    border: none;
+    margin: 0 auto;
+}
+
+.header-right2 {
+    margin-left: 300px;
+}
+
+.num-comments{
+    margin-left: 1000px
+}
+
+
+@media only screen and (max-width: 768px) {
+    .header-right {
+        display: none;
+    }
+
+    .cangiua {
+        width: 100%;
+    }
+
+    ul {
+        margin-top: 20px;
+    }
+    li {
+        list-style: none;
+        margin-top: 20px;
+    }
+
+    .menu-mobile {
+        margin-left: 100%;
+        z-index: 2;
+        width: 100%;
+        position: absolute;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-right-mobile {
+        display: block;
+        margin-right: 10px;
+        background: rgba(255, 255, 255, 0.07);
+        padding: 10px;
+        border-radius: 100px;
+    }
+    .header-left {
+        margin: 0;
+    }
+    .btnReport {
+        margin-left: 10px;
+    }
+    .btnReport + .btnReport {
+        margin-right: 30px;
+    }
+    .footer {
+        height: 690px;
+    }
+
+    .div {
+        display: block;
+        width: 100%;
+    }
+
+    .footer1 {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .footer2 {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 24px;
+    }
+    .footer3 {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 24px;
+    }
+    .footer4 {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 24px;
+    }
+    .footer5 {
+        width: 50%;
+        margin-left: auto;
+        margin-right: 10px;
+        margin-top: -85px;
+    }
+    .row {
+        margin-left: 0px;
+    }
+    form > .create-mobile {
+        display: block;
+    }
+    .input-mobile {
+        margin-left: 0px;
+    }
+    form input {
+        width: 90%;
+    }
+    form .form-select {
+        width: 90%;
+    }
+    #text {
+        width: 90%;
+    }
+    .btn-send-create {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .col-md-1 img {
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+        text-align: center;
+        display: flex;
+    }
+    .cangiua {
+        overflow-x: hidden;
+    }
+
+    #select {
+        padding: 10px 40px 10px 10px;
+    }
+
+    p{
+        margin-right: 15px;
+    }
+    .num-comments{
+        margin: 0 auto;
+        margin-right: 20px;
+    }
+
+    textarea{
+        width: 90%;
+    }
+    #form button{
+        margin-right: 25px;
+    }
 }
 

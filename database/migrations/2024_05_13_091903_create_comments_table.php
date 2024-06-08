@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Account;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,10 +19,9 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Account::class)->constrained();
-            $table->integer('reply')->nullable();
+            $table->foreignIdFor(Comment::class)->nullable()->constrained();
             $table->foreignIdFor(Post::class)->constrained();
             $table->string('comment_content'); 
-            $table->integer('likes')->default(0); 
             $table->timestamps();
         });
     }

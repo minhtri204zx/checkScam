@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'category_id',
@@ -44,5 +46,14 @@ class Post extends Model
         ->where('comment_id',Null)
         ->orderBy('created_at','desc');
     }
+
+    public function toSearchableArray() : Array
+{
+    return array_merge($this->toArray(),[
+        'id' => (string) $this->id,
+        'model' => $this->model,
+        'created_at' => $this->created_at->timestamp,
+    ]);
+}
 
 }

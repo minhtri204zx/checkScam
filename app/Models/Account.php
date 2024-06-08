@@ -16,10 +16,12 @@ class Account extends Authenticatable
     protected $table='accounts';
 
     protected $fillable = [
+        'avatar',
         'id',
         'name',
         'email',
         'uid',
         'password',
+        'numcomments'
     ];
 }

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-           $table->string('facebook_id');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->fullText(['numberbank', 'numberphone']);
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropFullText(['numberbank','numberphone']);
         });
     }
 };
