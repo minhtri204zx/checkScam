@@ -1,7 +1,25 @@
-document.addEventListener('DOMContentLoaded', (event) => {
     const img = document.getElementById('img');
     const mar = document.getElementById('mar');
     const fileInput = document.getElementById('file');
+let menu = document.getElementById('menuMobile');
+
+
+    document.getElementById('outMenu').addEventListener('click', () => {
+        menu.style.transform = 'translateY(-100%)'
+        menu.style.display = 'none'
+    })
+    
+    document.getElementById('showmenu').addEventListener('click', () => {
+        menu.style.display = 'block'
+        menu.style.transform = 'translateX(-100%)'
+    })
+
+    if (document.getElementById('home')) {
+        let home = document.getElementById('home')
+        home.addEventListener('click', () => {
+            window.location.href = '/';
+        })
+    }
 
     function viewImage() {
         alert("View image functionality");
@@ -33,5 +51,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
             reader.readAsDataURL(file);
         }
     });
-});
 

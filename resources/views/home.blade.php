@@ -108,7 +108,8 @@
 
     <div class="noibat">
         <div class="cangiua">
-            <h1>Tính năng nổi bật</h1>
+            <div class="overlay-noibat">
+            <h1 class="text-center">Tính năng nổi bật</h1>
             <p>Các tin tức nổi bật về tình trạng scam hiện nay. Hãy đọc tin tức để phòng hờ các kẻ xấu lợi dụng scam</p>
             <div class="check">
                 <div class="check-left">
@@ -127,9 +128,28 @@
             </div>
         </div>
     </div>
+    </div>
 
     {{-- end outstanding --}}
     @php
         $home = true;
     @endphp
 @endsection
+
+<script>
+const pos = document.querySelectorAll('.none');
+    window.addEventListener('resize', ()=>{
+        if (screen.width <= 1111) {
+        for (let index = 0; index < pos.length; index++) {
+            if ((index >= 6 && index < 12) || (index > 17 && index < 25)) {
+                pos[index].style.display = 'none';
+            }
+        }
+    } else {
+        for (let index = 0; index < pos.length; index++) {
+            pos[index].style.display = 'block';
+        }
+        menu.style.display = 'none'
+    }
+    })
+</script>

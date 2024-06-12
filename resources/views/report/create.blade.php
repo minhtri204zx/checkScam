@@ -141,7 +141,7 @@
                 <div class="create-mobile">
                     @foreach ($account as $row)
                         <div class="form-group">
-                            <input class="form-input" type="text" id="email" value="{{ $row->name }}"
+                            <input class="form-input" type="text" id="name" value="{{ $row->name }}"
                                 placeholder=" " required>
                             <label class="form-label" for="email">Họ và tên <span
                                     style="color: forestgreen">*</span></label>

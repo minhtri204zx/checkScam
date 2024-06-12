@@ -60,16 +60,12 @@
 
     <script>
         $(document).ready(function() {
-            var height = 1400;
             var offset = 12;
             var search = `{{ request()->search ? request()->search : '' }}`
             $('#load-more').click(function() {
                 console.log(screen.width);
-                if ((window.innerWidth <= 1111 || screen.width <= 1111) && height == 1400) {
+                if ((window.innerWidth <= 1111 || screen.width <= 1111)) {
                     offset = 6;
-                    height = 2864
-                } else if ((window.innerWidth <= 1518 || screen.width <= 1518) && height == 1400) {
-                    height = 2526
                 }
                 $.ajax({
                     url: '/load-more',
@@ -80,12 +76,12 @@
                         screen: window.innerWidth ? window.innerWidth : screen.width
                     },
                     success: function(data) {
-                        console.log(data);
                         if (data.length > 0) {
+
                             var html = '';
-                            var stt = 0;
-                            if (window.innerWidth <= 1111) {
+                            if (window.innerWidth <= 1974) {
                                 if (data.length == 7) {
+                            var stt = 0;
                                     $.each(data, function(index, post) {
                                         stt++;
                                         if (stt <= 6) {
@@ -117,10 +113,7 @@
                                         }
                                     });
                                     $('.contenter').append(html);
-                                    document.getElementById('body').style.height = height +
-                                    "px";
                                     offset += 6;
-                                    height += 1200;
                                 } else {
                                     $.each(data, function(index, post) {
                                         html += `
@@ -150,10 +143,6 @@
                                         }
                                     });
                                     $('.contenter').append(html);
-                                    let result = data.length / 1;
-                                    console.log(result);
-                                    document.getElementById('body').style.height = (height -
-                                        1200) + (Math.ceil(result) * 200) + "px";
                                     $('#load-more').text('Không còn bài report nào').prop(
                                         'disabled',
                                         true);
@@ -192,10 +181,6 @@
                                         }
                                     });
                                     $('.contenter').append(html);
-                                    document.getElementById('body').style.height = height +
-                                    "px";
-                                    offset += 12;
-                                    height += 600;
                                 } else {
                                     $.each(data, function(index, post) {
                                         html += `
@@ -225,9 +210,6 @@
                                         }
                                     });
                                     $('.contenter').append(html);
-                                    let result = data.length / 3
-                                    document.getElementById('body').style.height = (height -
-                                        600) + (Math.ceil(result) * 200) + "px";
                                     $('#load-more').text('Không còn bài report nào').prop(
                                         'disabled',
                                         true);

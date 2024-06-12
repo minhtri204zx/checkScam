@@ -107,7 +107,7 @@
                     </div>
                     <header>
                         <div class="header-left">
-                            <img id="home" style="margin-left:40px;width:150px; height:auto"
+                            <img id="home" style="width:150px; height:auto"
                                 src="{{ asset('images/logo.png') }}" alt="">
                         </div>
                         <div id="showmenu" class="header-right-mobile">
@@ -233,12 +233,7 @@
 
             {{-- start footer --}}
 
-            <div class="footer" id="footer"
-                @isset($home)
-                style="
-    margin-top: 730px;
-                "
-            @endisset>
+            <div class="footer" id="footer">
                 <div class="div row">
                     <div class="footer1 col-xxl-2 col-sm-6">
                         <img src="{{ asset('images/logo.png') }}" alt="">
@@ -283,7 +278,6 @@
                 <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
                     All rights reserved</p>
 <script src="{{ asset('js/posts.js') }}"></script>
-
             </div>
 
             {{-- end footer --}}

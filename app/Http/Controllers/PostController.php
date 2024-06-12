@@ -78,7 +78,7 @@ class PostController extends Controller
     public function loadMore(Request $request)
     {
         $offset = $request->offset;
-         if ($request->screen<=1111) {
+         if ($request->screen<=1974) {
             $posts = 7;
         }else{
             $posts = 13;

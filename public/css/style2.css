@@ -180,13 +180,14 @@ input[type="file"] {
     line-height: normal;
 }
 
+
 .row p {
     color: var(--Light-Stroke, #e4e4e4);
     font-family: Mulish;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 1.7;
+    margin-top: 20px;
 }
 
 #comment {
@@ -242,8 +243,8 @@ input[type="file"] {
     margin: 0 auto;
 }
 
-.header-right2 {
-    margin-left: 300px;
+header{
+    width: 1697px;
 }
 
 .num-comments{
@@ -251,10 +252,18 @@ input[type="file"] {
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1518px) {
+    .header-right2 {
+        display: none;
+    }
+
+    .cangiua{
+        width: 100%;
+    }
     .header-right {
         display: none;
     }
+    
 
     .cangiua {
         width: 100%;
@@ -304,36 +313,7 @@ input[type="file"] {
         height: 690px;
     }
 
-    .div {
-        display: block;
-        width: 100%;
-    }
-
-    .footer1 {
-        width: 50%;
-        margin: 0 auto;
-    }
-    .footer2 {
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 24px;
-    }
-    .footer3 {
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 24px;
-    }
-    .footer4 {
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 24px;
-    }
-    .footer5 {
-        width: 50%;
-        margin-left: auto;
-        margin-right: 10px;
-        margin-top: -85px;
-    }
+  
     .row {
         margin-left: 0px;
     }
@@ -344,16 +324,16 @@ input[type="file"] {
         margin-left: 0px;
     }
     form input {
-        width: 90%;
+        width: 98.5%;
     }
     form .form-select {
-        width: 90%;
+        width: 98.5%;
     }
     #text {
-        width: 90%;
+        width: 98.5%;
     }
     .btn-send-create {
-        width: 90%;
+        width: 98.5%;
         margin: 0 auto;
     }
     .col-md-1 img {
@@ -379,11 +359,36 @@ input[type="file"] {
         margin-right: 20px;
     }
 
-    textarea{
-        width: 90%;
-    }
     #form button{
         margin-right: 25px;
+    }
+
+    .col-md-9 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .col-md-1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:575px) {
+    form input, #text,.btn-send-create {
+        width: 96.5%;
+    }
+
+    .form-select{
+        padding: .375rem 2.25rem .375rem .75rem;
+    }
+
+    form .form-select{
+        width: 96.5%;
+    }
+
+    #name{
+        padding: 30px 0px 10px 10px;
+        width: 96.5%;
     }
 }
 

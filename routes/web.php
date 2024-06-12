@@ -30,12 +30,11 @@ Route::middleware('share.cate')->group(function () {
     Route::post('posts', [PostController::class, 'store']);
     Route::get('posts/{id}',[PostController::class, 'show']);
     Route::get('/load-more', [PostController::class, 'loadMore']);
-    Route::get('test', [PostController::class, 'test']);
+    Route::get('search', [PostController::class, 'search']);
 
     Route::get('insurance',[TraderController::class, 'index']);
     Route::get('insurance/{id}',[TraderController::class, 'show']);
 
-    Route::get('search', [PostController::class, 'search']);
 
     Route::post('comment', [CommentController::class, 'store']);
     Route::get('like/{id}', [CommentController::class, 'like']);

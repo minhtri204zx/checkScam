@@ -2,12 +2,15 @@ const pre = document.getElementById('prev');
 const next = document.getElementById('next');
 const main = document.getElementById('main');
 const arrMain = document.getElementsByClassName('main');
+const home = document.getElementById('home')
 length = arrMain.length
 let click = 0;
 let ao = 4;
 
 
-let home = document.getElementById('home')
+
+home.style.marginLeft='15px'
+
 home.addEventListener('click', () => {
     window.location.href = '/';
 })
@@ -108,8 +111,6 @@ function clicked(value) {
 }
 
 pre.addEventListener('click', () => {
-
-
     if (window.innerWidth < 1111) {
         let css = window.getComputedStyle(main);
         transformValue = css.getPropertyValue('transform')
@@ -168,8 +169,11 @@ next.addEventListener('click', () => {
 
 })
 function active(ao = 4, reset = null) {
+    const overText = document.getElementsByClassName("text");
     const overlay2 = document.getElementById('overlay2_' + ao);
     const overlay1 = document.getElementById('overlay1_' + ao);
+    overText[ao-1].style.color= '#fff'
+
     overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164" fill="none">
                 <path d="M0.5 0.501733L143.14 0.500003L163.5 33.2858V163.5L18.8828 163.501L0.5 128.734V0.501733Z" stroke="url(#paint0_linear_623_550)"/>
                 <defs>
@@ -193,9 +197,10 @@ function active(ao = 4, reset = null) {
     </defs>
     </svg>`
     if (reset != null) {
+        overText[reset-1].style.color= 'var(--Light-White, #B5AB9A)'
         const overlay2 = document.getElementById('overlay2_' + reset);
         const overlay1 = document.getElementById('overlay1_' + reset);
-        overlay2.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164"
+        overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164"
         fill="none">
         <path
             d="M0.5 0.501733L143.14 0.500003L163.5 33.2858V163.5L18.8828 163.501L0.5 128.734V0.501733Z"

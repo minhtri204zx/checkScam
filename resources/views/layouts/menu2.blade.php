@@ -22,8 +22,8 @@
 </head>
 
 <body style="background-color: #0d0d0d">
-    <?php 
-            
+    <?php
+
     if (!Auth::check()) {?>
     <script>
         const myModal = document.getElementById('myModal')
@@ -87,9 +87,8 @@
                 </ul>
             </div>
             <header>
-
                 <div class="header-left">
-                    <img id="home" style="margin-left:40px;width:150px; height:auto"
+                    <img id="home" style="width: 150px; height: auto; margin-left: 15px;"
                         src="{{ asset('images/logo.png') }}" alt="">
                 </div>
                 <div id="showmenu" class="header-right-mobile">
@@ -98,9 +97,12 @@
                 <div id="header" class="header-right<?php if (Auth::check()) {
                     echo '2';
                 } ?>">
+                   <div>
                     <a href="/">Trang chủ</a>
                     <a href="">Giới thiệu</a>
                     <a href="">Cảnh báo hình thức lừa đảo</a>
+                   </div>
+                   <div>
                     <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
                     <a class="btnReport"
                         @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
@@ -109,6 +111,7 @@
                     @auth
                         <a href="/logout" class="btnReport">Đăng xuất</a>
                     @endauth
+                   </div>
                 </div>
             </header>
         </div>
@@ -118,68 +121,62 @@
  height: 0.5px; /* Đặt chiều cao của thẻ hr */
  background-color: white; /* Đặt màu nền */
  border-top: 0.5px solid white; /* Đặt màu và độ dày của viền trên */
- margin: 20px 0; /* Khoảng cách trên và dưới thẻ hr */
+ margin: 10px 0; /* Khoảng cách trên và dưới thẻ hr */
     ">
 
         @yield('content')
 
         {{-- start footer --}}
 
-        <div style="margin-top: 100px" class="footer">
-            <hr
-                style="
-            border: 0;
-         height: 0.5px; /* Đặt chiều cao của thẻ hr */
-         background-color: white; /* Đặt màu nền */
-         border-top: 0.5px solid white; /* Đặt màu và độ dày của viền trên */
-         margin: 20px 0; /* Khoảng cách trên và dưới thẻ hr */
-            ">
-            <div class="cangiua">
-                <div class="div">
-                    <div class="footer1">
-                        <img src="{{ asset('images/logo.png') }}" alt="">
-                        <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội ác, ở
-                            đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
-                    </div>
-                    <div class="footer2">
-                        <h5 style="color: white">Yêu cầu gỡ report</h5>
-                        <p>Telegram: @hotro</p>
-                        <p>Email: abc@gmail.com</p>
-                        <p>Thời gian làm việc: 8h - 23h</p>
-                    </div>
-                    <div class="footer3">
-                        <h5 style="color: white">Trang chủ</h5>
-                        <p>Giới thiệu</p>
-                        <p>Điều khoản dịch vụ</p>
-                        <p>Chính sách bảo mật</p>
-                    </div>
-                    <div class="footer4">
-                        <h5 style="color: white">Cộng đồng</h5>
-                        <div style="display: flex">
-                            <img src="{{ asset('images/content/facebook.svg') }}" alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}"
-                                alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}"
-                                alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="footer5">
-                        <img style="margin-left: 24px " src="{{ asset('images/content/DMCA.png') }}" alt="">
-                    </div>
+        <div class="footer" id="footer"
+        @isset($home)
+        style="
+margin-top: 730px;
+        "
+    @endisset>
+        <div class="div row">
+            <div class="footer1 col-xxl-2 col-sm-6">
+                <img src="{{ asset('images/logo.png') }}" alt="">
+                <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội ác, ở
+                    đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
+            </div>
+            <div class="footer2 col-xxl-2 col-sm-6">
+                <h5 style="color: white">Yêu cầu gỡ report</h5>
+                <p>Telegram: @hotro</p>
+                <p>Email: abc@gmail.com</p>
+                <p>Thời gian làm việc: 8h - 23h</p>
+            </div>
+            <div class="footer3 col-xxl-4 col-sm-6">
+                <h5 style="color: white">Trang chủ</h5>
+                <p>Giới thiệu</p>
+                <p>Điều khoản dịch vụ</p>
+                <p>Chính sách bảo mật</p>
+            </div>
+            <div class="footer4 col-xxl-2 col-sm-2">
+                <h5 style="color: white">Cộng đồng</h5>
+                <div style="display: flex">
+                    <img src="{{ asset('images/content/facebook.svg') }}" alt="">
+                    <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}"
+                        alt="">
+                    <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}"
+                        alt="">
+                    <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}"
+                        alt="">
                 </div>
             </div>
-            <div>
-                <hr
-                    style="
-                        height: 2px;
-                        background-color: 232323;
-                        border-top: 2px solid 232323;">
+            <div class="footer5 col-xxl-1 col-sm-3">
+                <img src="{{ asset('images/content/DMCA.png') }}" alt="">
             </div>
-            <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
-                All rights reserved</p>
         </div>
-        <script src="{{ asset('js/posts.js') }}"></script>
+        <div>
+            <hr
+                style="
+                    height: 2px;
+                    background-color: 232323;
+                    border-top: 2px solid 232323;">
+        </div>
+        <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
+            All rights reserved</p>
+    </div>
         {{-- end footer --}}
 </body>
