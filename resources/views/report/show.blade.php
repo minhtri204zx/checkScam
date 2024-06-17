@@ -4,12 +4,12 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9" id="col-md-9">
             <h1>Thông tin scam</h1>
             @csrf
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Danh mục:</div>
-                <p>{{ $post->category->name }}</p>
+                <p class="noidung">{{ $post->category->name }}</p>
             </div>
             <hr
                 style="
@@ -22,7 +22,7 @@
 
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">User name:</div>
-                <p>{{ $post->username ? $post->username : 'NULL' }}</p>
+                <p class="noidung">{{ $post->username ? $post->username : 'NULL' }}</p>
 
             </div>
             <hr
@@ -35,7 +35,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">UID:</div>
-                <p>{{ $post->UID }}</p>
+                <p class="noidung">{{ $post->UID }}</p>
             </div>
             <hr
                 style="
@@ -47,7 +47,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Link bài viết:</div>
-                <p><a href="{{ $post->linkfb }}">Get link</a></p>
+                <p class="noidung"><a href="{{ $post->linkfb }}">Get link</a></p>
             </div>
             <hr
                 style="
@@ -59,7 +59,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Họ tên:</div>
-                <p>{{ $post->fullname }}</p>
+                <p class="noidung">{{ $post->fullname }}</p>
             </div>
             <hr
                 style="
@@ -71,7 +71,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Số điện thoại:</div>
-                <p>{{ $post->numberphone ? $post->numberphone : 'NULL' }}</p>
+                <p class="noidung">{{ $post->numberphone ? $post->numberphone : 'NULL' }}</p>
             </div>
             <hr
                 style="
@@ -83,7 +83,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Số tài khoản:</div>
-                <p>{{ $post->numberbank ? $post->numberbank : 'NULL' }}</p>
+                <p class="noidung">{{ $post->numberbank ? $post->numberbank : 'NULL' }}</p>
             </div>
             <hr
                 style="
@@ -95,7 +95,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Ngân hàng:</div>
-                <p>{{ $post->namebank ? $post->namebank : 'NULL' }}</p>
+                <p class="noidung">{{ $post->namebank ? $post->namebank : 'NULL' }}</p>
             </div>
             <hr
                 style="
@@ -107,7 +107,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Ảnh chụp băng chứng:</div>
-                <p>Còn đúng cái nịt</p>
+                <p class="noidung">Còn đúng cái nịt</p>
             </div>
             <hr
                 style="
@@ -119,7 +119,7 @@
                 ">
             <div style="display: flex; margin-top: 50px;">
                 <div class="title">Nội dung report:</div>
-                <p>Bạn đầu có nhân viên giới thiệu việc làm trên FB, chỉ cần ấn theo dõi các trang chỉ định sẽ được
+                <p class="noidung">Bạn đầu có nhân viên giới thiệu việc làm trên FB, chỉ cần ấn theo dõi các trang chỉ định sẽ được
                     tính 8.000 1 bài thích. Xong 5 bài sẽ được chuyển 40.000 vào TK.Sau đó đối tượng sẽ giao nhiệm
                     vụ tiếp bước. Gửi các nhiệm vụ có mức tiền cược khác nhau có tỉ lệ hoa hồng từ 30 – 50%. Đối
                     tượng yêu cầu chuyển tiền trước sau khi xác nhận sẽ gửi bản cam kết từ Công ty TNHH Thương mại
@@ -163,7 +163,7 @@
                 <input type="hidden" value="{{ $account['numcomments'] }}" name="numcomments">
                 <input type="hidden" value="{{ request()->id }}" name="post">
                 <textarea style="margin-top: -50px; margin-left: 20px; padding: 10px 0 0 10px" id="comment" name="comment"
-                    style="" name="comment" id="" cols="121" rows="10"
+                    style="" name="comment" id="" rows="10"
                     placeholder="Để lại bình luận của bạn về nội dung report này..."></textarea>
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal"
                     style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
@@ -286,6 +286,30 @@
 
     </div>
     <script src="{{ asset('js/img.js') }}"></script>
+    <script>
+        // Lưu vị trí cuộn trước khi tải lại trang
+        window.addEventListener('beforeunload', function() {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        });
+        // Lấy vị trí cuộn sau khi tải lại trang và cuộn trang đến vị trí đó
+        window.addEventListener('load', function() {
+            var scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+                localStorage.removeItem('scrollPosition')
+            }
+        });
+        window.addEventListener('resize', ()=>{
+            if (screen.width<=1650 && screen.width>= 1519) {
+        console.log(document.getElementById('col-md-9'));
+            document.getElementById('col-md-9').style.marginLeft = '-7.3px'
+        }
+        })
+        if (screen.width<=1650 && screen.width>= 1519) {
+        console.log(document.getElementById('col-md-9'));
+            document.getElementById('col-md-9').style.marginLeft = '-7.3px'
+        }
+    </script>
 @endsection
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 @auth
@@ -341,17 +365,4 @@
 
 @endauth
 
-<script>
-    // Lưu vị trí cuộn trước khi tải lại trang
-    window.addEventListener('beforeunload', function() {
-        localStorage.setItem('scrollPosition', window.scrollY);
-    });
-    // Lấy vị trí cuộn sau khi tải lại trang và cuộn trang đến vị trí đó
-    window.addEventListener('load', function() {
-        var scrollPosition = localStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-            window.scrollTo(0, parseInt(scrollPosition, 10));
-            localStorage.removeItem('scrollPosition')
-        }
-    });
-</script>
+

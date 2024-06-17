@@ -6,11 +6,6 @@ const home = document.getElementById('home')
 length = arrMain.length
 let click = 0;
 let ao = 4;
-
-
-
-home.style.marginLeft='15px'
-
 home.addEventListener('click', () => {
     window.location.href = '/';
 })
@@ -41,13 +36,23 @@ function fetcgSuggest(value) {
                 localStorage.setItem('hints', JSON.stringify(data));
             }
         }
-
     });
 }
-let a = -1;
-function aoMa(e, value) {
-    if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
 
+function debounce(func, timeout=300) {
+ let timer
+    // event , this.value
+ return (...args)=>{
+    clearTimeout(timer)
+    timer=setTimeout(()=>{
+        func.apply(this, args)
+    }, timeout)
+ }
+}
+
+let a = -1;
+function showHints(e, value) {
+    if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
         return
     }
     a = -1
@@ -58,8 +63,10 @@ function aoMa(e, value) {
     } else {
         list.style.display = 'none';
     }
-    fetcgSuggest(value);
+    fetcgSuggest(value)
 }
+
+const debounceShowHints = debounce(showHints, 300)
 
 document.getElementById('search').addEventListener('keydown', (e) => {
     let arrHint = JSON.parse(localStorage.getItem('hints'));
@@ -98,7 +105,6 @@ document.getElementById('search').addEventListener('keydown', (e) => {
         let list = document.getElementById('search2')
         list.style.display = 'none';
         search.focus();
-
     }
 })
 

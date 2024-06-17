@@ -4,18 +4,48 @@
 
 .row {
     margin-top: 60px;
-    margin-left: 120px;
 }
 
 form {
     margin-top: 50px;
 }
 
+
+.background-1::before{
+    all: unset;
+}
+
+.background-1{
+    background-color: #0d0d0d;
+    background-image:unset;
+
+}
+
+
+
+.header-left{
+    margin-left: 5px;
+}
+
+body{
+    background-color: #0d0d0d;
+}
+
+
+.ac{
+    border-bottom: 1px solid var(--Stroke, #232323);
+}
+
+
 .form-control {
     padding: 10px 0;
     background-color: #0d0d0d;
     border: 1px solid var(--Stroke, #232323);
     border-radius: 12px;
+}
+
+textarea{
+    width: 100%;
 }
 
 .radio-container {
@@ -33,12 +63,14 @@ form {
 .radio-custom {
     width: 20px;
     height: 20px;
-    border: 2px solid #007bff; /* Màu viền ban đầu */
+    border: 2px solid #007bff;
+    /* Màu viền ban đầu */
     border-radius: 50%;
     position: relative;
     cursor: pointer;
     margin-right: 10px;
-    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động mượt mà */
+    transition: all 0.3s ease;
+    /* Thêm hiệu ứng chuyển động mượt mà */
 }
 
 /* Bên trong custom radio button (dấu chấm) */
@@ -46,24 +78,30 @@ form {
     content: "";
     width: 12px;
     height: 12px;
-    background-color: #007bff; /* Màu bên trong ban đầu */
+    background-color: #007bff;
+    /* Màu bên trong ban đầu */
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0); /* Bắt đầu với kích thước 0 */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Hiệu ứng chuyển động */
+    transform: translate(-50%, -50%) scale(0);
+    /* Bắt đầu với kích thước 0 */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Hiệu ứng chuyển động */
 }
 
 /* Hiển thị dấu chấm khi được chọn */
-.radio-container input[type="radio"]:checked + .radio-custom::before {
-    transform: translate(-50%, -50%) scale(1); /* Tăng kích thước lên đầy đủ */
-    background-color: #28a745; /* Thay đổi màu bên trong thành xanh lá cây */
+.radio-container input[type="radio"]:checked+.radio-custom::before {
+    transform: translate(-50%, -50%) scale(1);
+    /* Tăng kích thước lên đầy đủ */
+    background-color: #28a745;
+    /* Thay đổi màu bên trong thành xanh lá cây */
 }
 
 /* Thay đổi màu viền khi được chọn */
-.radio-container input[type="radio"]:checked + .radio-custom {
-    border-color: #28a745; /* Thay đổi màu viền thành xanh lá cây */
+.radio-container input[type="radio"]:checked+.radio-custom {
+    border-color: #28a745;
+    /* Thay đổi màu viền thành xanh lá cây */
 }
 
 /* Nhãn của radio button */
@@ -107,8 +145,8 @@ form {
 }
 
 /* Khi input có focus hoặc có giá trị */
-.form-input:focus + .form-label,
-.form-input:not(:placeholder-shown) + .form-label {
+.form-input:focus+.form-label,
+.form-input:not(:placeholder-shown)+.form-label {
     top: 6px;
     left: 10px;
     font-size: 12px;
@@ -117,7 +155,7 @@ form {
 .form-select {
     border-radius: 12px;
     height: 56px;
-    padding: 10px 370px 10px 10px;
+    padding: 10px 359px 10px 10px;
     border: 1px solid var(--Stroke, #232323);
     font-size: 16px;
     box-sizing: border-box;
@@ -127,12 +165,13 @@ form {
 }
 
 #select {
-    padding: 10px 440px 10px 10px;
+    padding: 10px 439px 10px 10px;
 }
 
 #text {
     background-color: #0d0d0d;
-
+    padding-top: 10px;
+    width: 1113px;
     border-radius: 12px;
     border: 1px solid var(--Stroke, #232323);
     height: 100px;
@@ -150,24 +189,40 @@ input[type="file"] {
 /* Nút tùy chỉnh */
 .custom-file-upload {
     margin-top: 20px;
-    width: 100px; /* Chiều rộng của hình vuông */
-    height: 100px; /* Chiều cao của hình vuông */
+    width: 100px;
+    /* Chiều rộng của hình vuông */
+    height: 100px;
+    /* Chiều cao của hình vuông */
     border: 1px dashed var(--Stroke, #232323);
-    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    justify-content: center; /* Canh giữa theo chiều ngang */
-    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
-    border-radius: 10px; /* Bo góc */
+    display: flex;
+    /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+    cursor: pointer;
+    /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px;
+    /* Bo góc */
     position: relative;
-    background-color: #0d0d0d; /* Màu nền */
+    background-color: #0d0d0d;
+    /* Màu nền */
     transition: background-color 0.3s ease;
 }
 
 /* Dấu cộng (+) */
 .custom-file-upload::before {
-    content: "+"; /* Nội dung dấu cộng */
-    font-size: 20px; /* Kích thước chữ của dấu cộng */
+    content: "+";
+    /* Nội dung dấu cộng */
+    font-size: 20px;
+    /* Kích thước chữ của dấu cộng */
     color: var(--w-60, rgba(255, 255, 255, 0.6));
+}
+
+.noidung{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
 }
 
 .title {
@@ -178,6 +233,8 @@ input[type="file"] {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -187,7 +244,6 @@ input[type="file"] {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    margin-top: 20px;
 }
 
 #comment {
@@ -201,6 +257,7 @@ input[type="file"] {
 
 #form {
     position: relative;
+    width: 100%;
 }
 
 #form button {
@@ -220,16 +277,24 @@ input[type="file"] {
 #imageDisplay {
     padding: 10px;
     margin-top: 20px;
-    width: 100px; /* Chiều rộng của hình vuông */
-    height: 100px; /* Chiều cao của hình vuông */
+    width: 100px;
+    /* Chiều rộng của hình vuông */
+    height: 100px;
+    /* Chiều cao của hình vuông */
     border: 1px dashed var(--Stroke, #232323);
-    display: flex; /* Sử dụng flexbox để canh giữa nội dung */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    justify-content: center; /* Canh giữa theo chiều ngang */
-    cursor: pointer; /* Con trỏ chuột thay đổi khi hover */
-    border-radius: 10px; /* Bo góc */
+    display: flex;
+    /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+    cursor: pointer;
+    /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px;
+    /* Bo góc */
     position: relative;
-    background-color: #0d0d0d; /* Màu nền */
+    background-color: #0d0d0d;
+    /* Màu nền */
     transition: background-color 0.3s ease;
 }
 
@@ -243,27 +308,108 @@ input[type="file"] {
     margin: 0 auto;
 }
 
-header{
-    width: 1697px;
+.num-comments {
+    margin-left: 1000px
 }
 
-.num-comments{
-    margin-left: 1000px
+@media only screen and (min-width: 1974px) {
+    header{
+        width: 105%;
+    }
+    .row{
+    width: 1820px;
+    margin: 0 auto;
+    margin-top: 60px;
+    }
+
+}
+
+@media only screen and (max-width: 1974px) {
+    .btn-report {
+        margin-left: 150px;
+    }
+    .cangiua {
+        width: 100%;
+    }
+
+    .row {
+        width: 93%;
+        margin: 0 auto;
+        margin-top: 60px;
+    }
+
+    .div.row {
+        width: 93%;
+    }
+
+}
+
+@media only screen and (max-width: 1650px) {
+    .col-md-1 {
+        display: none;
+    }
+
+    .row {
+        width: 93%;
+    }
+
+    .col-md-9 {
+        width: 120%;
+        margin-left: 11.7%;
+    }
+
+    .form-select {
+        padding: .375rem 2.25rem .375rem .75rem;
+        width: 545px;
+    }
+
+    #select {
+        padding: .375rem 2.25rem .375rem .75rem;
+    }
+
 }
 
 
 @media only screen and (max-width: 1518px) {
+    #form button{
+        right: -25px;
+    }
+
+    header {
+        width: 92%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+ .header-right-mobile {
+        display: block;
+        margin-right: 10px;
+        background: rgba(255, 255, 255, 0.07);
+        padding: 10px;
+        border-radius: 100px;
+    }
+  .header-left {
+        margin: 0;
+    }
+
+
+    .div.row {
+        width: 91%;
+    }
+
     .header-right2 {
         display: none;
     }
 
-    .cangiua{
+    .cangiua {
         width: 100%;
     }
+
     .header-right {
         display: none;
     }
-    
+
 
     .cangiua {
         width: 100%;
@@ -272,6 +418,7 @@ header{
     ul {
         margin-top: 20px;
     }
+
     li {
         list-style: none;
         margin-top: 20px;
@@ -286,56 +433,37 @@ header{
         transition: transform 0.3s ease;
     }
 
-    header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .header-right-mobile {
-        display: block;
-        margin-right: 10px;
-        background: rgba(255, 255, 255, 0.07);
-        padding: 10px;
-        border-radius: 100px;
-    }
-    .header-left {
-        margin: 0;
-    }
-    .btnReport {
-        margin-left: 10px;
-    }
-    .btnReport + .btnReport {
-        margin-right: 30px;
-    }
-    .footer {
-        height: 690px;
-    }
-
-  
     .row {
         margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 60px;
     }
-    form > .create-mobile {
+
+    form>.create-mobile {
         display: block;
     }
+
     .input-mobile {
         margin-left: 0px;
     }
+
     form input {
         width: 98.5%;
     }
+
     form .form-select {
         width: 98.5%;
     }
+
     #text {
         width: 98.5%;
     }
+
     .btn-send-create {
         width: 98.5%;
         margin: 0 auto;
     }
+
     .col-md-1 img {
         width: 90%;
         margin: 0 auto;
@@ -343,6 +471,7 @@ header{
         text-align: center;
         display: flex;
     }
+
     .cangiua {
         overflow-x: hidden;
     }
@@ -351,19 +480,21 @@ header{
         padding: 10px 40px 10px 10px;
     }
 
-    p{
+    p {
         margin-right: 15px;
     }
-    .num-comments{
+
+    .num-comments {
         margin: 0 auto;
         margin-right: 20px;
     }
 
-    #form button{
+    #form button {
         margin-right: 25px;
     }
 
     .col-md-9 {
+        margin-left: 0;
         flex: 0 0 auto;
         width: 100%;
     }
@@ -374,21 +505,28 @@ header{
 }
 
 @media only screen and (max-width:575px) {
-    form input, #text,.btn-send-create {
+
+    form input,
+    #text,
+    .btn-send-create,
+    .form-input {
         width: 96.5%;
     }
 
-    .form-select{
+    .form-input {
+        padding: 0;
+    }
+
+    .form-select {
         padding: .375rem 2.25rem .375rem .75rem;
     }
 
-    form .form-select{
+    form .form-select {
         width: 96.5%;
     }
 
-    #name{
+    #name {
         padding: 30px 0px 10px 10px;
         width: 96.5%;
     }
 }
-

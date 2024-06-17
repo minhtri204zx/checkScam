@@ -10,9 +10,6 @@ let above1518 = screen.width>1518&&screen.width<1975
 let above1112= screen.width>=1112&&screen.width<=1518
 let below1112 = screen.width<=1111
 
-
-
-
 document.getElementById('outMenu').addEventListener('click', () => {
     menu.style.transform = 'translateY(-100%)'
     menu.style.display = 'none'

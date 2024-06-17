@@ -17,12 +17,12 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+        @yield('link')
     </head>
 
     <body style="position: relative">
-        <?php 
-            
+        <?php
+
             if (!Auth::check()) {?>
         <script>
             const myModal = document.getElementById('myModal')
@@ -121,7 +121,7 @@
                             <a href="">Giới thiệu</a>
                             <a href="">Cảnh báo hình thức lừa đảo</a>
                            </div>
-                           <div>
+                           <div class="btn-report">
                             <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
                             <a class="btnReport"
                                 @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
@@ -150,7 +150,7 @@
 
                     <form action="posts" method="get" class="text-center" style="position: relative">
                         <input type="text" id="search" value="{{ request()->search }}" name="search"
-                            onkeyup="aoMa(event, this.value)"
+                            onkeyup="debounceShowHints(event, this.value)"
                             placeholder="Nhập số điện thoại, số tài khoản ngân hàng ...">
                         <button type="submit">
                             <div id="btndiv"></div>

@@ -88,7 +88,7 @@
             </div>
             <header>
                 <div class="header-left">
-                    <img id="home" style="width: 150px; height: auto; margin-left: 15px;"
+                    <img id="home" style="width: 150px; height: auto;"
                         src="{{ asset('images/logo.png') }}" alt="">
                 </div>
                 <div id="showmenu" class="header-right-mobile">
@@ -102,7 +102,7 @@
                     <a href="">Giới thiệu</a>
                     <a href="">Cảnh báo hình thức lừa đảo</a>
                    </div>
-                   <div>
+                   <div class="btn-report">
                     <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
                     <a class="btnReport"
                         @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
@@ -115,14 +115,16 @@
                 </div>
             </header>
         </div>
-        <hr
-            style="
-    border: 0;
- height: 0.5px; /* Đặt chiều cao của thẻ hr */
- background-color: white; /* Đặt màu nền */
- border-top: 0.5px solid white; /* Đặt màu và độ dày của viền trên */
- margin: 10px 0; /* Khoảng cách trên và dưới thẻ hr */
-    ">
+    </div>
+    <hr
+    style="
+border: 0;
+height: 0.5px; /* Đặt chiều cao của thẻ hr */
+background-color: white; /* Đặt màu nền */
+border-top: 0.5px solid white; /* Đặt màu và độ dày của viền trên */
+margin: 10px 0; /* Khoảng cách trên và dưới thẻ hr */
+">
+
 
         @yield('content')
 
@@ -131,7 +133,7 @@
         <div class="footer" id="footer"
         @isset($home)
         style="
-margin-top: 730px;
+    margin-top: 730px;
         "
     @endisset>
         <div class="div row">
