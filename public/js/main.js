@@ -10,6 +10,14 @@ home.addEventListener('click', () => {
     window.location.href = '/';
 })
 
+function validateSearch(){
+    let search = document.querySelector('#search')
+    if (search.value=='' || search.value == null) {
+        document.querySelector('.noti-search').style.display ='block'
+        return false
+    }
+}
+
 function fetcgSuggest(value) {
     let html = ''
     $.ajax({
@@ -52,6 +60,8 @@ function debounce(func, timeout=300) {
 
 let a = -1;
 function showHints(e, value) {
+    document.querySelector('.noti-search').style.display ='none'
+
     if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
         return
     }

@@ -8,6 +8,7 @@
         <img class="hanhtinh hanhtinh2" src="{{ asset('images/hanhtinh2.png') }}" alt="">
         <div class="hanhtinh3_wrapper"><img class="hanhtinh hanhtinh3" src="{{ asset('images/hanhtinh3.png') }}"
                 alt=""></div>
+    <div class="cangiua">
         <div class="body-con">
 
             <div class="hanhtinh arrow-up text-center">
@@ -48,6 +49,7 @@
             </div>
         </div>
     </div>
+    </div>
     {{-- end  content --}}
 
     {{-- start  banner --}}
@@ -58,24 +60,24 @@
 
     {{-- start  top comments --}}
     <div class="new-comments">
-        <div class="cangiua">
 
-            <div class="new-comment">
-                <p>Người Dùng MXH</p> <span>Bình Luận Mới Nhất</span>
+            <div class="cangiua">
+                <div class="new-comment">
+                    <p>Người Dùng MXH</p> <span>Bình Luận Mới Nhất</span>
+                </div>
             </div>
             @foreach ($comments as $comment)
-                <div class="new-comment">
+                <div class="new-comment cangiua">
                     <p> <img src="{{ $comment->account->avatar }}" alt="">{{ $comment->account->name }}</p>
                     <span>{{ $comment->comment_content }}</span>
                 </div>
                 <hr
                     style="
          border-top: 1px solid #ccc;
-    color: #ff0000; 
+    color: #ff0000;
     background-color: #ff0000;
         ">
             @endforeach
-        </div>
     </div>
     {{-- end top comments --}}
 
@@ -83,8 +85,9 @@
 
     <div class="body" id="nomargin">
         {{-- start  content --}}
+       <div class="cangiua">
         <div class="body-con">
-            <h2 class="text-light" style="margin-left: 120px">Cộng Đồng Valorant</h2>
+            <h2 class="text-light">Cộng Đồng Valorant</h2>
             <div class="contenter">
                 @foreach ($posts as $post)
                     <a class="none" href="">
@@ -100,6 +103,7 @@
                 @endforeach
             </div>
         </div>
+       </div>
 
     </div>
     {{-- end community  --}}

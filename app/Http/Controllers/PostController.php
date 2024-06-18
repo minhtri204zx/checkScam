@@ -79,15 +79,14 @@ class PostController extends Controller
     {
         $offset = $request->offset;
          if ($request->screen<=1974) {
-            $posts = 7;
+            $post = 7;
         }else{
-            $posts = 13;
+            $post = 13;
         }
-
         if (isset($request->search)) {
-            $posts = Post::skip($offset)
-                ->take($posts)
-                ->where('fullname', $request->search)
+            $posts = Post::skip($post-1)
+                ->take($post)
+                ->where('fullname', 'Nguyễn Minh Trí')
                 ->orderBy('id', 'desc')
                 ->get();
         } else {

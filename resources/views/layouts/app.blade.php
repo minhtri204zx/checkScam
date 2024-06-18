@@ -148,7 +148,7 @@
                         admin để gỡ thông tin sai sự thật .'
                     )</p>
 
-                    <form action="posts" method="get" class="text-center" style="position: relative">
+                    <form action="posts" method="get" class="text-center" onsubmit="return validateSearch()" style="position: relative">
                         <input type="text" id="search" value="{{ request()->search }}" name="search"
                             onkeyup="debounceShowHints(event, this.value)"
                             placeholder="Nhập số điện thoại, số tài khoản ngân hàng ...">
@@ -157,6 +157,8 @@
                             TRA CÍU
                         </button>
                     </form>
+                    <p class="text-center noti-search" style="color: red">Không được để trống</p>
+
 
                     <div class="text-center" style="margin-top: 50px">
                         <button class="btnReport">Report lừa đảo</button>
@@ -234,6 +236,7 @@
             {{-- start footer --}}
 
             <div class="footer" id="footer">
+             <div class="cangiua">
                 <div class="div row">
                     <div class="footer1 col-xxl-2 col-sm-6">
                         <img src="{{ asset('images/logo.png') }}" alt="">
@@ -268,6 +271,7 @@
                         <img src="{{ asset('images/content/DMCA.png') }}" alt="">
                     </div>
                 </div>
+             </div>
                 <div>
                     <hr
                         style="

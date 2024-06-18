@@ -1,11 +1,12 @@
 @extends('layouts.app');
+@section('title', 'Create')
 @section('link')
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 @endsection
 @section('content')
    <div class="cangiua">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-md-10">
             <h1>Thông tin scam</h1>
             <form action="/posts" method="POST">
                 @csrf

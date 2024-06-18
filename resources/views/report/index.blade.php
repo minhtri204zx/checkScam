@@ -1,5 +1,6 @@
 @extends('layouts.app');
 @section('check', 'Tra cứu')
+@section('title', 'Posts')
 @section('sca', 'SCAM')
 @php
     $menu = true;
