@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
 
@@ -34,12 +34,12 @@
         <p>Từ ngày 11/07/2023 Khách hàng sẽ được MmoFund.vn bảo hiểm an toàn giao dịch với số tiền trong quỹ bảo hiểm <a href="">3,000,000.vnđ</a> của <a href="">Nguyễn Trường Giang</a></p>
         @if ($trader->active==1)
         <p style="color: #009571"> <img style="width: 18px; height: 18px; margin-left: 5px;" src="{{asset('images/active.svg')}}" alt=""> Đã xác thực CMND </p>
-            
+
         @endif
     </div>
-  
-</div > 
-    
+
+</div >
+
 <div class="info">
 
     <p style="color: var(--Light-Stroke, #E4E4E4);">Mô tả</p>

@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('title', 'Post')
 @section('link')
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
@@ -53,8 +53,22 @@
                 </div>
                 <hr class="hr">
                 <div class="fields">
+
                     <div class="title">Ảnh chụp băng chứng:</div>
-                    <p class="noidung">Còn đúng cái nịt</p>
+                    <div class="images">
+                    @php
+                    $images = json_decode($post->images)
+                    @endphp
+                    @if (is_array($images))
+                    @foreach ($images as $image)
+                     <div class="image-container">
+                        <img src="{{asset('images/'.$image)}}" style="margin-top: 0px" alt="Image" class="image">
+                    </div>
+                    @endforeach
+                    @else
+                    <p class="noidung">Không có ảnh</p>
+                    @endif
+                </div>
                 </div>
                 <hr class="hr">
                 <div class="fields">

@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @php
     $menu = true;
 @endphp
@@ -10,7 +10,6 @@
                 alt=""></div>
     <div class="cangiua">
         <div class="body-con">
-
             <div class="hanhtinh arrow-up text-center">
                 <img src="{{ asset('images/arrow.png') }}" alt=""> <br>
                 <span class="text-light">Đầu trang</span>

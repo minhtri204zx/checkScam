@@ -1,4 +1,3 @@
-const img = document.getElementById('img');
 const mar = document.getElementById('mar');
 const fileInput = document.getElementById('file');
 let menu = document.getElementById('menuMobile');
@@ -21,24 +20,61 @@ if (document.getElementById('home')) {
     })
 }
 
-fileInput.addEventListener('change', (event) => {
-    const images = [...event.target.files]
-    if (images) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            img.innerHTML = `
+function showImages(event) {
+    let seriImages = 0;
+
+    return (event) => {
+        const images = [...event.target.files]
+        const img = document.getElementById('img');
+        img.style.display = 'flex'
+        for (let i = 0; i < images.length; i++) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+
+                let html = `
                 <div class="image-container">
-                    <img src="your-image.jpg" id="imageDisplay" alt="Image" class="image">
+                    <img src="your-image.jpg" id="imageDisplay${seriImages}" alt="Image" class="image">
+                    <div class="overlayImages"></div>
+                    <div class="option">
+                    <img src="http://localhost:8000/images/Eye.svg" onclick="showImg(${seriImages})" id="viewImage" alt="Image">
+                    <img src="http://localhost:8000/images/DeleteOutlined.svg" id="delImage" onclick="deleteImage(${seriImages})" alt="Image">
+                    </div>
                 </div>
-                `
-            const imageDisplay = document.getElementById('imageDisplay');
-            imageDisplay.src = e.target.result;
-            console.log(e);
-            mar.style.marginLeft = '20px';
-            imageDisplay.style.display = 'block'
-
+                       `
+                $(img).prepend(html)
+                const imageDisplay = document.getElementById('imageDisplay' + seriImages++);
+                imageDisplay.src = e.target.result;
+                imageDisplay.style.display = 'block'
+            }
+            reader.readAsDataURL(images[i]);
         }
-        reader.readAsDataURL(images[0]);
     }
-});
+}
 
+const debounceImages = showImages()
+
+const showImg = (id) => {
+    let img = document.getElementById('imageDisplay' + id)
+    let overlay = document.getElementById('over')
+    overlay.style.display = 'block'
+    img.style.zIndex = '100'
+    img.style.width = '500px'
+    img.style.height = '500px'
+    document.getElementById('over').addEventListener('click', () => {
+        document.getElementById('over').style.display = 'none'
+        img.style.width = '100px'
+        img.style.height = '100px'
+    })
+}
+
+
+
+const deleteImage = (id) => {
+    let img = document.getElementById('imageDisplay' + id)
+    img.parentElement.style.display = 'none'
+    mar.style.display = 'block'
+
+}
+// khai báo ra 1 cái biến đại diện cho imagesDisplay (1,2,3,4,5)
+
+// để hàm có thể hưởng được biến đó (closure)

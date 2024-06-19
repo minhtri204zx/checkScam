@@ -82,7 +82,7 @@
                             var html = '';
                             if (window.innerWidth <= 1974) {
                                 if (data.length == 7) {
-                            var stt = 0;
+                                    var stt = 0;
                                     $.each(data, function(index, post) {
                                         stt++;
                                         if (stt <= 6) {

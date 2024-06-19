@@ -24,8 +24,9 @@ class PostController extends Controller
 
     public function store(ReportRequest $request)
     {
+        $images = json_encode($request->image);
         Post::create([
-            'images' => $request->image,
+            'images' => $images,
             'category_id' => $request->danhmuc,
             'username' => $request->username,
             'uid' => $request->uid,
@@ -83,7 +84,7 @@ class PostController extends Controller
         }else{
             $post = 13;
         }
-        if (isset($request->search)) {
+        if (isset($request->search) && $request->search!=null) {
             $posts = Post::skip($post-1)
                 ->take($post)
                 ->where('fullname', 'Nguyễn Minh Trí')
@@ -92,7 +93,7 @@ class PostController extends Controller
         } else {
             $posts = Post::skip($offset)
                 ->orderBy('id', 'desc')
-                ->take($posts)
+                ->take($post)
                 ->get();
         }
         foreach ($posts as $post) {

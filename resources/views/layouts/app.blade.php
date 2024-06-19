@@ -105,7 +105,7 @@
                             </li>
                         </ul>
                     </div>
-                    <header>
+                    <header style="margin-top: 30px">
                         <div class="header-left">
                             <img id="home" style="width:150px; height:auto"
                                 src="{{ asset('images/logo.png') }}" alt="">

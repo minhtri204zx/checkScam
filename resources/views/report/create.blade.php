@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('title', 'Create')
 @section('link')
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
@@ -120,7 +120,7 @@
 
                 <div>
                     <textarea style="padding-left:12px; margin-top:24px ;" name="noidung" id="text" cols="121" rows="10"
-                        placeholder="Nội dung report *">{{ old('username') }}</textarea>
+                        placeholder="Nội dung report *">{{ old('noidung') }}</textarea>
                 </div>
                 @error('noidung')
                     <div style="color: red">{{ $message }}</div>
@@ -128,11 +128,13 @@
 
                 <div style="display: flex">
                     <div id="img">
+
+                        <div id="mar">
+                            <input name='image[]' onchange="debounceImages(event)" type="file" id="file" multiple accept="image/*" />
+                            <label for="file" class="custom-file-upload"></label>
+                        </div>
                     </div>
-                    <div id="mar">
-                        <input name='image' type="file" id="file" multiple accept="image/*" />
-                        <label for="file" class="custom-file-upload"></label>
-                    </div>
+
 
                 </div>
                 @error('image')
@@ -149,8 +151,8 @@
                         </div>
 
                         <div  class="form-group input-mobile">
-                            <input class="form-input" type="text" id="email" placeholder=" "
-                                value="{{ $row->numberphone }}" required>
+                            <input name="sdt_nguoidang" class="form-input" type="text" id="email" placeholder=" "
+                                value="{{ old('sdt_nguoidang') }}" required>
                             <label class="form-label" for="email">Số điện thoại <span
                                     style="color: forestgreen">*</span></label>
                         </div>
@@ -177,5 +179,7 @@
         </div>
     </div>
    </div>
+   <div class="image_overlay" id="over"></div>
+
     <script src="{{ asset('js/img.js') }}"></script>
 @endsection

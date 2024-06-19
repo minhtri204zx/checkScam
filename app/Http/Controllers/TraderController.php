@@ -9,7 +9,7 @@ class TraderController extends Controller
 {
   public function index()
   {
-    $traders = trader::get();
+    $traders = trader::take(18)->get();
 
     return view('trader.index', compact('traders'));
   }
@@ -17,7 +17,7 @@ class TraderController extends Controller
   public function show(int $id)
   {
     $trader = Trader::where('id', $id)->FirstOrFail();
-    
+
     return view('trader.show', compact('trader'));
   }
 }
