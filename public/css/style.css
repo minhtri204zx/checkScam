@@ -60,6 +60,25 @@
     background: rgba(13, 13, 13, 0.24);
 }
 
+.trader{
+    width: 180px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.trader img:first-child{
+    width: 148px;
+    height: 148px;
+    border-radius: 10px;
+}
+
+.trader p{
+    margin-top: 1rem;
+    color: var(--Light-Stroke, #E4E4E4);
+}
+
 header {
     z-index: 1;
     height: 80px;
@@ -655,44 +674,6 @@ a {
     height: 148px;
     width: 148px;
     border-radius: 10px;
-}
-
-.list-trader {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.list-trader>div {
-    margin-top: 24px;
-    border-radius: 12px;
-    width: 180px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.list-trader>div:hover {
-    background: rgba(255, 255, 255, 0.24);
-    cursor: pointer;
-}
-
-.list-trader p {
-    height: 40px;
-    margin-top: 20px;
-    font-size: 15px;
-}
-
-.list-trader>div>div>img {
-    border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    cursor: pointer;
-}
-
-.list-trader a {
-    margin-left: 8px;
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.12);
-    border: none;
 }
 
 .header-detail {
