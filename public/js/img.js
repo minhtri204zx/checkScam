@@ -36,7 +36,9 @@ function showImages(event) {
                     <img src="your-image.jpg" id="imageDisplay${seriImages}" alt="Image" class="image">
                     <div class="overlayImages"></div>
                     <div class="option">
-                    <img src="http://localhost:8000/images/Eye.svg" onclick="showImg(${seriImages})" id="viewImage" alt="Image">
+                    <img src="http://localhost:8000/images/Eye.svg" onclick="largeImg
+
+                    (${seriImages})" id="viewImage" alt="Image">
                     <img src="http://localhost:8000/images/DeleteOutlined.svg" id="delImage" onclick="deleteImage(${seriImages})" alt="Image">
                     </div>
                 </div>
@@ -53,17 +55,28 @@ function showImages(event) {
 
 const debounceImages = showImages()
 
-const showImg = (id) => {
+const largeImg = (id) => {
     let img = document.getElementById('imageDisplay' + id)
     let overlay = document.getElementById('over')
     overlay.style.display = 'block'
     img.style.zIndex = '100'
     img.style.width = '500px'
     img.style.height = '500px'
+    img.style.position = 'fixed'
+    img.style.top = '50%'
+    img.style.left = '50%'
+    img.style.transform = 'translate(-50%, -50%)'
+
+
     document.getElementById('over').addEventListener('click', () => {
         document.getElementById('over').style.display = 'none'
+        img.style.zIndex = 'unset'
         img.style.width = '100px'
         img.style.height = '100px'
+        img.style.position = 'unset'
+        img.style.transform = 'translate(0)'
+
+
     })
 }
 

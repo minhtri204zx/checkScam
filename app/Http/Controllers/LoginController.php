@@ -10,6 +10,37 @@ use Laravel\Socialite\Two\InvalidStateException;
 
 class LoginController extends Controller
 {
+    public function loginWithGoogle()
+    {
+
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callBackGoogle(){
+        $user = Socialite::driver('google')->user();
+        $findUser = Account::where('google_id', $user->id)->first();
+
+        if ($findUser) {
+            $googleUser = Auth::attempt([
+                'email' => "$user->email",
+                'password' => 1
+            ]);
+            Account::where(['google_id'=>$user->id])->update([
+                'name' => $user->name,
+                'avatar' => $user->avatar,
+            ]);
+            return back();
+        }else{
+                Account::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_id' => $user->id,
+                'avatar' => $user->avatar,
+            ]);
+        }
+        return back();
+    }
+
     public function loginWithFacebook()
     {
 
@@ -25,7 +56,7 @@ class LoginController extends Controller
             'password' => 1
         ]);
 
-        return redirect('/');
+        return back();
     }
 
     public function logOut()

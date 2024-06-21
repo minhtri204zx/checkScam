@@ -32,9 +32,9 @@ Route::middleware('share.cate')->group(function () {
     Route::get('/load-more', [PostController::class, 'loadMore']);
     Route::get('search', [PostController::class, 'search']);
 
-    Route::get('insurance',[TraderController::class, 'index']);
-    Route::get('insurance/{id}',[TraderController::class, 'show']);
-
+    Route::get('traders',[TraderController::class, 'index']);
+    Route::get('traders/{id}',[TraderController::class, 'show']);
+    Route::get('/load-more-traders', [TraderController::class, 'loadMore']);
 
     Route::post('comment', [CommentController::class, 'store']);
     Route::get('like/{id}', [CommentController::class, 'like']);
@@ -42,6 +42,8 @@ Route::middleware('share.cate')->group(function () {
 
 });
 
+Route::get('login-with-google', [LoginController::class, 'loginWithGoogle']);
 Route::get('login', [LoginController::class, 'loginWithFacebook']);
 Route::get('login-success', [LoginController::class, 'loginCallBack']);
+Route::get('login-success-google', [LoginController::class, 'callBackGoogle']);
 Route::get('logout', [LoginController::class, 'logOut']);

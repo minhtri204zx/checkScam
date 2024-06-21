@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('check', 'Tra cứu')
 @section('title', 'Posts')
 @section('sca', 'SCAM')
@@ -52,7 +52,7 @@
         </div>
 
         @isset($posts[11])
-            <div class="text-center mt-5">
+            <div style="padding-bottom: 100px;" class="text-center mt-5">
                 <button style="backdrop-filter: blur(10px);" id="load-more" class="btn btn-success">Xem thêm</button>
             </div>
         @endisset
@@ -63,11 +63,14 @@
         $(document).ready(function() {
             var offset = 12;
             var search = `{{ request()->search ? request()->search : '' }}`
-            $('#load-more').click(function() {
-                console.log(screen.width);
-                if ((window.innerWidth <= 1111 || screen.width <= 1111)) {
+            if ((window.innerWidth <= 1111 || screen.width <= 1111)) {
                     offset = 6;
                 }
+            $('#load-more').click(function() {
+                $('.contenter').append(`
+                <div class="loading" id="loading">Loading&#8230;</div>
+                `);
+
                 $.ajax({
                     url: '/load-more',
                     method: 'GET',
@@ -77,8 +80,9 @@
                         screen: window.innerWidth ? window.innerWidth : screen.width
                     },
                     success: function(data) {
-                        if (data.length > 0) {
+                        console.log(offset);
 
+                        if (data.length > 0) {
                             var html = '';
                             if (window.innerWidth <= 1974) {
                                 if (data.length == 7) {
@@ -113,8 +117,10 @@
                                             }
                                         }
                                     });
+                                    document.getElementById('loading').remove()
                                     $('.contenter').append(html);
                                     offset += 6;
+                                    console.log(offset);
                                 } else {
                                     $.each(data, function(index, post) {
                                         html += `
@@ -143,6 +149,7 @@
                                     `
                                         }
                                     });
+                                    document.getElementById('loading').remove()
                                     $('.contenter').append(html);
                                     $('#load-more').text('Không còn bài report nào').prop(
                                         'disabled',
@@ -181,6 +188,7 @@
                                             }
                                         }
                                     });
+                                    document.getElementById('loading').remove()
                                     $('.contenter').append(html);
                                 } else {
                                     $.each(data, function(index, post) {
@@ -210,6 +218,7 @@
                                     `
                                         }
                                     });
+                                    document.getElementById('loading').remove()
                                     $('.contenter').append(html);
                                     $('#load-more').text('Không còn bài report nào').prop(
                                         'disabled',

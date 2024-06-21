@@ -6,6 +6,9 @@ const home = document.getElementById('home')
 length = arrMain.length
 let click = 0;
 let ao = 4;
+
+
+
 home.addEventListener('click', () => {
     window.location.href = '/';
 })
@@ -126,6 +129,29 @@ function clicked(value) {
     search.focus();
 }
 
+function getNumerical(id) {
+    let css = window.getComputedStyle(main);
+    transformValue = css.getPropertyValue('transform')
+    const matrix = transformValue.match(/matrix.*\((.+)\)/)[1].split(', ');
+    const translateX = parseFloat(matrix[4]);
+
+    console.log(id-ao);
+    if (id-ao<0) {
+        active(id, ao)
+        vitri = id - ao;
+        translate = translateX - 212*(vitri)
+        main.style.transform = 'translateX(' + translate + 'px)'
+        ao = id
+    }else{
+        active(id, ao)
+        vitri = id - ao;
+        translate = translateX - 212*(vitri)
+        main.style.transform = 'translateX(' + translate + 'px)'
+        ao = id
+    }
+     
+}
+
 pre.addEventListener('click', () => {
     if (window.innerWidth < 1111) {
         let css = window.getComputedStyle(main);
@@ -190,7 +216,7 @@ function active(ao = 4, reset = null) {
     const overlay1 = document.getElementById('overlay1_' + ao);
     overText[ao-1].style.color= '#fff'
 
-    overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164" fill="none">
+    overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" onclick="getNumerical(${ao})" viewBox="0 0 164 164" fill="none">
                 <path d="M0.5 0.501733L143.14 0.500003L163.5 33.2858V163.5L18.8828 163.501L0.5 128.734V0.501733Z" stroke="url(#paint0_linear_623_550)"/>
                 <defs>
                 <linearGradient id="paint0_linear_623_550" x1="82" y1="0" x2="82" y2="164.001" gradientUnits="userSpaceOnUse">
@@ -203,7 +229,7 @@ function active(ao = 4, reset = null) {
                 </svg>`;
 
     overlay1.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" onclick="getNumerical(${ao})" viewBox="0 0 180 180" fill="none">
     <path d="M0 0H160.165L180 35V180H19.8347L0 146.142L0 0Z" fill="url(#paint0_linear_623_548)"/>
     <defs>
     <linearGradient id="paint0_linear_623_548" x1="139.835" y1="0" x2="139.835" y2="180" gradientUnits="userSpaceOnUse">

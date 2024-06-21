@@ -1,10 +1,13 @@
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>@yield('title', 'Scam')</title>
+        <link id="loadingStyle" rel="stylesheet" href="{{ asset('css/loading.css') }}">
+
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,40 +19,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         @yield('link')
     </head>
 
-    <body style="position: relative">
+    <body style="position: relative;">
+
+
         <?php
-
-            if (!Auth::check()) {?>
-        <script>
-            const myModal = document.getElementById('myModal')
-            const myInput = document.getElementById('myInput')
-            myModal.addEventListener('shown.bs.modal', () => {
-                myInput.focus()
-            })
-        </script><?php
-            }
-
-            ?>
+        if (!Auth::check()) {
+        ?>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo!!</h1>
+                        <h1 class="modal-title fs-5" style="color: #111111" id="exampleModalLabel">Thông báo!!</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h3>Bạn chưa đăng nhập</h3>
+                        <h3 style="color: #111111" class="">Bạn chưa đăng nhập</h3>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="http://localhost:8000/login" class="btn btn-primary"><i
-                                class="fa-brands fa-facebook"></i> &nbsp;Login with facebook</a>
+                        <div style="width: 100%;">
+                            <a href="http://localhost:8000/login-with-google" style="background-color: #FF7F3E; width: 49.5%;" class="btn btn-danger"><i
+                                    class="fa-brands fa-google"></i></i> &nbsp;Login with google</a>
+                            <a href="http://localhost:8000/login" class="btn btn-primary" style="width: 49.5%;"><i
+                                    class="fa-brands fa-facebook"></i> &nbsp;Login with facebook</a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -74,6 +73,10 @@
             </div>
         </div>
 
+        <?php
+        }
+        ?>
+
         <div class="background<?php if (isset($tracuu)) {
             echo '-3';
         } else {
@@ -92,23 +95,25 @@
                                 <a style="text-decoration: none; color:#ffffff" href="/">Giới thiệu</a>
                             </li>
                             <li>
-                                <a style="text-decoration: none; color:#ffffff" href="/">Cảnh báo hình thức lừa đảo</a>
+                                <a style="text-decoration: none; color:#ffffff" href="/">Cảnh báo hình thức lừa
+                                    đảo</a>
                             </li>
                             <li style="margin-left: -20px; margin-top: 20px;">
                                 <a style="text-decoration: none; color:#ffffff" class="btnReport"
-                                @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
-                                lừa
-                                đảo</a>
-                            @auth
-                                <a style="text-decoration: none; color:#ffffff" href="/logout" class="btnReport">Đăng xuất</a>
-                            @endauth
+                                    @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
+                                    lừa
+                                    đảo</a>
+                                @auth
+                                    <a style="text-decoration: none; color:#ffffff" href="/logout" class="btnReport">Đăng
+                                        xuất</a>
+                                @endauth
                             </li>
                         </ul>
                     </div>
-                    <header style="margin-top: 30px">
+                    <header style="">
                         <div class="header-left">
-                            <img id="home" style="width:150px; height:auto"
-                                src="{{ asset('images/logo.png') }}" alt="">
+                            <img id="home" style="width:150px; height:auto" src="{{ asset('images/logo.png') }}"
+                                alt="">
                         </div>
                         <div id="showmenu" class="header-right-mobile">
                             <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
@@ -116,21 +121,27 @@
                         <div id="header" class="header-right<?php if (Auth::check()) {
                             echo '2';
                         } ?>">
-                           <div>
-                            <a href="/">Trang chủ</a>
-                            <a href="">Giới thiệu</a>
-                            <a href="">Cảnh báo hình thức lừa đảo</a>
-                           </div>
-                           <div class="btn-report">
-                            <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
-                            <a class="btnReport"
-                                @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
-                                lừa
-                                đảo</a>
-                            @auth
-                                <a href="/logout" class="btnReport">Đăng xuất</a>
-                            @endauth
-                           </div>
+                            <div>
+                                <a href="/">Trang chủ</a>
+                                <a href="">Giới thiệu</a>
+                                <a href="">Cảnh báo hình thức lừa đảo</a>
+                            </div>
+                            <div class="btn-report" id="btnReport">
+                                <form action="posts" id="iconSearch" method="get" class="text-center" onsubmit="return validateSearch()"
+                        style="position: relative">
+                        <input type="text" id="search" value="{{ request()->search }}" name="search"
+                            onkeyup="debounceShowHints(event, this.value)"
+                            placeholder="Nhập số điện thoại, số tài khoản ngân hàng ...">
+                    </form>                       
+                                <img class="icon" src="{{ asset('images/icon.png') }}" alt="">
+                                <a class="btnReport"
+                                    @if (!Auth::check()) data-bs-toggle="modal" data-bs-target="#exampleModal" @else href="/posts/create" @endif>Report
+                                    lừa
+                                    đảo</a>
+                                @auth
+                                    <a href="/logout" class="btnReport">Đăng xuất</a>
+                                @endauth
+                            </div>
                         </div>
                     </header>
                 </div>
@@ -144,11 +155,12 @@
                     <p class="text-center">@yield(
                         'infor',
                         'Tra cứu "SĐT, STK Ngân Hàng..." trước khi giao dịch online. Đây là dữ liệu để
-                        cảnh báo không nhắm mục đích bôi nhọ hay hạ thấp uy tín danh dự của bất kì ai, vui lòng liên hệ
-                        admin để gỡ thông tin sai sự thật .'
+                                                                                    cảnh báo không nhắm mục đích bôi nhọ hay hạ thấp uy tín danh dự của bất kì ai, vui lòng liên hệ
+                                                                                    admin để gỡ thông tin sai sự thật .'
                     )</p>
 
-                    <form action="posts" method="get" class="text-center" onsubmit="return validateSearch()" style="position: relative">
+                    <form action="posts" method="get" class="text-center" onsubmit="return validateSearch()"
+                        style="position: relative">
                         <input type="text" id="search" value="{{ request()->search }}" name="search"
                             onkeyup="debounceShowHints(event, this.value)"
                             placeholder="Nhập số điện thoại, số tài khoản ngân hàng ...">
@@ -162,21 +174,21 @@
 
                     <div class="text-center" style="margin-top: 50px">
                         <button class="btnReport">Report lừa đảo</button>
-                        <a href="/insurance" class="btnReport"
+                        <a href="/traders" class="btnReport"
                             style="background: rgba(255, 255, 255, 0.12); text-decoration: none; padding: 14px 30px ">
                             Quỹ bảo hiểm</a>
                     </div>
                 </div>
                 <div class="canimg">
-                    <div id="search2">
+                    <div class="search2" id="search2">
                     </div>
                 </div>
 
                 <div class="cangiua">
                     <div id="main" class="slide text-light moved">
                         @foreach ($cates as $cate)
-                            <div id="check{{ $loop->iteration }}" class="main">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            <div id="check{{ $loop->iteration }}" onclick="getNumerical({{$loop->iteration}})" class="main">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                     width="180" height="180" viewBox="0 0 180 180" fill="none">
                                     <path d="M0 0H160L180 35V180H20L0 145L0 0Z"
                                         fill="url(#pattern0_623_54{{ $loop->iteration }})" />
@@ -186,7 +198,8 @@
                                             <use xlink:href="#image0_623_54{{ $loop->iteration }}"
                                                 transform="translate(-0.166667) scale(0.00277778)" />
                                         </pattern>
-                                        <image id="image0_623_54{{ $loop->iteration }}" xlink:href='{{ $cate['image'] }}'>
+                                        <image id="image0_623_54{{ $loop->iteration }}"
+                                            xlink:href='{{ $cate['image'] }}'>
                                     </defs>
                                 </svg>
                                 <div id="overlay2_{{ $loop->iteration }}" class="over overlay2">
@@ -236,42 +249,43 @@
             {{-- start footer --}}
 
             <div class="footer" id="footer">
-             <div class="cangiua">
-                <div class="div row">
-                    <div class="footer1 col-xxl-2 col-sm-6">
-                        <img src="{{ asset('images/logo.png') }}" alt="">
-                        <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội ác, ở
-                            đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
-                    </div>
-                    <div class="footer2 col-xxl-2 col-sm-6">
-                        <h5 style="color: white">Yêu cầu gỡ report</h5>
-                        <p>Telegram: @hotro</p>
-                        <p>Email: abc@gmail.com</p>
-                        <p>Thời gian làm việc: 8h - 23h</p>
-                    </div>
-                    <div class="footer3 col-xxl-4 col-sm-6">
-                        <h5 style="color: white">Trang chủ</h5>
-                        <p>Giới thiệu</p>
-                        <p>Điều khoản dịch vụ</p>
-                        <p>Chính sách bảo mật</p>
-                    </div>
-                    <div class="footer4 col-xxl-2 col-sm-2">
-                        <h5 style="color: white">Cộng đồng</h5>
-                        <div style="display: flex">
-                            <img src="{{ asset('images/content/facebook.svg') }}" alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}"
-                                alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}"
-                                alt="">
-                            <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}"
-                                alt="">
+                <div class="cangiua">
+                    <div class="div row">
+                        <div class="footer1 col-xxl-2 col-sm-6">
+                            <img src="{{ asset('images/logo.png') }}" alt="">
+                            <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội
+                                ác, ở
+                                đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
+                        </div>
+                        <div class="footer2 col-xxl-2 col-sm-6">
+                            <h5 style="color: white">Yêu cầu gỡ report</h5>
+                            <p>Telegram: @hotro</p>
+                            <p>Email: abc@gmail.com</p>
+                            <p>Thời gian làm việc: 8h - 23h</p>
+                        </div>
+                        <div class="footer3 col-xxl-4 col-sm-6">
+                            <h5 style="color: white">Trang chủ</h5>
+                            <p>Giới thiệu</p>
+                            <p>Điều khoản dịch vụ</p>
+                            <p>Chính sách bảo mật</p>
+                        </div>
+                        <div class="footer4 col-xxl-2 col-sm-2">
+                            <h5 style="color: white">Cộng đồng</h5>
+                            <div style="display: flex">
+                                <img src="{{ asset('images/content/facebook.svg') }}" alt="">
+                                <img style="margin-left: 12px" src="{{ asset('images/content/youtube.svg') }}"
+                                    alt="">
+                                <img style="margin-left: 12px" src="{{ asset('images/content/tiktok.svg') }}"
+                                    alt="">
+                                <img style="margin-left: 12px" src="{{ asset('images/content/tele.svg') }}"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="footer5 col-xxl-1 col-sm-3">
+                            <img src="{{ asset('images/content/DMCA.png') }}" alt="">
                         </div>
                     </div>
-                    <div class="footer5 col-xxl-1 col-sm-3">
-                        <img src="{{ asset('images/content/DMCA.png') }}" alt="">
-                    </div>
                 </div>
-             </div>
                 <div>
                     <hr
                         style="
@@ -281,7 +295,9 @@
                 </div>
                 <p style="color: var(--Light-White, #B5AB9A); text-align: center; margin-top: 30px;">© Copyright 2023.
                     All rights reserved</p>
-<script src="{{ asset('js/posts.js') }}"></script>
+                <script src="{{ asset('js/posts.js') }}"></script>
+                <script src="{{ asset('js/search.js') }}"></script>
+
             </div>
 
             {{-- end footer --}}

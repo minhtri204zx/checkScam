@@ -179,20 +179,28 @@ return [
             Post::class => [
                 'collection-schema' => [
                     'fields' => [
-                    
+                        [
+                            'name' => 'numberphone',
+                            'type' => 'string',
+                        ],
                         [
                             'name' => 'fullname',
+                            'type' => 'string',
+                        ],
+
+                        [
+                            'name' => 'numberbank',
                             'type' => 'string',
                         ],
                         [
                             'name' => 'created_at',
                             'type' => 'int64',
-                        ],   
+                        ],
                     ],
                     'default_sorting_field' => 'created_at',
                 ],
                 'search-parameters' => [
-                    'query_by' => 'fullname'
+                    'query_by' => 'fullname,numberphone,numberbank'
                 ],
             ],
 

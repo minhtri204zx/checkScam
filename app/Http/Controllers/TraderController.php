@@ -20,4 +20,16 @@ class TraderController extends Controller
 
     return view('trader.show', compact('trader'));
   }
+
+  public function loadMore(Request $request){
+    $offset = $request->offset;
+
+        $posts = Trader::skip($offset)
+            ->orderBy('id', 'desc')
+            ->take(7)
+            ->get();
+
+    return response()->json($posts);
+
+  }
 }

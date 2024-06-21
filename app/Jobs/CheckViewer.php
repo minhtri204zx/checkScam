@@ -1,36 +1,46 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Jobs;
 
-use App\Events\UpdateView;
-use App\Models\Viewer;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Client\Request;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use App\Models\Viewer;
+use Illuminate\Support\Facades\Auth;
 
-class ListenerUpdateView
+class CheckViewer implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $viewer;
+    protected $data;
+    protected $id;
+
+
     /**
-     * Create the event listener.
+     * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data, $id)
     {
+        $this->data = $data;
+        $this->id = $id;
     }
 
     /**
-     * Handle the event.
+     * Execute the job.
      *
-     * @param  \App\Events\UpdateView  $event
      * @return void
      */
-    public function handle(UpdateView $event)
+    public function handle()
     {
-        $data = $event->data;
-        $id = $event->id;
+        $data = $this->data;
+        $id = $this->id;
         $response = Http::get('https://api.ipify.org');
         $address = Http::get('http://ip-api.com/php/' . $response);
         $address = unserialize($address);

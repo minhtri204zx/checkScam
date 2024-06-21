@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UpdateView;
 use App\Http\Requests\ReportRequest;
-use App\Jobs\UpdateViewJob;
+use App\Jobs\CheckViewer;
 use App\Models\Account;
 use App\Models\Comment;
 use App\Models\Post;
@@ -40,7 +39,7 @@ class PostController extends Controller
             'account_id' => Auth::id(),
         ]);
 
-        return redirect('/');
+        return back();
     }
 
     public function show(int $id, Request $request)
@@ -55,8 +54,7 @@ class PostController extends Controller
             'device' => $request->header('Sec-Ch-Ua-Mobile') == '?0' ? "Computer" : "Mobile",
             'platform' => $request->header('Sec-Ch-Ua-Platform'),
         ];
-        UpdateViewJob::dispatch($id, $data);
-
+        CheckViewer::dispatch($data, $id);
         return view('report.show', compact('post', 'account'));
     }
 
@@ -78,6 +76,7 @@ class PostController extends Controller
 
     public function loadMore(Request $request)
     {
+
         $offset = $request->offset;
          if ($request->screen<=1974) {
             $post = 7;
@@ -105,7 +104,6 @@ class PostController extends Controller
 
         return response()->json($posts);
     }
-
 
     public function search(Request $request)
     {

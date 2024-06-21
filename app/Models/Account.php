@@ -22,6 +22,7 @@ class Account extends Authenticatable
         'email',
         'uid',
         'password',
-        'numcomments'
+        'numcomments',
+        'google_id'
     ];
 }

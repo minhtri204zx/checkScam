@@ -62,9 +62,10 @@
                     @if (is_array($images))
                     @foreach ($images as $image)
                      <div class="image-container">
-                        <img src="{{asset('images/'.$image)}}" style="margin-top: 0px" alt="Image" class="image">
+                        <img src="{{asset('images/'.$image)}}" onclick="largeImg({{$loop->index}})" id="imageDisplay{{$loop->index}}" style="margin-top: 0px" alt="Image" class="image">
                     </div>
                     @endforeach
+
                     @else
                     <p class="noidung">Không có ảnh</p>
                     @endif
@@ -258,8 +259,8 @@
             document.getElementById('col-md-9').style.marginLeft = '-7.3px'
         }
     </script>
-@endsection
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 @auth
     <script>
         function like(id) {
@@ -282,7 +283,6 @@
             });
 
         }
-
         function unlike(id) {
             $.ajax({
                 url: '/unlike/' + id,
@@ -303,14 +303,12 @@
         }
     </script>
 @else
-    <script>
-        const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
-        myModal.addEventListener('shown.bs.modal', () => {
-            myInput.focus()
-        })
-    </script>
 
 @endauth
+<div class="image_overlay" id="over"></div>
+
+@endsection
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
+
 
 

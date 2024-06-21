@@ -37,11 +37,9 @@ let isBelow1111 = screen.width <= 1111;
 window.addEventListener('resize', () => {
     let windowWidth = screen.width
     if (windowWidth <= 1111 && !isBelow1111) {
-        menu.style.display = 'block'
         isAbove1111 = false
         isBelow1111 = true
     } else if (windowWidth > 1111 && !isAbove1111) {
-        menu.style.display = 'none'
         isAbove1111 = true
         isBelow1111 = false
     }

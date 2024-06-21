@@ -167,7 +167,7 @@
               font-weight: 400;
               line-height: normal;  ">
                     Đơn report sẽ bị gỡ nếu zalo ảo.</p>
-                <button class="btn btn-success btn-send-create" type="submit">Gửi duyệt</button>
+                <button class="btn btn-success btn-send-create" id="guiduyet" type="submit">Gửi duyệt</button>
             </form>
         </div>
 
@@ -182,4 +182,13 @@
    <div class="image_overlay" id="over"></div>
 
     <script src="{{ asset('js/img.js') }}"></script>
+    <script>
+        const btn = document.querySelector('#guiduyet');
+console.log(btn);
+btn.addEventListener('click', ()=>{
+    btn.classList.add('spinner-border')
+    btn.innerHTML = ''
+    btn.type = 'button'
+})
+    </script>
 @endsection
