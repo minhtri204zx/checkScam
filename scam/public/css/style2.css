@@ -1,0 +1,613 @@
+* {
+    color: white;
+}
+
+.row {
+    margin-top: 60px;
+}
+
+form {
+    margin-top: 50px;
+}
+
+.background-1::before {
+    all: unset;
+}
+
+.background-1 {
+    background-color: #0d0d0d;
+    background-image: unset;
+
+}
+
+body {
+    background-color: #0d0d0d;
+}
+
+.ac {
+    border-bottom: 1px solid var(--Stroke, #232323);
+}
+
+.form-control {
+    padding: 10px 0;
+    background-color: #0d0d0d;
+    border: 1px solid var(--Stroke, #232323);
+    border-radius: 12px;
+}
+
+textarea {
+    width: 100%;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Ẩn input radio mặc định */
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+/* Custom radio button */
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    /* Màu viền ban đầu */
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    /* Thêm hiệu ứng chuyển động mượt mà */
+}
+
+/* Bên trong custom radio button (dấu chấm) */
+.radio-custom::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    /* Màu bên trong ban đầu */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    /* Bắt đầu với kích thước 0 */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Hiệu ứng chuyển động */
+}
+
+/* Hiển thị dấu chấm khi được chọn */
+.radio-container input[type="radio"]:checked+.radio-custom::before {
+    transform: translate(-50%, -50%) scale(1);
+    /* Tăng kích thước lên đầy đủ */
+    background-color: #28a745;
+    /* Thay đổi màu bên trong thành xanh lá cây */
+}
+
+/* Thay đổi màu viền khi được chọn */
+.radio-container input[type="radio"]:checked+.radio-custom {
+    border-color: #28a745;
+    /* Thay đổi màu viền thành xanh lá cây */
+}
+
+/* Nhãn của radio button */
+.radio-label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+.create-mobile {
+    display: flex;
+}
+
+/* Input styles */
+.form-input {
+    border-radius: 12px;
+    height: 56px;
+    padding: 30px 335px 10px 10px;
+    border: 1px solid var(--Stroke, #232323);
+    font-size: 16px;
+    box-sizing: border-box;
+    color: var(--Light-White, #b5ab9a);
+    background-color: #0d0d0d;
+}
+
+/* Floating label styles */
+.form-label {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background-color: #0d0d0d;
+    color: var(--Light-White, #b5ab9a);
+
+    transition: 0.2s ease all;
+    pointer-events: none;
+    padding: 0 5px;
+}
+
+/* Khi input có focus hoặc có giá trị */
+.form-input:focus+.form-label,
+.form-input:not(:placeholder-shown)+.form-label {
+    top: 6px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.form-select {
+    border-radius: 12px;
+    height: 56px;
+    padding: 10px 359px 10px 10px;
+    border: 1px solid var(--Stroke, #232323);
+    font-size: 16px;
+    box-sizing: border-box;
+    color: var(--Light-White, #b5ab9a);
+    background-color: #0d0d0d;
+    outline: none;
+}
+
+#select {
+    padding: 10px 439px 10px 10px;
+}
+
+#text {
+    background-color: #0d0d0d;
+    padding-top: 10px;
+    width: 1113px;
+    border-radius: 12px;
+    border: 1px solid var(--Stroke, #232323);
+    height: 100px;
+    align-self: stretch;
+}
+
+#text::placeholder {
+    color: var(--Light-White, #b5ab9a);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* Nút tùy chỉnh */
+.custom-file-upload {
+    margin-top: 20px;
+    width: 100px;
+    /* Chiều rộng của hình vuông */
+    height: 100px;
+    /* Chiều cao của hình vuông */
+    border: 1px dashed var(--Stroke, #232323);
+    display: flex;
+    /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+    cursor: pointer;
+    /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px;
+    /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d;
+    /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+
+/* Dấu cộng (+) */
+.custom-file-upload::before {
+    content: "+";
+    /* Nội dung dấu cộng */
+    font-size: 20px;
+    /* Kích thước chữ của dấu cộng */
+    color: var(--w-60, rgba(255, 255, 255, 0.6));
+}
+
+.title {
+    min-width: 200px;
+    width: 200px;
+    color: var(--Light-White, #b5ab9a);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+}
+
+
+.row p {
+    color: var(--Light-Stroke, #e4e4e4);
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+#comment {
+    color: var(--60, rgba(255, 255, 255, 0.6));
+    font-size: 16px;
+    height: 98px;
+    border-radius: 12px;
+    border: 1px solid var(--Stroke, #232323);
+    background-color: #0d0d0d;
+}
+
+#form {
+    position: relative;
+    width: 100%;
+}
+
+#form button {
+    position: absolute;
+    top: 68px;
+    right: 15px;
+    padding: 10px 24px;
+    background: var(--Stroke, #232323);
+    border-radius: 100px;
+    border: none;
+}
+
+.img-ads {
+    width: 282px;
+}
+
+.option {
+    display: flex;
+    width: 48%;
+    margin-left: 22%;
+    justify-content: space-between;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    top: 50%;
+    cursor: pointer;
+}
+
+.image-container:hover .image {
+    border: 1px solid;
+
+}
+
+.image-container:hover .option {
+    opacity: 1;
+}
+
+.image-container:hover .overlayImages {
+    opacity: 1;
+}
+
+.image-container {
+    margin-right: 20px;
+    position: relative;
+}
+
+.overlayImages {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#img {
+    width: 78%;
+    flex-wrap: wrap;
+}
+
+.image_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.image {
+    padding: 10px;
+    margin-top: 20px;
+    width: 100px;
+    /* Chiều rộng của hình vuông */
+    height: 100px;
+    /* Chiều cao của hình vuông */
+    border: 1px dashed var(--Stroke, #232323);
+    display: flex;
+    /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+    cursor: pointer;
+    /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px;
+    /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d;
+    /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+
+.input-mobile {
+    margin-left: 24px;
+}
+
+.cangiua {
+    width: 1800px;
+    border: none;
+    margin: 0 auto;
+}
+
+.notification {
+    position: relative;
+    display: inline-flex;
+    padding: 64px 0px 24px 0px;
+    flex-direction: column;
+    border: 1px solid var(--Stroke, #232323);
+    box-shadow: 0px 20px 50px 0px rgba(18, 27, 33, 0.20);
+    background: var(--Stroke, #232323);
+    border-radius: 24px;
+    display: none;
+}
+
+.notification div {
+    display: flex;
+    width: 356px;
+    padding: 12px 24px 24px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: auto;
+
+}
+
+.notification img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -60px;
+}
+
+.fields {
+    display: flex;
+    margin-top: 50px;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.images>.image-container {
+    margin-top: 20px;
+}
+
+.hr {
+    border: 0;
+    height: 0.5px;
+    /* Đặt chiều cao của thẻ hr */
+    background-color: rgba(133, 133, 133, 0.288);
+    /* Đặt màu nền */
+    border-top: 0.5px solid rgba(255, 255, 255, 0.39);
+    /* Đặt màu và độ dày của viền trên */
+    margin: 20px 0;
+    /* Khoảng cách trên và dưới thẻ hr */
+}
+
+
+@media only screen and (max-width: 1974px) {
+    .cangiua {
+        width: 100%;
+    }
+
+    .row {
+        width: 93%;
+        margin: 0 auto;
+        margin-top: 60px;
+    }
+
+}
+
+@media only screen and (max-width: 1817px) {
+    #img {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 1670px) {
+    #img {
+        width: 87%;
+    }
+}
+
+@media only screen and (max-width: 1650px) {
+    #img {
+        width: 78%;
+    }
+
+    .col-md-1 {
+        display: none;
+    }
+
+    .row {
+        width: 93%;
+    }
+
+    .col-md-9 {
+        width: 120%;
+        margin-left: 11.7%;
+    }
+
+    .form-select {
+        padding: .375rem 2.25rem .375rem .75rem;
+        width: 545px;
+    }
+
+    #select {
+        padding: .375rem 2.25rem .375rem .75rem;
+    }
+
+}
+
+
+@media only screen and (max-width: 1518px) {
+    #img {
+        width: 100%;
+    }
+
+    #form button {
+        right: -25px;
+    }
+
+    .cangiua {
+        width: 100%;
+    }
+
+    .cangiua {
+        width: 100%;
+    }
+
+    ul {
+        margin-top: 20px;
+    }
+
+    li {
+        list-style: none;
+        margin-top: 20px;
+    }
+
+    .menu-mobile {
+        margin-left: 100%;
+        z-index: 2;
+        width: 100%;
+        position: absolute;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 60px;
+    }
+
+    form>.create-mobile {
+        display: block;
+    }
+
+    .input-mobile {
+        margin-left: 0px;
+    }
+
+    form input {
+        width: 100%;
+    }
+
+    form .form-select {
+        width: 100%;
+    }
+
+    #text {
+        width: 100%;
+    }
+
+    .btn-send-create {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .col-md-1 img {
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+        text-align: center;
+        display: flex;
+    }
+
+    /* .cangiua {
+        overflow-x: hidden;
+    } */
+
+    #select {
+        padding: 10px 40px 10px 10px;
+    }
+
+    p {
+        margin-right: 15px;
+    }
+
+    .num-comments {
+        margin: 0 auto;
+        margin-right: 20px;
+    }
+
+    #form button {
+        margin-right: 25px;
+    }
+
+    .col-md-9 {
+        margin-left: 0;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .col-md-1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1111px) {
+    .fields {
+        display: block;
+    }
+
+    .noidung {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width:575px) {
+
+    form input,
+    #text,
+    .btn-send-create,
+    .form-input {
+        width: 96.5%;
+    }
+
+    .form-input {
+        padding: 0;
+    }
+
+    .form-select {
+        padding: .375rem 2.25rem .375rem .75rem;
+    }
+
+    form .form-select {
+        width: 96.5%;
+    }
+
+    #name {
+        padding: 30px 0px 10px 10px;
+        width: 96.5%;
+    }
+}
+
+@keyframes fadeIn {
+    form {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

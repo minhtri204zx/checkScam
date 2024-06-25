@@ -1,0 +1,14 @@
+.main{
+    margin: 0 auto;
+    width: 98.6%;
+}
+
+#page {
+    width: 20px;
+}
+
+#select {
+    width: 200px;
+    margin-bottom: 30px;
+    margin-right: 24px;
+}
