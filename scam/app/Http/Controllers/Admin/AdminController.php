@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Notification;
 use Auth;
@@ -15,7 +17,7 @@ class AdminController extends Controller
         $data = $request->except('page');
         $reports = Post::where($data)
             ->orderBy('created_at', 'desc')
-            ->paginate(16);
+            ->paginate(10);
         if (isset($request->page)) {
             if ($request->page > (ceil($reports->total() / $reports->perPage()) + 1)) {
                 abort(404);
@@ -35,8 +37,7 @@ class AdminController extends Controller
 
         return view(
             "admin.reports.index",
-            [
-                'user' => Auth::user(),
+            [ 
                 'reports' => $reports,
                 'statuses' => $statuses,
                 'categories' => $categories,
@@ -58,24 +59,17 @@ class AdminController extends Controller
         return back();
     }
 
-    public function updateAccounts($id, Request $request)
+    public function destroy($id)
     {
-        $accounts = Account::firstOrFail('id',$id);
-        $accounts->update([
-            'ban' => $request->ban
-        ]);
-
+        Comment::where('post_id', $id)->delete();
+        Post::where('id', $id)->delete();
         return back();
     }
 
-    public function indexAccounts()
+    public function show($id)
     {
-        $reportNotVerifi = Post::where('status_id', 1)->count();
-        $reports = Post::paginate(1);
-        $user = Auth::user();
-        $noti = Notification::select('noti', 'number')->first(1);
-        $accounts = Account::paginate(16);
-
-        return view('admin.accounts.index', compact('accounts', 'noti', 'user', 'reports', 'reportNotVerifi'));
+        $post = Post::findOrFail($id);
+        
+        return view('admin.reports.show', compact('post'));
     }
 }

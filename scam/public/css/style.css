@@ -9,7 +9,7 @@
     top: 0;
     width: 100%;
     height: 100vh;
-    background-image: url(https://s3-alpha-sig.figma.com/img/4cdb/8736/e25c4a8ef70ebb42e0b3ab4bf3a2a8cb?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OdFitxsztW03zkX4~0fKmZA6NZk5CcDMHj-STTom-EzTyYQavwibMy1lQRU1u-n~468liC8L378Vqrpytl9Mbcb5I6Hw9YS9u-dxKMrArOhweTARztqv3oTU5JEo98YZ6mlXOn9SdlueMVU2e7YCTE~kNYZANjMJYeenckYvj-mzGfs6KRDWVNS76b00tLdF4cO1CU7L3E8FBfIS1Mxa38FesVw2adC8EkljSltOkX3slf~enGcpPgo6PleNxVP4pdY4blEsViYl1E6j03-cAyICcHEXO4skelkgNSVwXo5VnPNIxDOSCPwzheV9JANmeL65lAHPJu~VwsiqbkKYgg__);
+    background-image: url(https://s3-alpha-sig.figma.com/img/4cdb/8736/e25c4a8ef70ebb42e0b3ab4bf3a2a8cb?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=L6Ig52iC785iOahL73Xi5QlsDd38Su31d6DBZ5tJztObkfqq28Wneu~EzEmRgBB5t0MjnMT9kO2~tTxk3ChTq-L6TIoEPaFdUF4bdZ9SW9DKLMuAgMezgvc7-BQgJM6c7i6ZkG380Di65snf6jL42b5e2dCwICDAFoOoYyufoBJPUQ5DOUsd5mSOwpOiR1xotyyXJGkMsUyInY23qf9-RnlbHo08zf7YI~LopkLK5-q0nQf3b4AvrCWVfLLQ8LbrRGOvxHwzKFufSjDVgS5UM~0S94d-tHrB1uNdW2x2olkGsXR6Bl-N9cp6j4haRdFubWhN4G6pZ2QENeIRpSiC5g__);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,13 +33,13 @@
     top: 0;
     width: 100%;
     height: 100vh;
-    background-image: url(https://s3-alpha-sig.figma.com/img/0647/d54b/a73ab84a1855004de31c050a3f21a5a6?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=J3shIdP2CGmWNASitwMvGAnEjfkkxA-h1qRCzpR0ddWTu7d~nGKrihSqAmMb-3xr7hHmaCHzPwNKURlay5R791doG3HqPRDitK6brIx~0eTG4qMq7xOy7i14MADNPA90gO-CrfEPm7uncnXfCpHNFwdPsxZ8cS3gsH~wUTBAgv0xclqdghusjt4HIeNpWbw-SUQL29B3BRVKtLmhTkcDCcNOro6b113xvyo~vkDpw3WEUpmN2qIbkxoM1d7QC8EmYWoEFh0eCa~a4bi5QATpC0apKDWtrA6XrKYtBU8K2TFjbgn4tPBIEuWePzc9fO5NgsY9crz7JfiTIuT6sgueCQ__      );
+    background-image: url(https://s3-alpha-sig.figma.com/img/0647/d54b/a73ab84a1855004de31c050a3f21a5a6?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VQAuF0EqyzVC092GSo42jNZuqPvj~XwekFT-UjcArrTv8KICqmmJvEQaRE~H8ED-jI07VzbzsZqEpaxxPLx04CRA7qXTieKpX2PCtIyuLbV0KUCt3LvpHNKqn5Buthpw1xo8u2jIOcwDX-0~72IPaCobKNBSPOZit-g2y-x4o4N9WEwNXjTBW1j3mRayNr4F2m3RuSMQiNU-eCY6h4tzI20457FcK0wxD5inoR2~HNcMQJsT0-pZz-UarNRR3mY0VdtdDuhGKobLAfzzo3d43~AyOCE~vbjie0U59mQ2mzdLbRGcaykzz5z~0C8Fh3AW8qKe-AdF8BCNvieK8Vu5Eg__);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#main{
+#main {
     transform: translateX(0);
 }
 
@@ -110,7 +110,7 @@
     border-radius: 100px;
 }
 
-.more-trader{
+.more-trader {
     display: none;
     backdrop-filter: blur(1px);
     margin-top: 80px;
@@ -857,7 +857,7 @@ header {
     width: 560px;
 }
 
-.search3{
+.search3 {
     top: -432px;
     left: unset;
     right: 10%;
@@ -865,11 +865,11 @@ header {
 
 
 @media only screen and (max-width: 1974px) {
-    .trader{
+    .trader {
         width: 13%;
     }
 
-    .trader-contact{
+    .trader-contact {
         width: 39%;
     }
 
@@ -938,15 +938,26 @@ header {
     .icon {
         display: none;
     }
+
     .btn-report {
         width: 290px;
+    }
+
+    .cangiua {
+        width: 93%;
+    }
+
+    .arrow-up,
+    .logomess {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 1518px) {
-    .trader{
+    .trader {
         width: 16%;
     }
+
     .none {
         width: 50%;
     }
@@ -958,11 +969,6 @@ header {
 
     .body .content {
         width: 96%;
-    }
-
-    .arrow-up,
-    .logomess {
-        display: none;
     }
 
     .btn-report {
@@ -1048,9 +1054,10 @@ header {
 }
 
 @media only screen and (max-width: 1244px) {
-    .trader{
+    .trader {
         width: 18%;
     }
+
     .header-right2 {
         width: 75%;
         margin-left: 0px;
@@ -1058,9 +1065,10 @@ header {
 }
 
 @media only screen and (max-width: 1111px) {
-    .trader{
+    .trader {
         width: 23%;
     }
+
     .none {
         width: 100%;
     }
@@ -1293,16 +1301,16 @@ header {
 
 }
 
-@media only screen and (max-width:775px){
+@media only screen and (max-width:775px) {
     .trader {
         width: 31%;
     }
 
-    .more-trader{
+    .more-trader {
         display: block;
     }
 
-    .more-trader button{
+    .more-trader button {
         width: 100%;
     }
 }
@@ -1311,6 +1319,7 @@ header {
     .trader {
         width: 48%;
     }
+
     .arrow {
         width: 85%;
     }

@@ -20,7 +20,7 @@ class CheckAdmin
     {
         if (!Auth::check() || Auth::user()->role_id != "2") {
             abort(404);
-        }else{
+        } else {
             return $next($request);
         }
     }

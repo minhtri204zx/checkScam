@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportRequest;
 use App\Jobs\CheckViewer;
 use App\Models\Account;
@@ -10,7 +11,6 @@ use App\Models\Post;
 use App\Models\notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 
 class PostController extends Controller
 {

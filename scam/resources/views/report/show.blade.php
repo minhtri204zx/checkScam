@@ -116,6 +116,9 @@
                     <button data-bs-toggle="modal" data-bs-target="#exampleModal"
                         style="margin-top: -77px; margin-left: 20px;" type="submit">Gửi</button>
                 </form>
+                @error('error')
+                    <div style="color:red">{{$message}}</div>
+                @enderror
 
             </div>
             @error('comment')

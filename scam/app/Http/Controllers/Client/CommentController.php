@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Models\Account;
 use App\Models\Comment;
@@ -13,13 +14,16 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request)
     {
+        if ($request->numcomments == 0) {
+            return back()->with("error", "Bạn đã hết số lần comments, vui lòng đợi tới ngày mai");
+        }
         Comment::create([
             'account_id' => Auth::id(),
             'comment_id' => $request->reply ? $request->reply : NULL,
             'post_id' => $request->post,
             'comment_content' => $request->comment
         ]);
-        $comment =  Account::where('id', Auth::id())->first();
+        $comment = Account::where('id', Auth::id())->first();
         $comment->update([
             'numcomments' => $request->numcomments - 1,
         ]);
@@ -35,7 +39,7 @@ class CommentController extends Controller
             'post_id' => $comment->post_id,
             'comment_id' => $id
         ]);
-        
+
         return "like";
     }
 

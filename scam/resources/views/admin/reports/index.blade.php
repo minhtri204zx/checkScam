@@ -1,9 +1,8 @@
 @extends('admin.layouts.app') 
-
 @section('content')
 
 <div class="main pt-3 pb-3">
-<h1>Danh sách bài các bài tố cáo</h1>
+<h1>Danh sách bài viết tố cáo</h1>
 <div style="display: flex;">
     <select onchange="loadReports()" class="form-select" name="" id="select">
         <option value="{{request()->fullUrlWithoutQuery(['status'])}}">Chủ đề</option>
@@ -26,7 +25,7 @@
     @endforeach
     </select>
 </div>
-<div style="min-height: 1080px">
+<div style="min-height: 700px">
 <table class="table table-striped">
     <thead>
         <th>STT</th>
@@ -62,26 +61,32 @@
                 } ?>">{{$report->current_status->status}}</span>
                 </td>
                 <td>
-              <div style="display: flex; justify-content: space-between; width:300px">
-                <form action="/posts/{{$report->id}}">
-              <button class="btn btn-success">Xem thêm</button>
-                </form>
+              <div style="display: flex; justify-content: space-between; width:343px">
+              <div style="display:flex; justify-content:space-between; width: 158px">
+                  <a href="/admin-reports/{{$report->id}}" class="btn btn-success">Xem chi tiết</a >
+                <form action="/admin-reports/{{$report->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                <button class="btn btn-danger" onclick="return confirm('Bạn muốn xoá bài viết này?')">Xoá</button>
+                </form>  
+                </div>
+
               @if ($report->status_id=='1')
-              <form action="/admin/reports/{{$report->id}}" method="POST">
+              <form action="/admin-reports/{{$report->id}}" method="POST">
                 @csrf
                 @method('put')
                 <input type="hidden" name="status_id" value="3">
                 <input type="submit" value="Duyệt" class="btn btn-warning" onclick="return confirm('Bạn có muốn duyệt?')">
-            </form>
-                <form action="/admin/reports/{{$report->id}}" method="POST">
+                </form>
+                <form action="/admin-reports/{{$report->id}}" method="POST">
                 @csrf
                 @method('put')
                 <input type="hidden" name="status_id" value="2">
-                <button class="btn btn-danger" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
+                <button class="btn btn-info" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
                 </form>
+                @endif
               </div>
-                @endif</td>
-
+            </td>
             </tr>
         @endforeach
     </tbody>
@@ -89,7 +94,7 @@
 </div>
 <div>
             <?php
-            $pages = ceil($reports->total() / 16);
+            $pages = ceil($reports->total() / 10);
             ?>
             @for ($i = 1; $i <= $pages; $i++)
                 <a id="pages" style="<?php
@@ -101,7 +106,6 @@
                 } ?>"
                     href="/admin?page={{ $i }}">{{ $i }}</a>
             @endfor
-    
         </div>
 </div>
 <script>

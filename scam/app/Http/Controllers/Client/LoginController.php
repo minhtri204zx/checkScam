@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,31 +13,32 @@ class LoginController extends Controller
 {
     public function loginWithGoogle(Request $request)
     {
-        session(['url'=>url()->previous()]);
+        session(['url' => url()->previous()]);
         return Socialite::driver('google')->redirect();
     }
 
-    public function callBackGoogle(Request $request){
+    public function callBackGoogle(Request $request)
+    {
         $url = session('url');
         $user = Socialite::driver('google')->user();
         $findUser = Account::where('google_id', $user->id)->first();
         if ($findUser) {
-                 Auth::attempt([
+            Auth::attempt([
                 'email' => "$user->email",
                 'password' => 1,
                 'google_id' => $user->id,
             ]);
-            if (Auth::user()->ban==1) {
+            if (Auth::user()->ban == 1) {
                 Auth::logout();
-                return redirect($url)->with('ban','1');
+                return redirect($url)->with('ban', '1');
             }
-            Account::where(['google_id'=>$user->id])->update([
+            Account::where(['google_id' => $user->id])->update([
                 'name' => $user->name,
                 'avatar' => $user->avatar,
             ]);
             return redirect($url);
-        }else{
-                Account::create([
+        } else {
+            Account::create([
                 'name' => $user->name,
                 'email' => $user->email,
                 'google_id' => $user->id,
@@ -48,7 +50,7 @@ class LoginController extends Controller
 
     public function loginWithFacebook(Request $request)
     {
-        session(['url'=>url()->previous()]);
+        session(['url' => url()->previous()]);
 
         return Socialite::driver('facebook')->redirect();
     }
@@ -63,9 +65,9 @@ class LoginController extends Controller
             'password' => 1,
             'uid' => $authUser->uid,
         ]);
-        if (Auth::user()->ban==1) {
+        if (Auth::user()->ban == 1) {
             Auth::logout();
-            return redirect($url)->with('ban','1');
+            return redirect($url)->with('ban', '1');
         }
         return redirect($url);
     }

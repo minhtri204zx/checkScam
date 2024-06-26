@@ -12,3 +12,81 @@
     margin-bottom: 30px;
     margin-right: 24px;
 }
+
+.detail {
+    display: flex;
+    align-items: center;
+}
+
+.detail p:first-child {
+    font-weight: 600;
+    width: 300px;
+}
+
+
+.image-container:hover .image2 {
+    border: 1px solid;
+
+}
+
+.image-container:hover .option {
+    opacity: 1;
+}
+
+.image-container:hover .overlayImages {
+    opacity: 1;
+}
+
+.image-container {
+    margin-right: 20px;
+    position: relative;
+}
+
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.images>.image-container {
+    margin-top: 20px;
+}
+
+.image-container:hover .image2 {
+    border: 1px solid;
+
+}
+
+.image2 {
+    padding: 10px;
+    margin-top: 20px;
+    width: 100px;
+    /* Chiều rộng của hình vuông */
+    height: 100px;
+    /* Chiều cao của hình vuông */
+    border: 1px dashed var(--Stroke, #232323);
+    display: flex;
+    /* Sử dụng flexbox để canh giữa nội dung */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+    cursor: pointer;
+    /* Con trỏ chuột thay đổi khi hover */
+    border-radius: 10px;
+    /* Bo góc */
+    position: relative;
+    background-color: #0d0d0d;
+    /* Màu nền */
+    transition: background-color 0.3s ease;
+}
+
+.image_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}

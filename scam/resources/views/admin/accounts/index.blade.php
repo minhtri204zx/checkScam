@@ -25,21 +25,21 @@
                         <td>{{$account->role_id == 2 ? 'Admin' : 'Người dùng'}}</td>
                         <td>{{$account->ban == 1 ? 'Bị khoá' : 'Không khoá'}}</td>
                         <td>
-                                @if ($account->ban == 1)
-                                    <form action="/admin-accounts/update/{{$account->id}}" method="Post">
-                                        @csrf
-                                        @method('put')
-                                        <input type="hidden" name="ban" value="0">
-                                        <button class="btn btn-success">Ân xá</button>
-                                    </form>
-                                @else
+                            @if ($account->ban == 1)
+                                <form action="/admin-accounts/update/{{$account->id}}" method="Post">
+                                    @csrf
+                                    @method('put')
+                                    <input type="hidden" name="ban" value="0">
+                                    <button class="btn btn-success">Ân xá</button>
+                                </form>
+                            @else
                                 <form action="/admin-accounts/update/{{$account->id}}" method="Post">
                                     @csrf
                                     @method('put')
                                     <input type="hidden" name="ban" value="1">
                                     <button class="btn btn-danger">Ban</button>
                                 </form>
-                                @endif
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -48,18 +48,17 @@
 
     </div>
     <?php
-            $pages = ceil($accounts->total() / 16);
+$pages = ceil($accounts->total() / 16);
             ?>
-            @for ($i = 1; $i <= $pages; $i++)
-                <a id="pages" style="<?php
-                if (!isset($_GET['page'])) {
-                    $_GET['page'] = 1;
-                }
-                if ($_GET['page'] == $i) {
-                    echo 'background-color: rgba(6, 16, 109, 0.753);color: white;font-weight: 700;';
-                } ?>"
-                    href="/admin?page={{ $i }}">{{ $i }}</a>
-            @endfor
+    @for ($i = 1; $i <= $pages; $i++)
+        <a id="pages" style="<?php
+        if (!isset($_GET['page'])) {
+            $_GET['page'] = 1;
+        }
+        if ($_GET['page'] == $i) {
+            echo 'background-color: rgba(6, 16, 109, 0.753);color: white;font-weight: 700;';
+        } ?>" href="/admin?page={{ $i }}">{{ $i }}</a>
+    @endfor
 </div>
 
 
