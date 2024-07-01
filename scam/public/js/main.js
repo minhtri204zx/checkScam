@@ -10,7 +10,7 @@ console.log(cateId);
 
 length = arrMain.length
 let click = 0;
-let ao = 4;
+let ao = 1;
 
 
 
@@ -18,10 +18,10 @@ home.addEventListener('click', () => {
     window.location.href = '/';
 })
 
-function validateSearch(){
+function validateSearch() {
     let search = document.querySelector('#search')
-    if (search.value=='' || search.value == null) {
-        document.querySelector('.noti-search').style.display ='block'
+    if (search.value == '' || search.value == null) {
+        document.querySelector('.noti-search').style.display = 'block'
         return false
     }
 }
@@ -55,20 +55,20 @@ function fetcgSuggest(value) {
     });
 }
 
-function debounce(func, timeout=300) {
- let timer
+function debounce(func, timeout = 300) {
+    let timer
     // event , this.value
- return (...args)=>{
-    clearTimeout(timer)
-    timer=setTimeout(()=>{
-        func.apply(this, args)
-    }, timeout)
- }
+    return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            func.apply(this, args)
+        }, timeout)
+    }
 }
 
 let a = -1;
 function showHints(e, value) {
-    document.querySelector('.noti-search').style.display ='none'
+    document.querySelector('.noti-search').style.display = 'none'
 
     if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
         return
@@ -85,7 +85,7 @@ function showHints(e, value) {
 }
 
 function showHints2(e, value) {
-    document.querySelector('.noti-search').style.display ='none'
+    document.querySelector('.noti-search').style.display = 'none'
 
     if (e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40) {
         return
@@ -200,21 +200,21 @@ function getNumerical(id, ao) {
     const matrix = transformValue.match(/matrix.*\((.+)\)/)[1].split(', ');
     const translateX = parseFloat(matrix[4]);
 
-    console.log(id-ao);
-    if (id-ao<0) {
+    console.log(id - ao);
+    if (id - ao < 0) {
         active(id, ao)
         vitri = id - ao;
-        translate = translateX - 212*(vitri)
+        translate = translateX - 212 * (vitri)
         main.style.transform = 'translateX(' + translate + 'px)'
         ao = id
-    }else{
+    } else {
         active(id, ao)
         vitri = id - ao;
-        translate = translateX - 212*(vitri)
+        translate = translateX - 212 * (vitri)
         main.style.transform = 'translateX(' + translate + 'px)'
         ao = id
     }
-     
+
 }
 
 pre.addEventListener('click', () => {
@@ -275,11 +275,11 @@ next.addEventListener('click', () => {
     }
 
 })
-function active(ao = 4, reset = null) {
+function active(ao = 1, reset = null) {
     const overText = document.getElementsByClassName("text");
     const overlay2 = document.getElementById('overlay2_' + ao);
     const overlay1 = document.getElementById('overlay1_' + ao);
-    overText[ao-1].style.color= '#fff'
+    overText[ao - 1].style.color = '#fff'
 
     overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" onclick="getNumerical(${ao})" viewBox="0 0 164 164" fill="none">
                 <path d="M0.5 0.501733L143.14 0.500003L163.5 33.2858V163.5L18.8828 163.501L0.5 128.734V0.501733Z" stroke="url(#paint0_linear_623_550)"/>
@@ -304,7 +304,7 @@ function active(ao = 4, reset = null) {
     </defs>
     </svg>`
     if (reset != null) {
-        overText[reset-1].style.color= 'var(--Light-White, #B5AB9A)'
+        overText[reset - 1].style.color = 'var(--Light-White, #B5AB9A)'
         const overlay2 = document.getElementById('overlay2_' + reset);
         const overlay1 = document.getElementById('overlay1_' + reset);
         overlay2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164"
@@ -332,8 +332,8 @@ function active(ao = 4, reset = null) {
     }
 }
 if (cateId) {
-    getNumerical(cateId,ao)
-    active(cateId,ao)
+    getNumerical(cateId, ao)
+    active(cateId, ao)
 }
 
 

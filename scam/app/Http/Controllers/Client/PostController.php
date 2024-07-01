@@ -23,13 +23,31 @@ class PostController extends Controller
 
     public function store(ReportRequest $request)
     {
-        $images = json_encode($request->image);
+        $arrImage = [];
+        $files = $request->file('image');
+        $variable = ['png', 'jpeg', 'jpg', 'gif', 'svg'];
+        $pathImages = public_path('images/');
+        foreach ($files as $file) {
+            $fileName = $file->getClientOriginalName();
+            $arrImage[] = $fileName;
+            $arr = explode('.', $fileName);
+            foreach ($variable as $value) {
+                if (end($arr) == $value) {
+                    $flag = 1;
+                }
+            }
+            $file->move($pathImages, $fileName);
+        }
+        if (!isset($flag)) {
+            return back()->with('error', 'Hình ảnh sai định dạng');
+        }
+        $arrImage = json_encode($arrImage);
         Post::create([
-            'images' => $images,
+            'images' => $arrImage,
             'category_id' => $request->danhmuc,
             'username' => $request->username,
             'uid' => $request->uid,
-            'linkfb' => $request->link,
+            'linkfb' => $request->link ? $request->link : NULL,
             'fullname' => $request->hovaten,
             'numberphone' => $request->sodienthoai,
             'numberbank' => $request->sotaikhoan,
@@ -39,18 +57,18 @@ class PostController extends Controller
             'account_id' => Auth::id(),
         ]);
 
-        $noti = Notification::firstOrFail(1);
-        if ($noti) {
-            Notification::where('id', $noti->id)
-                ->update([
-                    'number' => $noti->number + 1,
-                ]);
-        } else {
-            Notification::create([
-                'noti' => 'Bài viết mới',
-                'number' => 1
-            ]);
-        }
+        // $noti = Notification::firstOrFail(1);
+        // if ($noti) {
+        //     Notification::where('id', $noti->id)
+        //         ->update([
+        //             'number' => $noti->number + 1,
+        //         ]);
+        // } else {
+        //     Notification::create([
+        //         'noti' => 'Bài viết mới',
+        //         'number' => 1
+        //     ]);
+        // }
 
 
         return back()->with('success', '1');

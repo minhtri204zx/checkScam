@@ -7,7 +7,7 @@
 }
 
 form {
-    margin-top: 50px;
+    margin-top: 37px;
 }
 
 .background-1::before {
@@ -103,18 +103,19 @@ textarea {
 
 .form-group {
     position: relative;
-    margin: 20px 0;
+    margin-top: 19px;
 }
 
 .create-mobile {
     display: flex;
+    margin-top: -7px;
 }
 
 /* Input styles */
 .form-input {
     border-radius: 12px;
     height: 56px;
-    padding: 30px 335px 10px 10px;
+    padding: 30px 226px 10px 10px;
     border: 1px solid var(--Stroke, #232323);
     font-size: 16px;
     box-sizing: border-box;
@@ -144,15 +145,20 @@ textarea {
 }
 
 .form-select {
+    width: 436px;
     border-radius: 12px;
     height: 56px;
-    padding: 10px 359px 10px 10px;
+    padding: 10px 290px 10px 10px;
     border: 1px solid var(--Stroke, #232323);
     font-size: 16px;
     box-sizing: border-box;
     color: var(--Light-White, #b5ab9a);
     background-color: #0d0d0d;
     outline: none;
+}
+
+#error {
+    display: none;
 }
 
 #select {
@@ -162,7 +168,7 @@ textarea {
 #text {
     background-color: #0d0d0d;
     padding-top: 10px;
-    width: 1113px;
+    width: 892px;
     border-radius: 12px;
     border: 1px solid var(--Stroke, #232323);
     height: 100px;
@@ -270,7 +276,7 @@ input[type="file"] {
     cursor: pointer;
 }
 
-.image-container:hover .image {
+.image-container:hover .image2 {
     border: 1px solid;
 
 }
@@ -313,7 +319,7 @@ input[type="file"] {
     display: none;
 }
 
-.image {
+.image2 {
     padding: 10px;
     margin-top: 20px;
     width: 100px;
@@ -338,7 +344,7 @@ input[type="file"] {
 }
 
 .input-mobile {
-    margin-left: 24px;
+    margin-left: 20px;
 }
 
 .cangiua {
@@ -385,6 +391,7 @@ input[type="file"] {
 .images {
     display: flex;
     flex-wrap: wrap;
+    transform: translateY(-45px);
 }
 
 .images>.image-container {
@@ -403,7 +410,7 @@ input[type="file"] {
     /* Khoảng cách trên và dưới thẻ hr */
 }
 
-
+/* 
 @media only screen and (max-width: 1974px) {
     .cangiua {
         width: 100%;
@@ -537,7 +544,7 @@ input[type="file"] {
         overflow-x: hidden;
     } */
 
-    #select {
+/* #select {
         padding: 10px 40px 10px 10px;
     }
 
@@ -563,7 +570,7 @@ input[type="file"] {
     .col-md-1 {
         display: none;
     }
-}
+} */
 
 @media only screen and (max-width:1111px) {
     .fields {

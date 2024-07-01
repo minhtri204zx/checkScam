@@ -7,7 +7,7 @@
     <div class="cangiua">
 
         <div class="row">
-            <div class="col-md-9 col-md-10" id="col-md-9">
+            <div class="col-md-9 col-md-10" style="width:75.333333%" id="col-md-9">
                 <h1>Thông tin scam</h1>
                 @csrf
                 <div class="fields">
@@ -61,9 +61,9 @@
                     @endphp
                     @if (is_array($images))
                     @foreach ($images as $image)
-                     <div class="image-container">
-                        <img src="{{asset('images/'.$image)}}" onclick="largeImg({{$loop->index}})" id="imageDisplay{{$loop->index}}" style="margin-top: 0px" alt="Image" class="image">
-                    </div>
+                    <div class="image-container" onclick="largeImg(3)">
+                    <img src="{{asset('images/'.$image)}}" id="imageDisplay3" alt="Image" class="image2" style="display: block;">
+                </div>
                     @endforeach
 
                     @else
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 </nav>
-                <div style="margin-left: 30px;" class="collapse" id="navbarToggleExternalContent{{ $loop->index }}"
+                <div style="margin-left: 30px; margin-top: -25px;" class="collapse" id="navbarToggleExternalContent{{ $loop->index }}"
                     data-bs-theme="dark">
                     <div class=" p-4">
                         @foreach ($comment->replies as $reply)

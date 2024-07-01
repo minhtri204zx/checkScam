@@ -25,6 +25,7 @@
     @endforeach
     </select>
 </div>
+<a href="/admin-reports/create" class="btn btn-success mb-2">Thêm bài viết</a>
 <div style="min-height: 700px">
 <table class="table table-striped">
     <thead>
@@ -63,12 +64,12 @@
                 <td>
               <div style="display: flex; justify-content: space-between; width:343px">
               <div style="display:flex; justify-content:space-between; width: 158px">
-                  <a href="/admin-reports/{{$report->id}}" class="btn btn-success">Xem chi tiết</a >
+                  <a href="/admin-reports/{{$report->id}}" class="btn btn-primary">Xem chi tiết</a >
                 <form action="/admin-reports/{{$report->id}}" method="POST">
                     @csrf
                     @method('delete')
                 <button class="btn btn-danger" onclick="return confirm('Bạn muốn xoá bài viết này?')">Xoá</button>
-                </form>  
+                </form> 
                 </div>
 
               @if ($report->status_id=='1')
@@ -76,13 +77,13 @@
                 @csrf
                 @method('put')
                 <input type="hidden" name="status_id" value="3">
-                <input type="submit" value="Duyệt" class="btn btn-warning" onclick="return confirm('Bạn có muốn duyệt?')">
+                <input type="submit" value="Duyệt" class="btn btn-success" onclick="return confirm('Bạn có muốn duyệt?')">
                 </form>
                 <form action="/admin-reports/{{$report->id}}" method="POST">
                 @csrf
                 @method('put')
                 <input type="hidden" name="status_id" value="2">
-                <button class="btn btn-info" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
+                <button class="btn btn-secondary" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
                 </form>
                 @endif
               </div>
@@ -103,8 +104,8 @@
                 }
                 if ($_GET['page'] == $i) {
                     echo 'background-color: rgba(6, 16, 109, 0.753);color: white;font-weight: 700;';
-                } ?>"
-                    href="/admin?page={{ $i }}">{{ $i }}</a>
+                } ?>" href="{{request()->fullUrlWithQuery(['page'=>$i])}}">{{ $i }}</a>
+
             @endfor
         </div>
 </div>

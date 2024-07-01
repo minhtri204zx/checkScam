@@ -21,6 +21,10 @@
         <input type="file" class="form-control mt-3" name="image">
         <button class="btn btn-success mt-3">Sửa</button>
     </form>
-
+    @if (session('success'))
+        <div class="alert alert-success mt-5" role="alert">
+            Sửa thành công
+        </div>
+    @endif
 </div>
 @endsection

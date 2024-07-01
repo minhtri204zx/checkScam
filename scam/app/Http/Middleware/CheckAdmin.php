@@ -19,7 +19,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check() || Auth::user()->role_id != "2") {
-            abort(404);
+            return redirect('/admin');
         } else {
             return $next($request);
         }

@@ -56,7 +56,7 @@
             @endif
         </div>
         </p>
-        
+
     </div>
     <div class="detail">
         <p>Nội dung report :</p>
@@ -64,37 +64,42 @@
     </div>
     <div class="detail">
         <p>Trạng thái :</p>
-        <p><span class="badge  bg-<?php if ($post->status_id =='1') {
-                    echo "warning";
-                }else if($post->status_id =='2'){
-                    echo 'danger';
-                }else{
-                    echo 'success';
-                } ?>">{{$post->current_status->status}}</span></p>
+        <p><span class="badge  bg-<?php if ($post->status_id == '1') {
+    echo "warning";
+} else if ($post->status_id == '2') {
+    echo 'danger';
+} else {
+    echo 'success';
+} ?>">{{$post->current_status->status}}</span></p>
     </div>
-  
-    <div style="display: flex; width: 290px; justify-content: space-between;">
-    @if ($post->status_id=='1')
-    <form action="/admin/reports/{{$post->id}}" method="POST">
-            @csrf
-            @method('put')
-            <input type="hidden" name="status_id" value="3">
-            <input type="submit" value="Duyệt" class="btn btn-success" onclick="return confirm('Bạn có muốn duyệt?')">
-        </form>
-        <form action="/admin/reports/{{$post->id}}" method="POST">
-            @csrf
-            @method('put')
-            <input type="hidden" name="status_id" value="2">
-            <button class="btn btn-info" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
-        </form>
+
+    <div style="display: flex; <?php if ($post->status_id == '1') {
+    echo 'width: 413px';
+} else {
+    echo 'width: 230px';
+} ?> ; justify-content: space-between;">
+        @if ($post->status_id == '1')
+            <form action="/admin/reports/{{$post->id}}" method="POST">
+                @csrf
+                @method('put')
+                <input type="hidden" name="status_id" value="3">
+                <input type="submit" value="Duyệt" class="btn btn-success" onclick="return confirm('Bạn có muốn duyệt?')">
+            </form>
+            <form action="/admin/reports/{{$post->id}}" method="POST">
+                @csrf
+                @method('put')
+                <input type="hidden" name="status_id" value="2">
+                <button class="btn btn-secondary" onclick="return confirm('Bạn muốn từ chối?')">Không duyệt</button>
+            </form>
         @endif
-       
-       
-        <form action="/admin-reports/destroy/{{$post->id}}" method="POST">
-                    @csrf
-                    @method('delete')
-                <button class="btn btn-danger" onclick="return confirm('Bạn muốn xoá bài viết này?')">Xoá bài viết</button>
-                </form> 
+
+
+        <form action="/admin-reports/{{$post->id}}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="btn btn-danger" onclick="return confirm('Bạn muốn xoá bài viết này?')">Xoá bài viết</button>
+        </form>
+        <a href="/admin-comments?post={{$post->id}}" class="btn btn-info">Xem bình luận</a>
     </div>
 </div>
 

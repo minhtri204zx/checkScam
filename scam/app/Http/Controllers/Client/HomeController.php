@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Community;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -19,7 +21,13 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->where('status_id', 3)
             ->get();
+        $communities = Community::take(12)
+            ->orderBy('id', 'desc')
+            ->get();
 
-        return view('home', compact('comments', 'posts'));
+        $banners = Banner::where('status', 'on')
+            ->get();
+
+        return view('home', compact('comments', 'posts', 'communities', 'banners'));
     }
 }

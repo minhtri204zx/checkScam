@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('images');//
             $table->string('content');//
             $table->string('status');
-            $table->foreignIdFor(Account::class)->constrained();
+            $table->foreignIdFor(Account::class)->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->fullText('fullname');//
         });

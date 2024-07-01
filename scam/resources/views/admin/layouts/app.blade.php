@@ -26,8 +26,8 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
+  @yield('link')
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
@@ -38,9 +38,11 @@
   <div class="wrapper">
 
     <!-- Preloader -->
+    @if (session('login'))
     <div class="preloader flex-column justify-content-center align-items-center" style="background: #0D0D0D;">
       <img class="animation__shake" src="{{asset('images/logo.png')}}" alt="AdminLTELogo">
     </div>
+  @endif
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -121,7 +123,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/admin" class="nav-link">
+                  <a href="/admin-reports" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách</p>
                   </a>
@@ -139,9 +141,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin-accounts" class="nav-link">
+                <a href="/admin-accounts" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin-accounts/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm tài khoản</p>
                 </a>
               </li>
           </li>
@@ -191,6 +199,112 @@
                 </a>
               </li>
             </ul>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-comment" style="color: #ffffff;"></i>
+              <p>
+                Bình luận
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin-comments" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+            </ul>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-gamepad" style="color: #ffffff;"></i>
+              <p>
+                Cộng đồng game
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin-communities" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-ticket" style="color: #ffffff;"></i>
+              <p>
+                Banner
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin-banners" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin-banners/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm banner</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-building-columns" style="color: #ffffff;"></i>
+              <p>
+                Ngân hàng
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin-banks" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin-banks/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm ngân hàng</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-signs-post" style="color: #ffffff;"></i>  
+              <p>
+                Poster
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin-posters" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+
+
+
 
         </nav>
         <!-- /.sidebar-menu -->

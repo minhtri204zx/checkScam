@@ -2,7 +2,7 @@
 @section('content')
 <div class="main pt-3 pb-3">
 
-    <h1>Danh sách tài khoản</h1>
+    <h1>Danh sách danh mục</h1>
     <a href="/admin-categories/create" class="btn btn-success mb-2">Thêm danh mục</a>
     <table class="table table-striped">
         <thead>
@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$category->name}}</td>
-                    <td><img src="{{asset('images/games/' . $category->image)}}" style="width: 200px; height:200px" alt="">
+                    <td><img src="{{asset('images/games/' . $category->image)}}" style="width:150px; height:150px" alt="">
                     </td>
                     <td>
                         <div class="d-flex justify-content-between" style="width: 112px;">

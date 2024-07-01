@@ -54,9 +54,9 @@
                     </div>
                     <div class="modal-footer">
                         <div style="width: 100%;">
-                            <a href="http://localhost:8000/login-with-google" style="background-color: #FF7F3E; width: 49.5%;" class="btn btn-danger"><i
+                            <a href="{{env('APP_URL')}}/login-with-google" style="background-color: #FF7F3E; width: 49.5%;" class="btn btn-danger"><i
                                     class="fa-brands fa-google"></i></i> &nbsp;Login with google</a>
-                            <a href="http://localhost:8000/login" class="btn btn-primary" style="width: 49.5%;"><i
+                            <a href="{{env('APP_URL')}}/login" class="btn btn-primary" style="width: 49.5%;"><i
                                     class="fa-brands fa-facebook"></i> &nbsp;Login with facebook</a>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="http://localhost:8000/login" data-bs-dismiss="modal" class="btn btn-primary">&nbsp;Vẫn
+                        <a href="{{env('APP_URL')}}/login" data-bs-dismiss="modal" class="btn btn-primary">&nbsp;Vẫn
                             là đóng nhưng màu xanh</a>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                     </div>
                     <header style="">
                         <div class="header-left">
-                            <img id="home" style="width:150px; height:auto" src="{{ asset('images/logo.png') }}"
+                            <img id="home" style="width:180px; height:auto" src="{{ asset('images/logo.png') }}"
                                 alt="">
                         </div>
                         <div id="showmenu" class="header-right-mobile">
@@ -133,7 +133,7 @@
                         <div id="header" class="header-right<?php if (Auth::check()) {
                             echo '2';
                         } ?>">
-                            <div>
+                            <div class="middle-header">
                                 <a href="/">Trang chủ</a>
                                 <a href="">Giới thiệu</a>
                                 <a href="">Cảnh báo hình thức lừa đảo</a>
@@ -177,15 +177,15 @@
                             placeholder="Nhập số điện thoại, số tài khoản ngân hàng ...">
                         <button type="submit">
                             <div id="btndiv"></div>
-                            TRA CÍU
+                            TRA CỨU
                         </button>
                     </form>
                     <p class="text-center noti-search" style="color: red">Không được để trống</p>
 
 
-                    <div class="text-center" style="margin-top: 50px">
-                        <button class="btnReport">Report lừa đảo</button>
-                        <a href="/traders" class="btnReport"
+                    <div class="tri text-center" style="margin-top: 21px">
+                        <button class="btn2 btnReport">Report lừa đảo</button>
+                        <a href="/traders" class="btn2 btnReport"
                             style="background: rgba(255, 255, 255, 0.12); text-decoration: none; padding: 14px 30px ">
                             Quỹ bảo hiểm</a>
                     </div>
@@ -264,25 +264,25 @@
             <div class="footer" id="footer">
                 <div class="cangiua">
                     <div class="div row">
-                        <div class="footer1 col-xxl-2 col-sm-6">
-                            <img src="{{ asset('images/logo.png') }}" alt="">
+                        <div class="footer1 col-xxl-3 col-sm-6">
+                            <img src="{{ asset('images/logo.png') }}" style="width:180px; height: auto" alt="">
                             <p>Ở đâu có tình thương, ở đó có sự sống. Ở đâu có công lí, ở đó có sự sống. Ở đâu có tội
                                 ác, ở
                                 đó có công lí. Ở đâu có sự sống, ở đó có công lí.</p>
                         </div>
-                        <div class="footer2 col-xxl-2 col-sm-6">
+                        <div class="footer2 col-xxl-3 col-sm-6">
                             <h5 style="color: white">Yêu cầu gỡ report</h5>
                             <p>Telegram: @hotro</p>
                             <p>Email: abc@gmail.com</p>
                             <p>Thời gian làm việc: 8h - 23h</p>
                         </div>
-                        <div class="footer3 col-xxl-4 col-sm-6">
+                        <div class="footer3 col-xxl-3 col-sm-6">
                             <h5 style="color: white">Trang chủ</h5>
                             <p>Giới thiệu</p>
                             <p>Điều khoản dịch vụ</p>
                             <p>Chính sách bảo mật</p>
                         </div>
-                        <div class="footer4 col-xxl-2 col-sm-2">
+                        <div class="footer4 col-xxl-2 col-sm-2" style="width: 13.666667%;">
                             <h5 style="color: white">Cộng đồng</h5>
                             <div style="display: flex">
                                 <img src="{{ asset('images/content/facebook.svg') }}" alt="">

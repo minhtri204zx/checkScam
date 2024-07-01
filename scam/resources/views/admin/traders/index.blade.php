@@ -48,7 +48,7 @@ $pages = ceil($traders->total() / 4);
         }
         if ($_GET['page'] == $i) {
             echo 'background-color: rgba(6, 16, 109, 0.753);color: white;font-weight: 700;';
-        } ?>" href="/admin-traders?page={{ $i }}">{{ $i }}</a>
+        } ?>" href="{{request()->fullUrlWithQuery(['page' => $i])}}">{{ $i }}</a>
     @endfor
 </div>
 @endsection

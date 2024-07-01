@@ -10,7 +10,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required', 'unique:categories'],
+            'name' => ['required', 'unique:categories,name'],
             'image' => ['required']
         ];
     }
@@ -19,7 +19,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Danh mục không được để trống',
-            'name.unique'=> 'Danh mục đã tồn tại',
+            'name.unique' => 'Danh mục đã tồn tại',
             'image.required' => 'Ảnh không thể bỏ trống'
         ];
     }

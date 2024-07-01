@@ -42,25 +42,27 @@ class Comment extends Model
   public function getLikeAttribute()
   {
     return $this->hasMany(Like::class)
-    ->where('comment_id', $this->id)
-    ->count();
-  }
-  
-  public function likes(){
-
-    return $this->hasMany(Like::class)->get();
+      ->where('comment_id', $this->id)
+      ->count();
   }
 
-  public function post(){
+  public function likes()
+  {
+
+    return $this->hasMany(Like::class);
+  }
+
+  public function post()
+  {
     return $this->belongsTo(Post::class);
   }
 
   public function getCheckAttribute()
   {
     $likes = 0;
-    foreach($this->likes() as $like){
-      if ($like->post_id==$this->post->id && $like->account_id == Auth::id()) {
-        $likes =1;
+    foreach ($this->likes() as $like) {
+      if ($like->post_id == $this->post->id && $like->account_id == Auth::id()) {
+        $likes = 1;
         break;
       }
     }

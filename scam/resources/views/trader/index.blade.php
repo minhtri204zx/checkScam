@@ -15,26 +15,27 @@
 
     <div class="cangiua pt-5">
 
-        <h2>
+        <h2 class="mb-3">
             <img src="{{asset('images/elip.png')}}" alt="">
             Giao dịch trung gian
         </h2>
         <div class="list-trader">
 
-            @for ($i = 0; $i < 18; $i++)
+            @foreach ($traders as $trader)
+                <div class="trader mb-3">
+                    <img src="{{ asset('images/trader/'.$trader->img) }}" alt="">
 
-                <div class="trader mt-3">
-                    <img src="{{ asset('images/trader/anh1.png') }}" alt="">
-                    <p>Nguyễn Trường Giang</p>
+                    <p>{{$trader->fullname}}</p>
                     <div class="trader-infor">
                         <div class="trader-contact">
-                            <a href="https://www.messenger.com/t/102790708853633/?messaging_source=source%3Apages%3Amessage_shortlink&source_id=1441792&recurring_notification=0"><img src="{{ asset('images/Messenger.svg') }}" alt=""></a>
-                           <a href="tel:0984484683"> <img src="{{ asset('images/phone.svg') }}" alt=""></a>
+                            <a href="https://www.facebook.com/MuaKeyCom"><img src="{{ asset('images/Messenger.svg') }}"
+                                    alt=""></a>
+                            <a href="tel:{{$trader->zalo}}"> <img src="{{ asset('images/phone.svg') }}" alt=""></a>
                         </div> {{-- end trader-contact --}}
-                        <a href="traders/1">Chi tiết</a>
+                        <a href="/traders/{{$trader->id}}">Chi tiết</a>
                     </div> {{-- end trader-info --}}
                 </div> {{-- end trader --}}
-            @endfor
+            @endforeach
 
         </div> {{-- end list-trader --}}
 

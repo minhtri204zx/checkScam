@@ -1,8 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="main pt-3 pb-3">
-    <div style="width:300px; margin:0 auto">
-        <h1>Thêm danh mục</h1>
+        <h1 class="text-center">Thêm danh mục</h1>
         <form action="/admin-categories" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="">Tên danh mục</label> <br>
@@ -19,6 +18,11 @@
             @enderror
             <button type="submit" style="margin-top: 11px;" class="btn btn-primary">Thêm</button>
         </form>
-    </div>
-</div>a
+        @if (session('success'))
+            <div class="alert alert-success mt-5" role="alert">
+                Thêm thành công
+            </div>
+        @endif
+
+</div>
 @endsection

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
+use App\Models\Viewer;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -41,7 +44,6 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        Post::where('category_id', $id)->delete();
         Category::findOrFail($id)->delete();
 
         return back();

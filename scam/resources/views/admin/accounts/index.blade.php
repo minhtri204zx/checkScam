@@ -2,12 +2,14 @@
 @section('content')
 <div class="main pt-3 pb-3">
     <h1>Danh sách tài khoản</h1>
+    <a href="admin-accounts/create" class="btn btn-success mb-2">Thêm tài khoản</a>
 
     <div style="min-height: 1080px">
 
         <table class="table table-striped">
             <thead>
                 <th>Tên tài khoản</th>
+                <th>Ảnh</th>
                 <th>Phương thức đăng nhập</th>
                 <th>Số điện thoại</th>
                 <th>Chức vụ</th>
@@ -20,25 +22,30 @@
                 @foreach ($accounts as $account)
                     <tr>
                         <td>{{$account->name}}</td>
+                        <td><img src="{{$account->avatar}}" style="width:150px; height:150px" alt=""></td>
                         <td>{{$account->uid ? 'Facebook' : 'Google'}}</td>
                         <td>{{$account->numberphone ? '$account->numberphone' : 'Chưa xác thực số điện thoại'}}</td>
                         <td>{{$account->role_id == 2 ? 'Admin' : 'Người dùng'}}</td>
                         <td>{{$account->ban == 1 ? 'Bị khoá' : 'Không khoá'}}</td>
                         <td>
-                            @if ($account->ban == 1)
-                                <form action="/admin-accounts/update/{{$account->id}}" method="Post">
-                                    @csrf
-                                    @method('put')
-                                    <input type="hidden" name="ban" value="0">
-                                    <button class="btn btn-success">Ân xá</button>
-                                </form>
+                            @if ($account->id != Auth::id())
+                                @if ($account->ban == 1)
+                                    <form action="/admin-accounts/update/{{$account->id}}" method="Post">
+                                        @csrf
+                                        @method('put')
+                                        <input type="hidden" name="ban" value="0">
+                                        <button class="btn btn-success">Ân xá</button>
+                                    </form>
+                                @else
+                                    <form action="/admin-accounts/update/{{$account->id}}" method="Post">
+                                        @csrf
+                                        @method('put')
+                                        <input type="hidden" name="ban" value="1">
+                                        <button class="btn btn-danger">Ban</button>
+                                    </form>
+                                @endif
                             @else
-                                <form action="/admin-accounts/update/{{$account->id}}" method="Post">
-                                    @csrf
-                                    @method('put')
-                                    <input type="hidden" name="ban" value="1">
-                                    <button class="btn btn-danger">Ban</button>
-                                </form>
+                                <span class="badge bg-primary">Đang sử dụng</span>
                             @endif
                         </td>
                     </tr>
